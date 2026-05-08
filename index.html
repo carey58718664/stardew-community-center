@@ -615,8 +615,11 @@
       font-size: 10px;
       font-weight: 850;
       line-height: 1.12;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      text-align: center;
+      white-space: normal;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
     }
 
     .map-item-count {
@@ -674,6 +677,165 @@
       font-weight: 950;
       text-align: center;
       box-shadow: 0 8px 18px rgba(76, 49, 29, 0.12);
+    }
+
+    .room[data-room-id="pantry"] .room-scene-card {
+      border: 1px solid #e5cfaa;
+      border-radius: 20px;
+      background: rgba(255, 252, 242, 0.92);
+      padding: 14px;
+      box-shadow: 0 8px 20px rgba(80, 50, 20, 0.1);
+    }
+
+    .room[data-room-id="pantry"] .room-scene {
+      min-height: 720px;
+      border: 1px solid rgba(184, 143, 84, 0.5);
+      border-radius: 18px;
+      background:
+        linear-gradient(rgba(255, 246, 224, 0.35), rgba(255, 246, 224, 0.35)),
+        linear-gradient(180deg, rgba(255, 252, 242, 0.76), rgba(244, 226, 190, 0.56));
+      box-shadow: inset 0 0 0 1px rgba(255, 252, 242, 0.55), 0 8px 22px rgba(80, 50, 20, 0.1);
+    }
+
+    .room[data-room-id="pantry"] .room-scene::before {
+      background: rgba(255, 246, 224, 0.35);
+      backdrop-filter: blur(1px);
+    }
+
+    .room[data-room-id="pantry"] .room-scene::after {
+      inset: 14px;
+      border-color: rgba(150, 112, 63, 0.18);
+      border-radius: 16px;
+    }
+
+    .room[data-room-id="pantry"] .room-scene-bg {
+      opacity: 0.52;
+      filter: blur(1px) saturate(0.85) brightness(0.9);
+      transform: scale(1.01);
+    }
+
+    .room[data-room-id="pantry"] .map-tree-lines {
+      z-index: 1;
+    }
+
+    .room[data-room-id="pantry"] .map-tree-lines line {
+      stroke: rgba(255, 248, 232, 0.75);
+      stroke-width: 1.35;
+      filter: drop-shadow(0 1px 2px rgba(80, 50, 20, 0.24));
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-grid {
+      z-index: 2;
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-node {
+      width: clamp(280px, 29%, 370px);
+      min-height: 168px;
+      align-content: start;
+      gap: 10px;
+      border: 1px solid rgba(143, 108, 64, 0.24);
+      border-radius: 22px;
+      background: rgba(255, 252, 242, 0.94);
+      padding: 16px 18px 14px;
+      box-shadow: 0 6px 16px rgba(80, 50, 20, 0.14);
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-node[data-slot="a"] { box-shadow: inset 6px 0 0 rgba(143, 103, 207, 0.55), 0 6px 16px rgba(80, 50, 20, 0.14); }
+    .room[data-room-id="pantry"] .map-bundle-node[data-slot="b"] { box-shadow: inset 6px 0 0 rgba(56, 157, 98, 0.5), 0 6px 16px rgba(80, 50, 20, 0.14); }
+    .room[data-room-id="pantry"] .map-bundle-node[data-slot="c"] { box-shadow: inset 6px 0 0 rgba(216, 141, 50, 0.55), 0 6px 16px rgba(80, 50, 20, 0.14); }
+    .room[data-room-id="pantry"] .map-bundle-node[data-slot="d"] { box-shadow: inset 6px 0 0 rgba(47, 111, 176, 0.52), 0 6px 16px rgba(80, 50, 20, 0.14); }
+    .room[data-room-id="pantry"] .map-bundle-node[data-slot="e"] { box-shadow: inset 6px 0 0 rgba(184, 69, 50, 0.48), 0 6px 16px rgba(80, 50, 20, 0.14); }
+    .room[data-room-id="pantry"] .map-bundle-node[data-slot="f"] { box-shadow: inset 6px 0 0 rgba(111, 75, 34, 0.42), 0 6px 16px rgba(80, 50, 20, 0.14); }
+
+    .room[data-room-id="pantry"] .map-bundle-node.done {
+      border-color: rgba(76, 145, 91, 0.36);
+      background: rgba(248, 254, 242, 0.95);
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-name {
+      color: #2f2116;
+      font-size: 19px;
+      line-height: 1.16;
+      letter-spacing: 0;
+    }
+
+    .room[data-room-id="pantry"] .map-item-strip {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
+    }
+
+    .room[data-room-id="pantry"] .map-item {
+      min-height: 78px;
+      border: 1px solid rgba(140, 110, 70, 0.22);
+      border-radius: 14px;
+      background: rgba(255, 250, 238, 0.9);
+      padding: 7px 5px 6px;
+    }
+
+    .room[data-room-id="pantry"] .map-item.checked {
+      border-color: rgba(76, 145, 91, 0.4);
+      background: rgba(233, 247, 229, 0.9);
+    }
+
+    .room[data-room-id="pantry"] .map-item.checked::after {
+      right: 5px;
+      bottom: 3px;
+      font-size: 12px;
+    }
+
+    .room[data-room-id="pantry"] .map-item .icon-wrap,
+    .room[data-room-id="pantry"] .map-item .icon,
+    .room[data-room-id="pantry"] .map-item .fallback-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .room[data-room-id="pantry"] .map-item .quality {
+      width: 13px;
+      height: 13px;
+    }
+
+    .room[data-room-id="pantry"] .map-item-name {
+      color: #3c2a1d;
+      font-size: 13px;
+      line-height: 1.15;
+      -webkit-line-clamp: 2;
+    }
+
+    .room[data-room-id="pantry"] .map-item-count {
+      font-size: 11px;
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-meta {
+      justify-self: center;
+      border-radius: 999px;
+      background: rgba(241, 226, 191, 0.9);
+      color: #6f4b22;
+      padding: 4px 12px;
+      font-size: 14px;
+      font-weight: 950;
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-node.done .map-bundle-meta {
+      background: rgba(223, 243, 228, 0.95);
+      color: #1f7549;
+    }
+
+    .room[data-room-id="pantry"] .map-room-core {
+      z-index: 3;
+      min-width: 128px;
+      border: 1px solid rgba(145, 97, 44, 0.34);
+      background: rgba(255, 252, 242, 0.96);
+      color: #6b4421;
+      padding: 12px 20px;
+      font-size: 21px;
+      box-shadow: 0 7px 18px rgba(80, 50, 20, 0.16);
+    }
+
+    .room[data-room-id="pantry"] .visual-caption {
+      color: #5f3a22;
+      font-size: 14px;
+      font-weight: 950;
     }
 
     .image-fallback {
@@ -1057,6 +1219,75 @@
         padding: 5px 8px;
         border-width: 1px;
         font-size: 11px;
+      }
+
+      .room[data-room-id="pantry"] .room-scene-card {
+        padding: 6px;
+        border-radius: 14px;
+      }
+
+      .room[data-room-id="pantry"] .room-scene {
+        min-height: 0;
+        aspect-ratio: 16 / 16.8;
+        border-radius: 12px;
+      }
+
+      .room[data-room-id="pantry"] .room-scene::after {
+        inset: 8px;
+        border-radius: 11px;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node {
+        width: clamp(124px, 36%, 160px);
+        min-height: 98px;
+        gap: 3px;
+        border-radius: 13px;
+        padding: 6px;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-name {
+        font-size: 11px;
+      }
+
+      .room[data-room-id="pantry"] .map-item-strip {
+        gap: 3px;
+      }
+
+      .room[data-room-id="pantry"] .map-item {
+        min-height: 38px;
+        border-radius: 8px;
+        padding: 2px 1px;
+      }
+
+      .room[data-room-id="pantry"] .map-item .icon-wrap,
+      .room[data-room-id="pantry"] .map-item .icon,
+      .room[data-room-id="pantry"] .map-item .fallback-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .room[data-room-id="pantry"] .map-item .quality {
+        width: 9px;
+        height: 9px;
+      }
+
+      .room[data-room-id="pantry"] .map-item-name {
+        font-size: 8px;
+      }
+
+      .room[data-room-id="pantry"] .map-item-count {
+        font-size: 7px;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-meta {
+        padding: 2px 7px;
+        font-size: 9px;
+      }
+
+      .room[data-room-id="pantry"] .map-room-core {
+        min-width: 68px;
+        padding: 6px 9px;
+        font-size: 12px;
       }
     }
   </style>
@@ -1621,9 +1852,10 @@
     }
 
     function getMapItemColumns(count) {
-      if (count <= 6) return Math.max(count, 1);
-      if (count === 8 || count === 10 || count === 12) return count / 2;
+      if (count <= 8) return 4;
       if (count === 9) return 3;
+      if (count === 10) return 5;
+      if (count === 12) return 4;
       return Math.min(6, Math.ceil(count / 2));
     }
 
