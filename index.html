@@ -318,6 +318,14 @@
       min-height: 280px;
     }
 
+    .center-map-frame::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 246, 224, 0.08);
+      pointer-events: none;
+    }
+
     .center-map-image {
       display: block;
       width: 100%;
@@ -331,30 +339,68 @@
       position: absolute;
       left: var(--x);
       top: var(--y);
+      z-index: 2;
+      width: 0;
+      height: 0;
+      color: #5c3b20;
+    }
+
+    .center-pin-label {
+      position: absolute;
+      left: var(--dx);
+      top: var(--dy);
       transform: translate(-50%, -50%);
       display: grid;
-      gap: 2px;
       justify-items: center;
-      max-width: 112px;
+      min-width: 76px;
+      border: 1px solid rgba(128, 92, 48, 0.28);
+      border-radius: 11px;
+      background: rgba(255, 252, 242, 0.9);
+      padding: 4px 9px 5px;
       text-align: center;
-      color: #5c3b20;
-      text-shadow: 0 1px 0 rgba(255, 250, 240, 0.9);
+      box-shadow: 0 6px 14px rgba(76, 49, 29, 0.16);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(1px);
     }
 
-    .center-room-pin span {
-      border-radius: 7px;
-      background: #c96d00;
-      color: #fffaf0;
-      padding: 2px 9px;
+    .center-pin-name {
+      color: #5f3518;
       font-size: 13px;
       font-weight: 950;
-      box-shadow: 0 3px 8px rgba(76, 49, 29, 0.18);
+      line-height: 1.12;
     }
 
-    .center-room-pin small {
-      font-size: 11px;
-      font-weight: 800;
-      line-height: 1.2;
+    .center-pin-note {
+      color: #7b5a36;
+      font-size: 10px;
+      font-weight: 850;
+      line-height: 1.15;
+      white-space: nowrap;
+    }
+
+    .center-pin-line {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: var(--line-l);
+      height: 0;
+      border-top: 1px solid rgba(112, 78, 42, 0.42);
+      transform: translate(-50%, -50%) rotate(var(--line-a));
+      transform-origin: left center;
+      pointer-events: none;
+    }
+
+    .center-pin-dot {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 9px;
+      height: 9px;
+      border: 2px solid rgba(255, 252, 242, 0.95);
+      border-radius: 50%;
+      background: #ba6b16;
+      box-shadow: 0 2px 6px rgba(76, 49, 29, 0.3);
+      transform: translate(-50%, -50%);
     }
 
     .room-map {
@@ -1111,13 +1157,29 @@
         min-height: 160px;
       }
 
-      .center-room-pin span {
-        padding: 1px 5px;
+      .center-pin-label {
+        min-width: 54px;
+        border-radius: 8px;
+        padding: 2px 5px 3px;
+      }
+
+      .center-pin-name {
         font-size: 10px;
       }
 
-      .center-room-pin small {
-        font-size: 8px;
+      .center-pin-note {
+        font-size: 7px;
+      }
+
+      .center-pin-dot {
+        width: 7px;
+        height: 7px;
+        border-width: 1px;
+      }
+
+      .center-room-pin {
+        transform: scale(0.86);
+        transform-origin: 0 0;
       }
 
       .items {
@@ -1353,12 +1415,12 @@
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
     const centerRoomPins = [
-      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 17, y: 25 },
-      { id: "fish", name: "鱼缸", note: "移除巨石", x: 58, y: 26 },
-      { id: "vault", name: "金库", note: "修复巴士", x: 84, y: 27 },
-      { id: "crafts", name: "工艺室", note: "修桥", x: 20, y: 80 },
-      { id: "board", name: "布告栏", note: "友谊 +2", x: 64, y: 80 },
-      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 89, y: 79 }
+      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, dx: -34, dy: -38, line: 44, angle: 48 },
+      { id: "fish", name: "鱼缸", note: "移除巨石", x: 58, y: 29, dx: -10, dy: -48, line: 40, angle: 78 },
+      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 29, dx: 34, dy: -38, line: 44, angle: -48 },
+      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 77, dx: -34, dy: 38, line: 44, angle: -48 },
+      { id: "board", name: "布告栏", note: "友谊 +2", x: 63, y: 76, dx: 8, dy: 46, line: 40, angle: -78 },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, dx: 36, dy: 38, line: 46, angle: 48 }
     ];
 
     const bundleLayoutByRoom = {
@@ -1932,9 +1994,13 @@
       document.getElementById("centerMap").innerHTML = `
         ${renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图")}
         ${centerRoomPins.map((pin) => `
-          <div class="center-room-pin" style="--x:${pin.x}%;--y:${pin.y}%">
-            <span>${escapeHtml(pin.name)}</span>
-            <small>${escapeHtml(pin.note)}</small>
+          <div class="center-room-pin" style="--x:${pin.x}%;--y:${pin.y}%;--dx:${pin.dx}px;--dy:${pin.dy}px;--line-l:${pin.line}px;--line-a:${pin.angle}deg">
+            <span class="center-pin-line" aria-hidden="true"></span>
+            <span class="center-pin-dot" aria-hidden="true"></span>
+            <span class="center-pin-label">
+              <span class="center-pin-name">${escapeHtml(pin.name)}</span>
+              <span class="center-pin-note">${escapeHtml(pin.note)}</span>
+            </span>
           </div>
         `).join("")}
       `;
