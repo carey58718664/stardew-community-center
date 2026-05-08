@@ -346,18 +346,19 @@
       border-radius: 8px;
       background: #fffdf8;
       padding: 10px;
-      overflow-x: auto;
+      overflow: hidden;
     }
 
     .room-scene {
       position: relative;
       overflow: hidden;
-      min-height: 430px;
+      min-height: 360px;
+      aspect-ratio: 16 / 7.6;
       border: 2px solid #d9bf8b;
       border-radius: 8px;
       background:
-        radial-gradient(ellipse at center, rgba(255, 229, 174, 0.42), transparent 58%),
-        linear-gradient(180deg, rgba(255, 246, 220, 0.98), rgba(242, 217, 171, 0.94));
+        radial-gradient(ellipse at center, rgba(255, 229, 174, 0.28), transparent 58%),
+        linear-gradient(180deg, rgba(255, 246, 220, 0.8), rgba(242, 217, 171, 0.68));
       isolation: isolate;
     }
 
@@ -366,7 +367,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(180deg, rgba(255, 242, 202, 0.48), rgba(138, 90, 53, 0.3));
+      background: linear-gradient(180deg, rgba(255, 242, 202, 0.26), rgba(138, 90, 53, 0.16));
       pointer-events: none;
     }
 
@@ -388,8 +389,8 @@
       height: 100%;
       object-fit: cover;
       image-rendering: pixelated;
-      opacity: 0.42;
-      filter: saturate(0.9) contrast(0.92) brightness(1.08);
+      opacity: 0.6;
+      filter: saturate(0.95) contrast(0.96) brightness(1.04);
     }
 
     .room-scene .image-fallback {
@@ -753,43 +754,68 @@
       }
 
       .room-scene-card {
-        padding: 8px;
+        padding: 6px;
       }
 
       .room-scene {
-        min-width: 760px;
-        min-height: 500px;
+        min-width: 0;
+        min-height: 0;
+        aspect-ratio: 16 / 10;
       }
 
       .map-bundle-grid {
-        inset: 16px;
+        inset: 10px;
       }
 
       .map-bundle-node {
-        width: 170px;
-        min-height: 92px;
-        padding: 8px 9px;
+        width: clamp(76px, 26%, 112px);
+        min-height: 54px;
+        gap: 2px;
+        padding: 5px 6px;
+        border-width: 1px;
+        border-radius: 7px;
       }
 
       .map-bundle-name {
-        font-size: 13px;
+        font-size: 10px;
+        line-height: 1.12;
+      }
+
+      .map-bundle-meta {
+        font-size: 9px;
+      }
+
+      .map-item-strip {
+        gap: 1px 3px;
       }
 
       .map-mini-icon {
-        width: 21px;
-        height: 21px;
+        width: 13px;
+        height: 13px;
+      }
+
+      .map-mini-more {
+        min-width: 14px;
+        height: 14px;
+        border-radius: 4px;
+        font-size: 8px;
       }
 
       .map-tree-lines {
-        inset: 16px;
-        width: calc(100% - 32px);
-        height: calc(100% - 32px);
+        inset: 10px;
+        width: calc(100% - 20px);
+        height: calc(100% - 20px);
+      }
+
+      .map-tree-lines line {
+        stroke-width: 1.1;
       }
 
       .map-room-core {
-        min-width: 92px;
-        padding: 8px 12px;
-        font-size: 15px;
+        min-width: 58px;
+        padding: 5px 8px;
+        border-width: 1px;
+        font-size: 11px;
       }
     }
   </style>
