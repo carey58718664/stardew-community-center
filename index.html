@@ -460,6 +460,10 @@
       min-width: 0;
     }
 
+    .map-bundle-node[data-bundle-id="animal"] .map-item-strip {
+      flex-wrap: nowrap;
+    }
+
     .map-mini-icon {
       width: 24px;
       height: 24px;
@@ -745,10 +749,6 @@
         padding: 14px;
       }
 
-      .progress-grid {
-        grid-template-columns: 1fr;
-      }
-
       .items {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
@@ -877,61 +877,61 @@
       crafts: {
         core: { x: 50, y: 52 },
         points: {
-          "spring-forage": { x: 22, y: 32 },
+          "spring-forage": { x: 18, y: 32 },
           "summer-forage": { x: 50, y: 20 },
-          "fall-forage": { x: 78, y: 32 },
-          "winter-forage": { x: 22, y: 76 },
+          "fall-forage": { x: 82, y: 32 },
+          "winter-forage": { x: 18, y: 76 },
           construction: { x: 50, y: 84 },
-          "exotic-forage": { x: 78, y: 76 }
+          "exotic-forage": { x: 82, y: 76 }
         }
       },
       pantry: {
         core: { x: 50, y: 52 },
         points: {
-          "spring-crops": { x: 22, y: 32 },
+          "spring-crops": { x: 18, y: 32 },
           "summer-crops": { x: 50, y: 20 },
-          "fall-crops": { x: 78, y: 32 },
-          "quality-crops": { x: 22, y: 76 },
+          "fall-crops": { x: 82, y: 32 },
+          "quality-crops": { x: 18, y: 76 },
           animal: { x: 50, y: 84 },
-          artisan: { x: 78, y: 76 }
+          artisan: { x: 82, y: 76 }
         }
       },
       fish: {
         core: { x: 50, y: 52 },
         points: {
-          "river-fish": { x: 22, y: 32 },
+          "river-fish": { x: 18, y: 32 },
           "lake-fish": { x: 50, y: 20 },
-          "ocean-fish": { x: 78, y: 32 },
-          "night-fish": { x: 22, y: 76 },
+          "ocean-fish": { x: 82, y: 32 },
+          "night-fish": { x: 18, y: 76 },
           "crab-pot": { x: 50, y: 84 },
-          "specialty-fish": { x: 78, y: 76 }
+          "specialty-fish": { x: 82, y: 76 }
         }
       },
       boiler: {
         core: { x: 50, y: 54 },
         points: {
-          blacksmith: { x: 24, y: 38 },
+          blacksmith: { x: 20, y: 38 },
           geologist: { x: 50, y: 80 },
-          adventurer: { x: 76, y: 38 }
+          adventurer: { x: 80, y: 38 }
         }
       },
       board: {
         core: { x: 50, y: 51 },
         points: {
           dye: { x: 50, y: 20 },
-          chef: { x: 25, y: 45 },
-          "field-research": { x: 75, y: 45 },
-          fodder: { x: 34, y: 78 },
-          enchanter: { x: 66, y: 78 }
+          chef: { x: 20, y: 45 },
+          "field-research": { x: 80, y: 45 },
+          fodder: { x: 32, y: 78 },
+          enchanter: { x: 68, y: 78 }
         }
       },
       vault: {
         core: { x: 50, y: 52 },
         points: {
-          "vault-2500": { x: 28, y: 34 },
-          "vault-5000": { x: 72, y: 34 },
-          "vault-10000": { x: 36, y: 78 },
-          "vault-25000": { x: 64, y: 78 }
+          "vault-2500": { x: 22, y: 34 },
+          "vault-5000": { x: 78, y: 34 },
+          "vault-10000": { x: 34, y: 78 },
+          "vault-25000": { x: 66, y: 78 }
         }
       }
     };
@@ -1293,7 +1293,7 @@
                 const slot = getSlot(bundleIndex);
                 const point = mapLayout.points[bundleData.id] || { x: 50, y: 50 };
                 return `
-                  <div class="map-bundle-node ${complete ? "done" : ""}" data-slot="${slot}" style="--x:${point.x}%;--y:${point.y}%" title="${escapeAttribute(bundleData.name)}">
+                  <div class="map-bundle-node ${complete ? "done" : ""}" data-bundle-id="${bundleData.id}" data-slot="${slot}" style="--x:${point.x}%;--y:${point.y}%" title="${escapeAttribute(bundleData.name)}">
                     <div class="map-bundle-name">${escapeHtml(bundleData.name)}</div>
                     ${renderMapBundleItems(bundleData)}
                     <div class="map-bundle-meta">${escapeHtml(bundleData.rule)} · ${done}/${bundleData.required}</div>
