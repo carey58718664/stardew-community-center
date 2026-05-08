@@ -51,9 +51,9 @@
     }
 
     .page {
-      width: min(1220px, calc(100% - 28px));
+      width: min(1180px, calc(100% - 18px));
       margin: 0 auto;
-      padding: 22px 0 42px;
+      padding: 14px 0 34px;
     }
 
     .hero {
@@ -61,9 +61,9 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 16px;
       align-items: end;
-      margin-bottom: 14px;
-      padding: 18px;
-      border: 3px solid var(--wood-dark);
+      margin-bottom: 10px;
+      padding: 16px 18px;
+      border: 2px solid var(--wood-dark);
       border-radius: 8px;
       background: linear-gradient(180deg, #a66f42, var(--wood));
       color: #fff7e8;
@@ -117,22 +117,27 @@
 
     .assistant-panel {
       display: grid;
-      grid-template-columns: minmax(290px, 0.95fr) minmax(0, 1.45fr);
-      gap: 14px;
-      margin-bottom: 14px;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin-bottom: 10px;
     }
 
     .search-panel,
     .progress-panel,
+    .center-map-panel,
     .room-map {
-      border: 2px solid var(--line);
+      border: 1px solid #e8d8b8;
       border-radius: 8px;
       background: rgba(255, 250, 240, 0.92);
       box-shadow: 0 10px 24px rgba(76, 49, 29, 0.08);
     }
 
     .search-panel {
-      padding: 14px;
+      display: grid;
+      grid-template-columns: auto minmax(0, 1fr);
+      gap: 12px;
+      align-items: center;
+      padding: 10px 12px;
     }
 
     .panel-title {
@@ -141,11 +146,16 @@
       font-weight: 900;
     }
 
+    .search-panel .panel-title {
+      margin: 0;
+      white-space: nowrap;
+    }
+
     .search-box {
       display: grid;
-      grid-template-columns: 1fr auto;
+      grid-template-columns: 1fr auto auto;
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 0;
     }
 
     .search-input {
@@ -173,10 +183,21 @@
       font-weight: 900;
     }
 
+    .search-button {
+      min-width: 44px;
+      border: 2px solid #d39c5f;
+      border-radius: 8px;
+      background: #f4c77f;
+      color: #5f3a22;
+      font-size: 20px;
+      font-weight: 950;
+    }
+
     .result-list {
       display: grid;
       gap: 8px;
-      max-height: 290px;
+      grid-column: 2 / 3;
+      max-height: 178px;
       overflow: auto;
       padding-right: 3px;
     }
@@ -237,13 +258,14 @@
     }
 
     .progress-panel {
-      padding: 14px;
+      margin-bottom: 10px;
+      padding: 12px;
     }
 
     .progress-grid {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 8px;
     }
 
     .category {
@@ -282,8 +304,61 @@
       transition: width 0.2s ease;
     }
 
+    .center-map-panel {
+      margin-bottom: 10px;
+      padding: 12px;
+    }
+
+    .center-map-frame {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid #e0c89b;
+      border-radius: 8px;
+      background: #fff6df;
+      min-height: 280px;
+    }
+
+    .center-map-image {
+      display: block;
+      width: 100%;
+      min-height: 280px;
+      object-fit: contain;
+      image-rendering: pixelated;
+      filter: saturate(1.02) contrast(1.02);
+    }
+
+    .center-room-pin {
+      position: absolute;
+      left: var(--x);
+      top: var(--y);
+      transform: translate(-50%, -50%);
+      display: grid;
+      gap: 2px;
+      justify-items: center;
+      max-width: 112px;
+      text-align: center;
+      color: #5c3b20;
+      text-shadow: 0 1px 0 rgba(255, 250, 240, 0.9);
+    }
+
+    .center-room-pin span {
+      border-radius: 7px;
+      background: #c96d00;
+      color: #fffaf0;
+      padding: 2px 9px;
+      font-size: 13px;
+      font-weight: 950;
+      box-shadow: 0 3px 8px rgba(76, 49, 29, 0.18);
+    }
+
+    .center-room-pin small {
+      font-size: 11px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
     .room-map {
-      padding: 14px;
+      padding: 12px;
     }
 
     .rooms {
@@ -294,7 +369,7 @@
 
     .room {
       position: relative;
-      border: 3px solid var(--wood-dark);
+      border: 1px solid #e8d8b8;
       border-radius: 8px;
       background: linear-gradient(180deg, #fffaf0, #f7ebd1);
       box-shadow: 0 12px 26px rgba(76, 49, 29, 0.1);
@@ -305,8 +380,8 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 10px;
       align-items: start;
-      padding: 13px;
-      border-bottom: 2px solid var(--line);
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
       background: rgba(138, 90, 53, 0.1);
     }
 
@@ -335,8 +410,7 @@
     .room-body {
       display: grid;
       grid-template-columns: 1fr;
-      gap: 12px;
-      padding: 12px;
+      padding: 10px;
     }
 
     .room-scene-card {
@@ -352,8 +426,8 @@
     .room-scene {
       position: relative;
       overflow: hidden;
-      min-height: 360px;
-      aspect-ratio: 16 / 7.6;
+      min-height: 640px;
+      aspect-ratio: 16 / 9.4;
       border: 2px solid #d9bf8b;
       border-radius: 8px;
       background:
@@ -411,16 +485,16 @@
       position: absolute;
       left: var(--x);
       top: var(--y);
-      width: clamp(180px, 24%, 260px);
+      width: clamp(220px, 30%, 370px);
       transform: translate(-50%, -50%);
       display: grid;
       align-content: center;
       gap: 6px;
-      min-height: 96px;
+      min-height: 128px;
       border: 2px solid rgba(197, 159, 97, 0.72);
       border-radius: 8px;
       background: rgba(255, 250, 240, 0.94);
-      padding: 10px 14px;
+      padding: 10px;
       color: #2b2118;
       box-shadow: 0 10px 18px rgba(76, 49, 29, 0.16);
     }
@@ -452,23 +526,72 @@
     }
 
     .map-item-strip {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      align-items: center;
-      gap: 3px 5px;
+      display: grid;
+      grid-template-columns: repeat(var(--item-cols), minmax(0, 1fr));
+      gap: 5px;
       min-width: 0;
     }
 
     .map-bundle-node[data-bundle-id="animal"] .map-item-strip,
     .map-bundle-node[data-bundle-id="chef"] .map-item-strip,
     .map-bundle-node[data-bundle-id="dye"] .map-item-strip {
-      flex-wrap: nowrap;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .map-item {
+      position: relative;
+      display: grid;
+      justify-items: center;
+      gap: 2px;
+      min-width: 0;
+      min-height: 54px;
+      border: 1px solid #e4cda2;
+      border-radius: 7px;
+      background: rgba(255, 250, 240, 0.92);
+      padding: 4px 3px;
+      color: #2b2118;
+      text-align: center;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .map-item:hover {
+      border-color: #cda766;
+      background: #fff6df;
+    }
+
+    .map-item.checked {
+      border-color: #9ccc98;
+      background: rgba(232, 246, 232, 0.96);
+    }
+
+    .map-item.highlight {
+      outline: 3px solid rgba(47, 111, 176, 0.3);
+      border-color: var(--blue);
+    }
+
+    .map-item input {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+    }
+
+    .map-item.checked::after {
+      content: "✓";
+      position: absolute;
+      right: 3px;
+      bottom: 1px;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 950;
     }
 
     .map-mini-icon {
-      width: 24px;
-      height: 24px;
+      width: 25px;
+      height: 25px;
       object-fit: contain;
       image-rendering: pixelated;
     }
@@ -483,6 +606,40 @@
       color: #6f4b22;
       font-size: 10px;
       font-weight: 950;
+    }
+
+    .map-item-name {
+      max-width: 100%;
+      overflow: hidden;
+      color: #4e3828;
+      font-size: 10px;
+      font-weight: 850;
+      line-height: 1.12;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .map-item-count {
+      color: var(--red);
+      font-size: 9px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .map-item .icon-wrap {
+      width: 26px;
+      height: 26px;
+    }
+
+    .map-item .icon,
+    .map-item .fallback-icon {
+      width: 26px;
+      height: 26px;
+    }
+
+    .map-item .quality {
+      width: 13px;
+      height: 13px;
     }
 
     .map-tree-lines {
@@ -743,12 +900,62 @@
 
     @media (max-width: 520px) {
       .page {
-        width: min(100% - 18px, 1220px);
-        padding-top: 10px;
+        width: min(100% - 10px, 1220px);
+        padding-top: 6px;
       }
 
       .hero {
-        padding: 14px;
+        padding: 12px;
+      }
+
+      .search-panel {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+
+      .search-box,
+      .result-list {
+        grid-column: auto;
+      }
+
+      .progress-panel,
+      .center-map-panel,
+      .room-map {
+        padding: 8px;
+      }
+
+      .progress-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 5px;
+      }
+
+      .category {
+        padding: 6px 5px;
+      }
+
+      .category-top {
+        display: grid;
+        gap: 2px;
+        margin-bottom: 5px;
+        font-size: 10px;
+      }
+
+      .bar {
+        height: 7px;
+      }
+
+      .center-map-frame,
+      .center-map-image {
+        min-height: 160px;
+      }
+
+      .center-room-pin span {
+        padding: 1px 5px;
+        font-size: 10px;
+      }
+
+      .center-room-pin small {
+        font-size: 8px;
       }
 
       .items {
@@ -762,7 +969,7 @@
       .room-scene {
         min-width: 0;
         min-height: 0;
-        aspect-ratio: 16 / 10;
+        aspect-ratio: 16 / 15.5;
       }
 
       .map-bundle-grid {
@@ -770,10 +977,10 @@
       }
 
       .map-bundle-node {
-        width: clamp(104px, 30%, 136px);
-        min-height: 54px;
+        width: clamp(124px, 35%, 170px);
+        min-height: 86px;
         gap: 2px;
-        padding: 5px 6px;
+        padding: 5px;
         border-width: 1px;
         border-radius: 7px;
       }
@@ -789,12 +996,17 @@
       }
 
       .map-item-strip {
-        gap: 1px 3px;
+        gap: 2px;
+      }
+
+      .map-item {
+        min-height: 36px;
+        padding: 2px 1px;
       }
 
       .map-mini-icon {
-        width: 13px;
-        height: 13px;
+        width: 16px;
+        height: 16px;
       }
 
       .map-mini-more {
@@ -802,6 +1014,32 @@
         height: 14px;
         border-radius: 4px;
         font-size: 8px;
+      }
+
+      .map-item-name {
+        font-size: 8px;
+      }
+
+      .map-item-count {
+        font-size: 7px;
+      }
+
+      .map-item .icon-wrap {
+        width: 16px;
+        height: 16px;
+      }
+
+      .map-item .icon,
+      .map-item .fallback-icon {
+        width: 16px;
+        height: 16px;
+      }
+
+      .map-item .quality {
+        right: -4px;
+        bottom: -4px;
+        width: 9px;
+        height: 9px;
       }
 
       .map-tree-lines {
@@ -843,14 +1081,20 @@
         <div class="search-box">
           <input class="search-input" id="itemSearch" type="search" placeholder="输入物品名，比如：玉米、金星玉米、鲶鱼、木材" autocomplete="off" />
           <button class="clear-button" id="clearSearch" type="button" aria-label="清空搜索">×</button>
+          <button class="search-button" id="jumpSearch" type="button" aria-label="跳转到第一个匹配物品">⌕</button>
         </div>
         <div class="result-list" id="resultList"></div>
       </div>
+    </section>
 
-      <div class="progress-panel">
-        <h2 class="panel-title">分类进度</h2>
-        <div class="progress-grid" id="progressGrid"></div>
-      </div>
+    <section class="progress-panel">
+      <h2 class="panel-title">分类进度</h2>
+      <div class="progress-grid" id="progressGrid"></div>
+    </section>
+
+    <section class="center-map-panel">
+      <h2 class="panel-title">社区中心地图</h2>
+      <div class="center-map-frame" id="centerMap"></div>
     </section>
 
     <section class="room-map">
@@ -874,6 +1118,17 @@
       board: "Finished Bulletin Board.png",
       vault: "Community Center Vault.png"
     };
+
+    const CENTER_MAP_IMAGE = "Restored community centre.png";
+
+    const centerRoomPins = [
+      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 17, y: 25 },
+      { id: "fish", name: "鱼缸", note: "移除巨石", x: 58, y: 26 },
+      { id: "vault", name: "金库", note: "修复巴士", x: 84, y: 27 },
+      { id: "crafts", name: "工艺室", note: "修桥", x: 20, y: 80 },
+      { id: "board", name: "布告栏", note: "友谊 +2", x: 64, y: 80 },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 89, y: 79 }
+    ];
 
     const bundleLayoutByRoom = {
       crafts: {
@@ -1214,12 +1469,21 @@
         if (result) {
           focusItem(result.dataset.jumpId);
         }
+
+        if (event.target.closest("#jumpSearch")) {
+          jumpToFirstSearchResult();
+        }
       });
 
       document.getElementById("itemSearch").addEventListener("input", (event) => {
         state.query = event.target.value.trim();
         renderSearchResults();
         markHighlights();
+      });
+
+      document.getElementById("itemSearch").addEventListener("keydown", (event) => {
+        if (event.key !== "Enter") return;
+        jumpToFirstSearchResult();
       });
 
       document.getElementById("clearSearch").addEventListener("click", () => {
@@ -1249,6 +1513,7 @@
 
     function render() {
       document.getElementById("rooms").innerHTML = rooms.map(renderRoom).join("");
+      renderCenterMap();
       renderProgress();
       renderSearchResults();
       applyVisibility();
@@ -1269,9 +1534,6 @@
           </header>
           <div class="room-body">
             ${renderRoomVisuals(roomData)}
-            <div class="branches">
-              ${roomData.bundles.map((bundleData, bundleIndex) => renderBundle(roomData, bundleData, bundleIndex)).join("")}
-            </div>
           </div>
         </article>
       `;
@@ -1337,19 +1599,32 @@
     }
 
     function renderMapBundleItems(bundleData) {
-      const visibleItems = bundleData.items.slice(0, 6);
-      const rest = bundleData.items.length - visibleItems.length;
+      const columns = getMapItemColumns(bundleData.items.length);
       return `
-        <div class="map-item-strip" aria-hidden="true">
-          ${visibleItems.map((entry) => {
-            const fileName = iconFiles[entry.name] || iconFiles[entry.displayName] || "";
-            return fileName
-              ? `<img class="map-mini-icon" src="${iconUrl(fileName)}" alt="" loading="lazy" data-fallback="${escapeAttribute((entry.name || "?").slice(0, 1))}" />`
-              : `<span class="map-mini-more">${escapeHtml((entry.name || "?").slice(0, 1))}</span>`;
-          }).join("")}
-          ${rest > 0 ? `<span class="map-mini-more">+${rest}</span>` : ""}
+        <div class="map-item-strip" style="--item-cols:${columns}">
+          ${bundleData.items.map((entry) => renderMapItem(entry)).join("")}
         </div>
       `;
+    }
+
+    function renderMapItem(entry) {
+      const checked = isChecked(entry.uid);
+      const title = describeItem(entry);
+      return `
+        <label class="map-item ${checked ? "checked" : ""}" data-item-card="${entry.uid}" title="${escapeAttribute(title)}">
+          <input type="checkbox" data-item-id="${entry.uid}" ${checked ? "checked" : ""} aria-label="${escapeAttribute(title)}" />
+          ${renderIcon(entry)}
+          <span class="map-item-name">${escapeHtml(entry.displayName || entry.name)}</span>
+          ${entry.count > 1 && !entry.displayName ? `<span class="map-item-count">×${entry.count}</span>` : ""}
+        </label>
+      `;
+    }
+
+    function getMapItemColumns(count) {
+      if (count <= 6) return Math.max(count, 1);
+      if (count === 8 || count === 10 || count === 12) return count / 2;
+      if (count === 9) return 3;
+      return Math.min(6, Math.ceil(count / 2));
     }
 
     function renderImageFallback(label) {
@@ -1419,6 +1694,18 @@
           </div>
         `;
       }).join("");
+    }
+
+    function renderCenterMap() {
+      document.getElementById("centerMap").innerHTML = `
+        ${renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图")}
+        ${centerRoomPins.map((pin) => `
+          <div class="center-room-pin" style="--x:${pin.x}%;--y:${pin.y}%">
+            <span>${escapeHtml(pin.name)}</span>
+            <small>${escapeHtml(pin.note)}</small>
+          </div>
+        `).join("")}
+      `;
     }
 
     function renderSearchResults() {
@@ -1493,6 +1780,23 @@
       if (!node) return;
       node.scrollIntoView({ behavior: "smooth", block: "center" });
       node.classList.add("highlight");
+    }
+
+    function jumpToFirstSearchResult() {
+      if (!state.query) return;
+      const query = normalize(state.query);
+      const match = flatItems.find((entry) => {
+        const haystack = [
+          entry.name,
+          entry.displayName,
+          entry.quality === "gold" ? `金星${entry.name}` : "",
+          `${entry.name}×${entry.count}`,
+          entry.roomName,
+          entry.bundleName
+        ].map(normalize).join(" ");
+        return haystack.includes(query);
+      });
+      if (match) focusItem(match.uid);
     }
 
     function setChecked(uid, checked) {
