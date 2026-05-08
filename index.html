@@ -725,6 +725,75 @@
       box-shadow: 0 8px 18px rgba(76, 49, 29, 0.12);
     }
 
+    .room[data-room-id="crafts"] .room-body {
+      padding: 6px;
+    }
+
+    .room[data-room-id="crafts"] .room-scene-card {
+      border-width: 1px;
+      border-radius: 7px;
+      padding: 5px;
+    }
+
+    .room[data-room-id="crafts"] .room-scene {
+      min-height: 660px;
+      border-width: 1px;
+      border-radius: 7px;
+    }
+
+    .room[data-room-id="crafts"] .room-scene::after {
+      inset: 7px;
+      border-width: 1px;
+      border-radius: 6px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-grid,
+    .room[data-room-id="crafts"] .map-tree-lines {
+      inset: 12px;
+    }
+
+    .room[data-room-id="crafts"] .map-tree-lines {
+      width: calc(100% - 24px);
+      height: calc(100% - 24px);
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node {
+      width: max-content;
+      min-width: 0;
+      max-width: calc(100% - 18px);
+      min-height: 0;
+      gap: 5px;
+      padding: 8px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] {
+      padding-left: 9px;
+      padding-right: 9px;
+    }
+
+    .room[data-room-id="crafts"] .map-item-strip {
+      gap: 5px;
+    }
+
+    .room[data-room-id="crafts"] .map-item {
+      width: 68px;
+      min-height: 58px;
+      padding: 4px 3px;
+    }
+
+    .room[data-room-id="crafts"] .map-item-name {
+      display: block;
+      white-space: nowrap;
+      -webkit-line-clamp: unset;
+      -webkit-box-orient: initial;
+      font-size: 10px;
+      line-height: 1.1;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-name {
+      white-space: nowrap;
+    }
+
     .room[data-room-id="pantry"] .room-scene-card {
       border: 1px solid #e5cfaa;
       border-radius: 20px;
@@ -1360,7 +1429,6 @@
       <div>
         <p class="hero-kicker">Community Center Bundle Helper</p>
         <h1>社区中心献祭助手</h1>
-        <p class="hero-note">拿到物品先搜一下：马上知道它是否需要献祭、是否已经献过、要几个、献到哪个房间的哪个收集包。下面的房间分支按游戏里的结构展开，物品不用点开也能直接勾。</p>
       </div>
       <div class="hero-actions">
         <button class="button" type="button" id="showMissing">只看未完成</button>
@@ -1428,10 +1496,10 @@
         core: { x: 50, y: 52 },
         points: {
           "spring-forage": { x: 18, y: 32 },
-          "summer-forage": { x: 50, y: 20 },
+          "summer-forage": { x: 50, y: 15 },
           "fall-forage": { x: 82, y: 32 },
           "winter-forage": { x: 18, y: 76 },
-          construction: { x: 50, y: 84 },
+          construction: { x: 50, y: 91 },
           "exotic-forage": { x: 82, y: 76 }
         }
       },
@@ -1850,7 +1918,7 @@
                 const slot = getSlot(bundleIndex);
                 const point = mapLayout.points[bundleData.id] || { x: 50, y: 50 };
                 return `
-                  <div class="map-bundle-node ${complete ? "done" : ""}" data-bundle-id="${bundleData.id}" data-slot="${slot}" style="--x:${point.x}%;--y:${point.y}%" title="${escapeAttribute(bundleData.name)}">
+                  <div class="map-bundle-node ${complete ? "done" : ""}" data-bundle-id="${bundleData.id}" data-item-count="${bundleData.items.length}" data-slot="${slot}" style="--x:${point.x}%;--y:${point.y}%" title="${escapeAttribute(bundleData.name)}">
                     <div class="map-bundle-name">${escapeHtml(bundleData.name)}</div>
                     ${renderMapBundleItems(bundleData)}
                     <div class="map-bundle-meta">${escapeHtml(bundleData.rule)} · ${done}/${bundleData.required}</div>
@@ -1859,7 +1927,7 @@
               }).join("")}
               </div>
             </div>
-            <figcaption class="visual-caption">${escapeHtml(roomData.name)}房间位置与收集包分支</figcaption>
+            ${roomData.id === "crafts" ? "" : `<figcaption class="visual-caption">${escapeHtml(roomData.name)}房间位置与收集包分支</figcaption>`}
           </figure>
       `;
     }
@@ -1892,7 +1960,7 @@
     }
 
     function renderMapBundleItems(bundleData) {
-      const columns = getMapItemColumns(bundleData.items.length);
+      const columns = getMapItemColumns(bundleData);
       return `
         <div class="map-item-strip" style="--item-cols:${columns}">
           ${bundleData.items.map((entry) => renderMapItem(entry)).join("")}
@@ -1913,7 +1981,9 @@
       `;
     }
 
-    function getMapItemColumns(count) {
+    function getMapItemColumns(bundleData) {
+      const count = bundleData.items.length;
+      if (bundleData.id === "summer-forage") return 3;
       if (count <= 8) return 4;
       if (count === 9) return 3;
       if (count === 10) return 5;
@@ -2009,7 +2079,7 @@
     function renderSearchResults() {
       const list = document.getElementById("resultList");
       if (!state.query) {
-        list.innerHTML = `<p class="empty-state">输入物品名后，这里会显示它要献到哪里、需要几个、是否已经献过。</p>`;
+        list.innerHTML = "";
         return;
       }
 
