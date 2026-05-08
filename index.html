@@ -357,8 +357,8 @@
       border: 2px solid #d9bf8b;
       border-radius: 8px;
       background:
-        radial-gradient(ellipse at center, rgba(255, 229, 174, 0.28), transparent 58%),
-        linear-gradient(180deg, rgba(255, 246, 220, 0.8), rgba(242, 217, 171, 0.68));
+        radial-gradient(ellipse at center, rgba(255, 229, 174, 0.22), transparent 58%),
+        linear-gradient(180deg, rgba(255, 246, 220, 0.68), rgba(242, 217, 171, 0.54));
       isolation: isolate;
     }
 
@@ -367,7 +367,7 @@
       position: absolute;
       inset: 0;
       z-index: -1;
-      background: linear-gradient(180deg, rgba(255, 242, 202, 0.26), rgba(138, 90, 53, 0.16));
+      background: linear-gradient(180deg, rgba(255, 242, 202, 0.18), rgba(138, 90, 53, 0.1));
       pointer-events: none;
     }
 
@@ -389,8 +389,8 @@
       height: 100%;
       object-fit: cover;
       image-rendering: pixelated;
-      opacity: 0.6;
-      filter: saturate(0.95) contrast(0.96) brightness(1.04);
+      opacity: 0.72;
+      filter: saturate(0.98) contrast(1) brightness(1.02);
     }
 
     .room-scene .image-fallback {
@@ -768,7 +768,7 @@
       }
 
       .map-bundle-node {
-        width: clamp(76px, 26%, 112px);
+        width: clamp(104px, 30%, 136px);
         min-height: 54px;
         gap: 2px;
         padding: 5px 6px;
@@ -779,6 +779,7 @@
       .map-bundle-name {
         font-size: 10px;
         line-height: 1.12;
+        white-space: nowrap;
       }
 
       .map-bundle-meta {
