@@ -892,20 +892,12 @@
         top: 10px;
         width: 29px;
         height: 29px;
+        background-image: var(--category-icon);
         background-position: center;
         background-repeat: no-repeat;
         background-size: contain;
         image-rendering: pixelated;
       }
-
-      .category:nth-child(1)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Parsnip.png"); }
-      .category:nth-child(2)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Leek.png"); }
-      .category:nth-child(3)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Sunfish.png"); }
-      .category:nth-child(4)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Oyster.png"); }
-      .category:nth-child(5)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Large_Milk.png"); }
-      .category:nth-child(6)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Stone.png"); }
-      .category:nth-child(7)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Blackberry.png"); }
-      .category:nth-child(8)::before { background-image: url("https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/Gold.png"); }
 
       .category-top {
         display: block;
@@ -1103,8 +1095,8 @@
       }
 
       .map-bundle-node {
-        width: 128px;
-        min-height: 74px;
+        width: 148px;
+        min-height: 82px;
         gap: 3px;
         border-width: 1px;
         border-radius: 7px;
@@ -1148,17 +1140,19 @@
       }
 
       .map-item {
-        min-height: 38px;
+        min-height: 42px;
         border-radius: 5px;
-        padding: 2px 1px;
+        padding: 3px 2px;
       }
 
       .map-item-name {
         display: block;
-        font-size: 8px;
-        line-height: 1.05;
-        white-space: nowrap;
-        text-overflow: ellipsis;
+        font-size: 9px;
+        line-height: 1.08;
+        white-space: normal;
+        overflow-wrap: normal;
+        word-break: keep-all;
+        -webkit-line-clamp: 2;
       }
 
       .map-item-count {
@@ -1185,7 +1179,7 @@
       }
 
       .room[data-room-id="crafts"] .room-scene {
-        height: 326px;
+        height: 380px;
       }
 
       .room[data-room-id="crafts"] .map-room-core {
@@ -1197,43 +1191,43 @@
       }
 
       .room[data-room-id="crafts"] .map-bundle-node {
-        min-height: 74px;
+        min-height: 86px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] {
         left: 50% !important;
-        top: 17% !important;
-        width: 154px;
+        top: 15% !important;
+        width: 218px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] {
-        left: 15% !important;
-        top: 49% !important;
-        width: 106px;
+        left: 16% !important;
+        top: 47% !important;
+        width: 122px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
         left: 50% !important;
-        top: 50% !important;
-        width: 144px;
+        top: 49% !important;
+        width: 180px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
-        left: 85% !important;
-        top: 49% !important;
-        width: 106px;
+        left: 84% !important;
+        top: 47% !important;
+        width: 122px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] {
-        left: 31% !important;
-        top: 81% !important;
-        width: 128px;
+        left: 29% !important;
+        top: 82% !important;
+        width: 152px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] {
-        left: 69% !important;
-        top: 81% !important;
-        width: 128px;
+        left: 71% !important;
+        top: 82% !important;
+        width: 152px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip {
@@ -1247,7 +1241,7 @@
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item,
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] .map-item {
-        min-height: 36px;
+        min-height: 40px;
       }
     }
   </style>
@@ -1295,7 +1289,7 @@
 
   <script>
     const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
-    const WIKI_FILE_BASE = "https://stardewvalleywiki.com/mediawiki/index.php?title=Special:Redirect/file/";
+    const WIKI_FILE_BASE = "https://stardewvalleywiki.com/mediawiki/images/";
     const QUALITY_ICON = { gold: "Gold Quality Icon.png" };
 
     const roomImages = {
@@ -1391,6 +1385,17 @@
       ["resource", "觅食"],
       ["money", "金钱"]
     ];
+
+    const categoryIcons = {
+      crop: "Parsnip.png",
+      forage: "Leek.png",
+      fish: "Sunfish.png",
+      shellfish: "Oyster.png",
+      animal: "Large Milk.png",
+      mine: "Stone.png",
+      resource: "Blackberry.png",
+      money: "Gold.png"
+    };
 
     const iconFiles = {
       "野山葵": "Wild Horseradish.png",
@@ -1833,8 +1838,9 @@
         const total = entries.length;
         const checked = entries.filter((entry) => isChecked(entry.uid)).length;
         const percent = total ? Math.round((checked / total) * 100) : 0;
+        const categoryIcon = categoryIcons[key] ? `--category-icon:url('${iconUrl(categoryIcons[key])}')` : "";
         return `
-          <div class="category">
+          <div class="category" style="${categoryIcon}">
             <div class="category-top">
               <span>${escapeHtml(label)}</span>
               <span class="category-count">${checked} / ${total}</span>
@@ -1994,8 +2000,89 @@
       return state.checked.has(uid);
     }
 
+    function md5(input) {
+      const rotateLeft = (value, shift) => (value << shift) | (value >>> (32 - shift));
+      const toHex = (value) => {
+        let result = "";
+        for (let index = 0; index < 4; index += 1) {
+          result += ((value >>> (index * 8)) & 255).toString(16).padStart(2, "0");
+        }
+        return result;
+      };
+
+      const shifts = [
+        7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22, 7, 12, 17, 22,
+        5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20, 5, 9, 14, 20,
+        4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23, 4, 11, 16, 23,
+        6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21, 6, 10, 15, 21
+      ];
+      const constants = Array.from({ length: 64 }, (_, index) =>
+        Math.floor(Math.abs(Math.sin(index + 1)) * 4294967296) >>> 0
+      );
+      const bytes = Array.from(input, (char) => char.charCodeAt(0) & 255);
+      const bitLength = bytes.length * 8;
+
+      bytes.push(128);
+      while (bytes.length % 64 !== 56) bytes.push(0);
+      for (let index = 0; index < 8; index += 1) {
+        bytes.push(Math.floor(bitLength / 2 ** (8 * index)) & 255);
+      }
+
+      let a0 = 0x67452301;
+      let b0 = 0xefcdab89;
+      let c0 = 0x98badcfe;
+      let d0 = 0x10325476;
+
+      for (let offset = 0; offset < bytes.length; offset += 64) {
+        const words = [];
+        for (let index = 0; index < 16; index += 1) {
+          const base = offset + index * 4;
+          words[index] = bytes[base] | (bytes[base + 1] << 8) | (bytes[base + 2] << 16) | (bytes[base + 3] << 24);
+        }
+
+        let a = a0;
+        let b = b0;
+        let c = c0;
+        let d = d0;
+
+        for (let index = 0; index < 64; index += 1) {
+          let f;
+          let g;
+
+          if (index < 16) {
+            f = (b & c) | (~b & d);
+            g = index;
+          } else if (index < 32) {
+            f = (d & b) | (~d & c);
+            g = (5 * index + 1) % 16;
+          } else if (index < 48) {
+            f = b ^ c ^ d;
+            g = (3 * index + 5) % 16;
+          } else {
+            f = c ^ (b | ~d);
+            g = (7 * index) % 16;
+          }
+
+          const next = d;
+          d = c;
+          c = b;
+          b = (b + rotateLeft((a + f + constants[index] + words[g]) >>> 0, shifts[index])) >>> 0;
+          a = next;
+        }
+
+        a0 = (a0 + a) >>> 0;
+        b0 = (b0 + b) >>> 0;
+        c0 = (c0 + c) >>> 0;
+        d0 = (d0 + d) >>> 0;
+      }
+
+      return [a0, b0, c0, d0].map(toHex).join("");
+    }
+
     function iconUrl(fileName) {
-      return `${WIKI_FILE_BASE}${encodeURIComponent(fileName.replaceAll(" ", "_"))}`;
+      const safeName = fileName.replaceAll(" ", "_");
+      const hash = md5(safeName);
+      return `${WIKI_FILE_BASE}${hash.slice(0, 1)}/${hash.slice(0, 2)}/${encodeURIComponent(safeName)}`;
     }
 
     function getSlot(index) {
