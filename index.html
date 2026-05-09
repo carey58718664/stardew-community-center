@@ -1352,6 +1352,82 @@
         font-size: 11px;
       }
 
+      .room[data-room-id="crafts"] .room-scene-card {
+        padding: 4px;
+      }
+
+      .room[data-room-id="crafts"] .room-scene {
+        min-height: 0;
+        aspect-ratio: 16 / 21;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-grid,
+      .room[data-room-id="crafts"] .map-tree-lines {
+        inset: 8px;
+      }
+
+      .room[data-room-id="crafts"] .map-tree-lines {
+        width: calc(100% - 16px);
+        height: calc(100% - 16px);
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node {
+        width: auto;
+        max-width: none;
+        gap: 3px;
+        padding: 5px;
+        border-width: 1px;
+        border-radius: 7px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-item-count="3"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-item-count="9"] {
+        width: 122px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-item-count="4"] {
+        width: 162px;
+      }
+
+      .room[data-room-id="crafts"] .map-item-strip {
+        gap: 2px;
+      }
+
+      .room[data-room-id="crafts"] .map-item {
+        width: 36px;
+        min-height: 38px;
+        padding: 2px 1px;
+      }
+
+      .room[data-room-id="crafts"] .map-item .icon-wrap,
+      .room[data-room-id="crafts"] .map-item .icon,
+      .room[data-room-id="crafts"] .map-item .fallback-icon {
+        width: 15px;
+        height: 15px;
+      }
+
+      .room[data-room-id="crafts"] .map-item-name {
+        font-size: 7.5px;
+      }
+
+      .room[data-room-id="crafts"] .map-item-count {
+        font-size: 7px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-name {
+        font-size: 10px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-meta {
+        font-size: 8px;
+      }
+
+      .room[data-room-id="crafts"] .map-room-core {
+        min-width: 62px;
+        padding: 5px 8px;
+        font-size: 11px;
+      }
+
       .room[data-room-id="pantry"] .room-scene-card {
         padding: 6px;
         border-radius: 14px;
@@ -1495,12 +1571,12 @@
       crafts: {
         core: { x: 50, y: 52 },
         points: {
-          "spring-forage": { x: 18, y: 32 },
+          "spring-forage": { x: 22, y: 32 },
           "summer-forage": { x: 50, y: 15 },
-          "fall-forage": { x: 82, y: 32 },
-          "winter-forage": { x: 18, y: 76 },
+          "fall-forage": { x: 78, y: 32 },
+          "winter-forage": { x: 22, y: 76 },
           construction: { x: 50, y: 91 },
-          "exotic-forage": { x: 82, y: 76 }
+          "exotic-forage": { x: 78, y: 76 }
         }
       },
       pantry: {
