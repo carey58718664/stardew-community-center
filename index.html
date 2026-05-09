@@ -846,12 +846,13 @@
     }
 
     .room[data-room-id="pantry"] .map-tree-lines {
-      display: none;
+      display: block;
+      z-index: 1;
     }
 
     .room[data-room-id="pantry"] .map-tree-lines line {
       stroke: rgba(255, 248, 232, 0.75);
-      stroke-width: 1.35;
+      stroke-width: 2;
       filter: drop-shadow(0 1px 2px rgba(80, 50, 20, 0.24));
     }
 
@@ -877,8 +878,12 @@
       width: 280px;
     }
 
+    .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
+      width: 150px;
+    }
+
     .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
-      width: 300px;
+      width: 150px;
     }
 
     .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
@@ -907,6 +912,15 @@
     .room[data-room-id="pantry"] .map-item-strip {
       grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 6px;
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] .map-item-strip,
+    .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] .map-item-strip {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] .map-item-strip {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
     }
 
     .room[data-room-id="pantry"] .map-item {
@@ -1460,7 +1474,7 @@
 
       .room[data-room-id="pantry"] .room-scene {
         min-height: 0;
-        aspect-ratio: 16 / 17.9;
+        aspect-ratio: 16 / 17.2;
         border-radius: 9px;
       }
 
@@ -1482,45 +1496,49 @@
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-item-count="4"] {
-        width: 132px;
+        width: 136px;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
+        width: 118px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
-        width: 132px;
+        width: 118px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
-        width: 276px;
+        width: 176px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="spring-crops"] {
         left: 50%;
-        top: 11%;
+        top: 12.5%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
-        left: 24%;
-        top: 33%;
+        left: 18%;
+        top: 43%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
-        left: 76%;
-        top: 33%;
+        left: 82%;
+        top: 43%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
         left: 50%;
-        top: 55%;
+        top: 48%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="summer-crops"] {
         left: 28%;
-        top: 80.5%;
+        top: 82%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="fall-crops"] {
         left: 72%;
-        top: 80.5%;
+        top: 82%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-name {
@@ -1532,11 +1550,11 @@
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] .map-item-strip {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] .map-item-strip {
-        grid-template-columns: repeat(6, minmax(0, 1fr));
+        grid-template-columns: repeat(4, minmax(0, 1fr));
       }
 
       .room[data-room-id="pantry"] .map-item {
@@ -1666,13 +1684,14 @@
       },
       pantry: {
         core: { x: 50, y: 52 },
+        linkFrom: "artisan",
         points: {
-          "spring-crops": { x: 50, y: 16 },
-          "quality-crops": { x: 17, y: 36 },
-          artisan: { x: 50, y: 38 },
-          animal: { x: 83, y: 36 },
-          "summer-crops": { x: 24, y: 72 },
-          "fall-crops": { x: 76, y: 72 }
+          "spring-crops": { x: 50, y: 18 },
+          "quality-crops": { x: 18, y: 48 },
+          artisan: { x: 50, y: 50 },
+          animal: { x: 82, y: 48 },
+          "summer-crops": { x: 28, y: 80 },
+          "fall-crops": { x: 72, y: 80 }
         }
       },
       fish: {
@@ -2088,7 +2107,7 @@
               }).join("")}
               </div>
             </div>
-            ${roomData.id === "crafts" ? "" : `<figcaption class="visual-caption">${escapeHtml(roomData.name)}房间位置与收集包分支</figcaption>`}
+            ${["crafts", "pantry"].includes(roomData.id) ? "" : `<figcaption class="visual-caption">${escapeHtml(roomData.name)}房间位置与收集包分支</figcaption>`}
           </figure>
       `;
     }
@@ -2112,10 +2131,15 @@
     }
 
     function renderMapLines(layout) {
-      const core = layout.core;
+      const origin = layout.linkFrom && layout.points[layout.linkFrom]
+        ? layout.points[layout.linkFrom]
+        : layout.core;
+      const points = Object.entries(layout.points)
+        .filter(([id]) => id !== layout.linkFrom)
+        .map(([, point]) => point);
       return `
         <svg class="map-tree-lines" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-          ${Object.values(layout.points).map((point) => `<line x1="${core.x}" y1="${core.y}" x2="${point.x}" y2="${point.y}" />`).join("")}
+          ${points.map((point) => `<line x1="${origin.x}" y1="${origin.y}" x2="${point.x}" y2="${point.y}" />`).join("")}
         </svg>
       `;
     }
