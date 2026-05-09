@@ -1487,7 +1487,7 @@
       }
 
       .room[data-room-id="pantry"] .map-bundle-grid {
-        inset: 3px;
+        inset: 1px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node {
@@ -1495,37 +1495,37 @@
         min-height: 0;
         gap: 3px;
         border-radius: 7px;
-        padding: 4px 3px 3px 9px;
+        padding: 4px 4px 3px 10px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-item-count="4"] {
-        width: 140px;
+        width: 146px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
-        width: 98px;
+        width: 104px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
-        width: 98px;
+        width: 104px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
-        width: 140px;
+        width: 146px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="spring-crops"] {
         left: 50%;
-        top: 17%;
+        top: 16%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
-        left: 16.5%;
+        left: 16%;
         top: 49%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
-        left: 83.5%;
+        left: 84%;
         top: 49%;
       }
 
@@ -1536,12 +1536,12 @@
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="summer-crops"] {
         left: 30%;
-        top: 80%;
+        top: 81%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="fall-crops"] {
         left: 70%;
-        top: 80%;
+        top: 81%;
       }
 
       .room[data-room-id="pantry"] .map-tree-lines line {
@@ -1555,9 +1555,13 @@
 
       .room[data-room-id="pantry"] .map-item-strip {
         gap: 2px;
+        justify-content: center;
       }
 
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] .map-item-strip,
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] .map-item-strip {
+        justify-self: center;
+        width: 62px;
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
