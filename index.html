@@ -736,7 +736,7 @@
     }
 
     .room[data-room-id="crafts"] .room-scene {
-      min-height: 610px;
+      min-height: 430px;
       border-width: 1px;
       border-radius: 7px;
     }
@@ -747,14 +747,13 @@
       border-radius: 6px;
     }
 
-    .room[data-room-id="crafts"] .map-bundle-grid,
-    .room[data-room-id="crafts"] .map-tree-lines {
+    .room[data-room-id="crafts"] .map-bundle-grid {
       inset: 12px;
     }
 
-    .room[data-room-id="crafts"] .map-tree-lines {
-      width: calc(100% - 24px);
-      height: calc(100% - 24px);
+    .room[data-room-id="crafts"] .map-tree-lines,
+    .room[data-room-id="crafts"] .map-room-core {
+      display: none;
     }
 
     .room[data-room-id="crafts"] .map-bundle-node {
@@ -776,6 +775,10 @@
 
     .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
       width: 406px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
+      width: 326px;
     }
 
     .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] {
@@ -1370,17 +1373,11 @@
 
       .room[data-room-id="crafts"] .room-scene {
         min-height: 0;
-        aspect-ratio: 16 / 18.4;
+        aspect-ratio: 16 / 12.2;
       }
 
-      .room[data-room-id="crafts"] .map-bundle-grid,
-      .room[data-room-id="crafts"] .map-tree-lines {
+      .room[data-room-id="crafts"] .map-bundle-grid {
         inset: 8px;
-      }
-
-      .room[data-room-id="crafts"] .map-tree-lines {
-        width: calc(100% - 16px);
-        height: calc(100% - 16px);
       }
 
       .room[data-room-id="crafts"] .map-bundle-node {
@@ -1403,6 +1400,10 @@
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
         width: 170px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
+        width: 162px;
       }
 
       .room[data-room-id="crafts"] .map-item-strip {
@@ -1587,12 +1588,12 @@
       crafts: {
         core: { x: 50, y: 52 },
         points: {
-          "spring-forage": { x: 22, y: 32 },
-          "summer-forage": { x: 50, y: 15 },
-          "fall-forage": { x: 78, y: 32 },
-          "winter-forage": { x: 22, y: 72 },
-          construction: { x: 50, y: 88 },
-          "exotic-forage": { x: 78, y: 72 }
+          "spring-forage": { x: 50, y: 13 },
+          "winter-forage": { x: 21, y: 31 },
+          "exotic-forage": { x: 50, y: 33 },
+          construction: { x: 79, y: 31 },
+          "summer-forage": { x: 29, y: 59 },
+          "fall-forage": { x: 71, y: 59 }
         }
       },
       pantry: {
