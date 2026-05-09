@@ -1460,7 +1460,7 @@
 
       .room[data-room-id="pantry"] .room-scene {
         min-height: 0;
-        aspect-ratio: 16 / 11.2;
+        aspect-ratio: 16 / 17.6;
         border-radius: 9px;
       }
 
@@ -1486,15 +1486,45 @@
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
-        width: 134px;
+        width: 132px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
-        width: 150px;
+        width: 156px;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="spring-crops"] {
+        left: 50%;
+        top: 11%;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
+        left: 24%;
+        top: 35%;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
+        left: 76%;
+        top: 35%;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
+        left: 50%;
+        top: 54%;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="summer-crops"] {
+        left: 28%;
+        top: 80%;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="fall-crops"] {
+        left: 72%;
+        top: 80%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-name {
-        font-size: 8.5px;
+        font-size: 9.5px;
       }
 
       .room[data-room-id="pantry"] .map-item-strip {
@@ -1502,29 +1532,35 @@
       }
 
       .room[data-room-id="pantry"] .map-item {
-        min-height: 32px;
+        min-height: 34px;
         border-radius: 6px;
-        padding: 1px;
+        padding: 1px 1px 2px;
       }
 
       .room[data-room-id="pantry"] .map-item .icon-wrap,
       .room[data-room-id="pantry"] .map-item .icon,
       .room[data-room-id="pantry"] .map-item .fallback-icon {
-        width: 13px;
-        height: 13px;
+        width: 16px;
+        height: 16px;
       }
 
       .room[data-room-id="pantry"] .map-item .quality {
-        width: 7px;
-        height: 7px;
+        width: 8px;
+        height: 8px;
       }
 
       .room[data-room-id="pantry"] .map-item-name {
-        font-size: 6.5px;
+        display: block;
+        white-space: nowrap;
+        overflow: visible;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: initial;
+        font-size: 7.2px;
+        line-height: 1.05;
       }
 
       .room[data-room-id="pantry"] .map-item-count {
-        font-size: 6px;
+        font-size: 6.5px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-meta {
@@ -1831,7 +1867,7 @@
           item("防风草", "crop", 5, "gold"), item("甜瓜", "crop", 5, "gold"), item("南瓜", "crop", 5, "gold"), item("玉米", "crop", 5, "gold")
         ]),
         bundle("animal", "动物收集包", "6选5", "", [
-          item("大壶牛奶", "animal"), item("大鸡蛋(白)", "animal"), item("大鸡蛋(棕)", "animal"), item("大瓶羊奶", "animal"), item("羊毛", "animal"), item("鸭蛋", "animal")
+          item("大壶牛奶", "animal"), item("大鸡蛋(白)", "animal", 1, "", "大鸡蛋"), item("大鸡蛋(棕)", "animal", 1, "", "大鸡蛋"), item("大瓶羊奶", "animal"), item("羊毛", "animal"), item("鸭蛋", "animal")
         ]),
         bundle("artisan", "工匠收集包", "12选6", "", [
           item("松露油", "animal"), item("布料", "animal"), item("山羊奶酪", "animal"), item("奶酪", "animal"), item("蜂蜜", "animal"), item("果酱", "animal"),
