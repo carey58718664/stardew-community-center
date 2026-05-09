@@ -736,7 +736,7 @@
     }
 
     .room[data-room-id="crafts"] .room-scene {
-      min-height: 660px;
+      min-height: 610px;
       border-width: 1px;
       border-radius: 7px;
     }
@@ -758,12 +758,24 @@
     }
 
     .room[data-room-id="crafts"] .map-bundle-node {
-      width: max-content;
+      width: auto;
       min-width: 0;
       max-width: calc(100% - 18px);
       min-height: 0;
       gap: 5px;
       padding: 8px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-item-count="3"] {
+      width: 246px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-item-count="4"] {
+      width: 326px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+      width: 406px;
     }
 
     .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] {
@@ -1358,7 +1370,7 @@
 
       .room[data-room-id="crafts"] .room-scene {
         min-height: 0;
-        aspect-ratio: 16 / 21;
+        aspect-ratio: 16 / 18.4;
       }
 
       .room[data-room-id="crafts"] .map-bundle-grid,
@@ -1387,6 +1399,10 @@
 
       .room[data-room-id="crafts"] .map-bundle-node[data-item-count="4"] {
         width: 162px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+        width: 170px;
       }
 
       .room[data-room-id="crafts"] .map-item-strip {
@@ -1574,9 +1590,9 @@
           "spring-forage": { x: 22, y: 32 },
           "summer-forage": { x: 50, y: 15 },
           "fall-forage": { x: 78, y: 32 },
-          "winter-forage": { x: 22, y: 76 },
-          construction: { x: 50, y: 91 },
-          "exotic-forage": { x: 78, y: 76 }
+          "winter-forage": { x: 22, y: 72 },
+          construction: { x: 50, y: 88 },
+          "exotic-forage": { x: 78, y: 72 }
         }
       },
       pantry: {
@@ -2061,7 +2077,7 @@
       const count = bundleData.items.length;
       if (bundleData.id === "summer-forage") return 3;
       if (count <= 8) return 4;
-      if (count === 9) return 3;
+      if (count === 9) return 5;
       if (count === 10) return 5;
       if (count === 12) return 4;
       return Math.min(6, Math.ceil(count / 2));
