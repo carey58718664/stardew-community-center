@@ -1460,7 +1460,7 @@
 
       .room[data-room-id="pantry"] .room-scene {
         min-height: 0;
-        aspect-ratio: 16 / 17.6;
+        aspect-ratio: 16 / 17.9;
         border-radius: 9px;
       }
 
@@ -1490,7 +1490,7 @@
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
-        width: 156px;
+        width: 276px;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="spring-crops"] {
@@ -1500,27 +1500,27 @@
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
         left: 24%;
-        top: 35%;
+        top: 33%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
         left: 76%;
-        top: 35%;
+        top: 33%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
         left: 50%;
-        top: 54%;
+        top: 55%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="summer-crops"] {
         left: 28%;
-        top: 80%;
+        top: 80.5%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="fall-crops"] {
         left: 72%;
-        top: 80%;
+        top: 80.5%;
       }
 
       .room[data-room-id="pantry"] .map-bundle-name {
@@ -1531,17 +1531,25 @@
         gap: 2px;
       }
 
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] .map-item-strip {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] .map-item-strip {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+      }
+
       .room[data-room-id="pantry"] .map-item {
-        min-height: 34px;
-        border-radius: 6px;
-        padding: 1px 1px 2px;
+        min-height: 31px;
+        border-radius: 5px;
+        padding: 0 1px 1px;
       }
 
       .room[data-room-id="pantry"] .map-item .icon-wrap,
       .room[data-room-id="pantry"] .map-item .icon,
       .room[data-room-id="pantry"] .map-item .fallback-icon {
-        width: 16px;
-        height: 16px;
+        width: 15px;
+        height: 15px;
       }
 
       .room[data-room-id="pantry"] .map-item .quality {
