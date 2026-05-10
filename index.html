@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -1766,21 +1767,14 @@
       gold: "Gold Quality Icon.png"
     };
 
-    const roomImages = {
-      crafts: "Community Center Crafts Room.png",
-      pantry: "Community Center Pantry.png",
-      fish: "Community Center Fish Tank.png",
-      boiler: "Community Center Boiler Room.png",
-      board: "Finished Bulletin Board.png",
-      vault: {
-  core: { x: 50, y: 52 },
-  points: {
-    "vault-2500": { x: 25, y: 30 },
-    "vault-5000": { x: 75, y: 30 },
-    "vault-10000": { x: 25, y: 74 },
-    "vault-25000": { x: 75, y: 74 }
-  }
-      };
+const roomImages = {
+  crafts: "Community Center Crafts Room.png",
+  pantry: "Community Center Pantry.png",
+  fish: "Community Center Fish Tank.png",
+  boiler: "Community Center Boiler Room.png",
+  board: "Finished Bulletin Board.png",
+  vault: "Community Center Vault.png"
+};
 
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
@@ -1846,15 +1840,17 @@
           enchanter: { x: 68, y: 78 }
         }
       },
-      vault: {
-        core: { x: 50, y: 52 },
-        points: {
-          "vault-2500": { x: 22, y: 34 },
-          "vault-5000": { x: 78, y: 34 },
-          "vault-10000": { x: 28, y: 78 },
-          "vault-25000": { x: 72, y: 78 }
-        }
-      }
+
+vault: {
+  core: { x: 50, y: 52 },
+  points: {
+    "vault-2500": { x: 25, y: 30 },
+    "vault-5000": { x: 75, y: 30 },
+    "vault-10000": { x: 25, y: 74 },
+    "vault-25000": { x: 75, y: 74 }
+  }
+}
+
     };
 
     const categories = [
