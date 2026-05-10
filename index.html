@@ -2105,6 +2105,32 @@
   }
 }
 
+/* ===== 茶水间 + 工艺室颜色微调：更接近鱼缸的清透感 ===== */
+
+.room[data-room-id="pantry"] .room-scene::before,
+.room[data-room-id="crafts"] .room-scene::before {
+  background: rgba(255, 246, 224, 0.22);
+  backdrop-filter: blur(0.4px);
+}
+
+.room[data-room-id="pantry"] .room-scene-bg,
+.room[data-room-id="crafts"] .room-scene-bg {
+  opacity: 0.64;
+  filter: blur(0.45px) saturate(0.95) brightness(0.96);
+}
+
+.room[data-room-id="pantry"] .room-scene,
+.room[data-room-id="crafts"] .room-scene {
+  background:
+    linear-gradient(rgba(255, 246, 224, 0.22), rgba(255, 246, 224, 0.22)),
+    linear-gradient(180deg, rgba(255, 252, 242, 0.58), rgba(244, 226, 190, 0.42));
+}
+
+.room[data-room-id="pantry"] .room-scene::after,
+.room[data-room-id="crafts"] .room-scene::after {
+  border-color: rgba(150, 112, 63, 0.24);
+}
+
   </style>
 </head>
 <body>
