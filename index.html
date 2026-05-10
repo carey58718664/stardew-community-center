@@ -1,4 +1,5 @@
 
+
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -1867,6 +1868,189 @@
   }
 }
 
+/* ===== 工艺室同步茶水间质感 ===== */
+.room[data-room-id="crafts"] .room-scene-card {
+  border: 1px solid #e5cfaa;
+  border-radius: 20px;
+  background: rgba(255, 252, 242, 0.92);
+  padding: 10px;
+  box-shadow: 0 8px 20px rgba(80, 50, 20, 0.1);
+}
+
+.room[data-room-id="crafts"] .room-scene {
+  border: 1px solid rgba(184, 143, 84, 0.5);
+  border-radius: 18px;
+  background:
+    linear-gradient(rgba(255, 246, 224, 0.35), rgba(255, 246, 224, 0.35)),
+    linear-gradient(180deg, rgba(255, 252, 242, 0.76), rgba(244, 226, 190, 0.56));
+  box-shadow: inset 0 0 0 1px rgba(255, 252, 242, 0.55), 0 8px 22px rgba(80, 50, 20, 0.1);
+}
+
+.room[data-room-id="crafts"] .room-scene::before {
+  background: rgba(255, 246, 224, 0.35);
+  backdrop-filter: blur(1px);
+}
+
+.room[data-room-id="crafts"] .room-scene::after {
+  inset: 14px;
+  border-color: rgba(150, 112, 63, 0.18);
+  border-radius: 16px;
+}
+
+.room[data-room-id="crafts"] .room-scene-bg {
+  opacity: 0.52;
+  filter: blur(1px) saturate(0.85) brightness(0.9);
+  transform: scale(1.01);
+}
+
+.room[data-room-id="crafts"] .map-tree-lines {
+  display: block;
+  z-index: 1;
+}
+
+.room[data-room-id="crafts"] .map-tree-lines line {
+  stroke: rgba(255, 248, 232, 0.75);
+  stroke-width: 2;
+  filter: drop-shadow(0 1px 2px rgba(80, 50, 20, 0.24));
+}
+
+.room[data-room-id="crafts"] .map-bundle-grid {
+  z-index: 2;
+}
+
+.room[data-room-id="crafts"] .map-room-core {
+  display: none;
+}
+
+.room[data-room-id="crafts"] .map-bundle-node {
+  min-height: 0;
+  align-content: start;
+  gap: 7px;
+  border: 1px solid rgba(143, 108, 64, 0.24);
+  border-radius: 16px;
+  background: rgba(255, 252, 242, 0.94);
+  padding: 10px 12px 9px;
+  box-shadow: 0 6px 16px rgba(80, 50, 20, 0.14);
+}
+
+.room[data-room-id="crafts"] .map-bundle-node.done {
+  border-color: rgba(76, 145, 91, 0.36);
+  background: rgba(248, 254, 242, 0.95);
+}
+
+.room[data-room-id="crafts"] .map-bundle-name {
+  color: #2f2116;
+}
+
+.room[data-room-id="crafts"] .map-bundle-meta {
+  justify-self: center;
+  border-radius: 999px;
+  background: rgba(241, 226, 191, 0.9);
+  color: #6f4b22;
+  padding: 3px 11px;
+  font-weight: 950;
+}
+
+.room[data-room-id="crafts"] .map-bundle-node.done .map-bundle-meta {
+  background: rgba(223, 243, 228, 0.95);
+  color: #1f7549;
+}
+
+/* 工艺室手机端自动排版宽度 */
+@media (max-width: 520px) {
+  .room[data-room-id="crafts"] .room-scene-card {
+    padding: 2px;
+    border-width: 1px;
+    border-radius: 8px;
+  }
+
+  .room[data-room-id="crafts"] .room-scene {
+    min-height: 0;
+    aspect-ratio: auto;
+    border-width: 1px;
+    border-radius: 7px;
+  }
+
+  .room[data-room-id="crafts"] .room-scene::after {
+    inset: 3px;
+    border-width: 1px;
+    border-radius: 6px;
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-grid,
+  .room[data-room-id="crafts"] .map-tree-lines {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-node {
+    border-radius: 7px;
+    gap: 3px;
+    padding: 4px 4px 3px 10px;
+    transform-origin: top left;
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"],
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] {
+    width: 146px;
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
+    width: 84px;
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+    width: 146px;
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] .map-item-strip {
+    justify-self: center;
+    width: 62px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .room[data-room-id="crafts"] .map-item {
+    width: 30px;
+    min-height: 31px;
+    border-radius: 4px;
+    padding: 0;
+  }
+
+  .room[data-room-id="crafts"] .map-item .icon-wrap,
+  .room[data-room-id="crafts"] .map-item .icon,
+  .room[data-room-id="crafts"] .map-item .fallback-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .room[data-room-id="crafts"] .map-item-name {
+    display: block;
+    white-space: nowrap;
+    overflow: visible;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: initial;
+    font-size: 7.8px;
+    line-height: 1.05;
+  }
+
+  .room[data-room-id="crafts"] .map-item-count {
+    font-size: 6.5px;
+  }
+
+  .room[data-room-id="crafts"] .map-bundle-meta {
+    padding: 1px 5px;
+    font-size: 7px;
+  }
+}
+
   </style>
 </head>
 <body>
@@ -1939,8 +2123,9 @@ const roomImages = {
 
     const bundleLayoutByRoom = {
       crafts: {
-        core: { x: 50, y: 52 },
-        points: {
+  core: { x: 50, y: 52 },
+  linkFrom: "exotic-forage",
+  points: {
           "spring-forage": { x: 50, y: 13 },
           "winter-forage": { x: 21, y: 31 },
           "exotic-forage": { x: 50, y: 33 },
@@ -2304,6 +2489,9 @@ vault: {
         renderSearchResults();
         markHighlights();
       });
+
+window.addEventListener("resize", () => requestAnimationFrame(layoutMobileRoomVisuals));
+window.addEventListener("load", () => requestAnimationFrame(layoutMobileRoomVisuals));
     }
 
     function handleImageError(event) {
@@ -2324,13 +2512,21 @@ vault: {
     }
 
     function render() {
-      document.getElementById("rooms").innerHTML = rooms.map(renderRoom).join("");
-      renderCenterMap();
-      renderProgress();
-      renderSearchResults();
-      applyVisibility();
-      markHighlights();
-    }
+  document.getElementById("rooms").innerHTML = rooms.map(renderRoom).join("");
+  renderCenterMap();
+  renderProgress();
+  renderSearchResults();
+  applyVisibility();
+  markHighlights();
+  requestAnimationFrame(layoutMobileRoomVisuals);
+}
+
+function layoutMobileRoomVisuals() {
+  if (typeof layoutPantryMobile === "function") {
+    layoutPantryMobile();
+  }
+  layoutCraftsMobile();
+}
 
     function renderRoom(roomData) {
       const checked = countCheckedInRoom(roomData);
@@ -2862,6 +3058,181 @@ vault: {
     function escapeAttribute(value) {
       return escapeHtml(value);
     }
+function clamp(value, min, max) {
+  return Math.min(Math.max(value, min), max);
+}
+
+function placeCraftsCard(card, left, top, scale) {
+  card.style.left = `${Math.round(left)}px`;
+  card.style.top = `${Math.round(top)}px`;
+  card.style.transform = `scale(${scale})`;
+  card.style.transformOrigin = "top left";
+}
+function layoutCraftsMobile() {
+  const scene = document.querySelector('.room[data-room-id="crafts"] .room-scene');
+  if (!scene) return;
+
+  const grid = scene.querySelector(".map-bundle-grid");
+  const lines = scene.querySelector(".map-tree-lines");
+
+  const cards = {
+    spring: scene.querySelector('[data-bundle-id="spring-forage"]'),
+    winter: scene.querySelector('[data-bundle-id="winter-forage"]'),
+    exotic: scene.querySelector('[data-bundle-id="exotic-forage"]'),
+    construction: scene.querySelector('[data-bundle-id="construction"]'),
+    summer: scene.querySelector('[data-bundle-id="summer-forage"]'),
+    fall: scene.querySelector('[data-bundle-id="fall-forage"]')
+  };
+
+  if (!grid || !lines || Object.values(cards).some((card) => !card)) return;
+
+  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+
+  if (!isMobile) {
+    scene.style.height = "";
+    scene.style.minHeight = "";
+    scene.style.aspectRatio = "";
+
+    [grid, lines].forEach((layer) => {
+      layer.style.inset = "";
+      layer.style.left = "";
+      layer.style.top = "";
+      layer.style.width = "";
+      layer.style.height = "";
+    });
+
+    Object.values(cards).forEach((card) => {
+      card.style.left = "";
+      card.style.top = "";
+      card.style.transform = "";
+      card.style.transformOrigin = "";
+    });
+
+    return;
+  }
+
+  const sceneWidth = scene.clientWidth;
+  if (!sceneWidth) return;
+
+  grid.style.inset = "0";
+  grid.style.left = "0";
+  grid.style.top = "0";
+  grid.style.width = "100%";
+
+  lines.style.display = "block";
+  lines.style.inset = "0";
+  lines.style.left = "0";
+  lines.style.top = "0";
+  lines.style.width = "100%";
+
+  Object.values(cards).forEach((card) => {
+    card.style.left = "0px";
+    card.style.top = "0px";
+    card.style.transform = "none";
+    card.style.transformOrigin = "top left";
+  });
+
+  const size = (node) => ({
+    w: node.offsetWidth,
+    h: node.offsetHeight
+  });
+
+  const springSize = size(cards.spring);
+  const winterSize = size(cards.winter);
+  const exoticSize = size(cards.exotic);
+  const constructionSize = size(cards.construction);
+  const summerSize = size(cards.summer);
+  const fallSize = size(cards.fall);
+
+  const wantedScale = 1.08;
+  const minGap = 6;
+  const middleRowBaseWidth = winterSize.w + exoticSize.w + constructionSize.w;
+
+  let scale = Math.min(wantedScale, (sceneWidth - minGap * 4) / middleRowBaseWidth);
+  scale = Math.max(0.96, scale);
+
+  const scaled = (box) => ({
+    w: box.w * scale,
+    h: box.h * scale
+  });
+
+  const spring = scaled(springSize);
+  const winter = scaled(winterSize);
+  const exotic = scaled(exoticSize);
+  const construction = scaled(constructionSize);
+  const summer = scaled(summerSize);
+  const fall = scaled(fallSize);
+
+  const gap = Math.max(6, (sceneWidth - winter.w - exotic.w - construction.w) / 4);
+
+  const winterLeft = gap;
+  const exoticLeft = winterLeft + winter.w + gap;
+  const constructionLeft = exoticLeft + exotic.w + gap;
+
+  const winterCenter = winterLeft + winter.w / 2;
+  const exoticCenter = exoticLeft + exotic.w / 2;
+  const constructionCenter = constructionLeft + construction.w / 2;
+
+  const springLeft = exoticCenter - spring.w / 2;
+
+  const summerCenter = (winterCenter + exoticCenter) / 2;
+  const fallCenter = (exoticCenter + constructionCenter) / 2;
+
+  const summerLeft = clamp(summerCenter - summer.w / 2, gap, sceneWidth - summer.w - gap);
+  const fallLeft = clamp(fallCenter - fall.w / 2, gap, sceneWidth - fall.w - gap);
+
+  const springTop = gap;
+  const middleTop = springTop + spring.h + gap;
+
+  const middleRowHeight = Math.max(winter.h, exotic.h, construction.h);
+  const bottomTop = middleTop + middleRowHeight + gap;
+
+  const bottomRowHeight = Math.max(summer.h, fall.h);
+  const sceneHeight = bottomTop + bottomRowHeight + gap;
+
+  scene.style.height = `${Math.ceil(sceneHeight)}px`;
+  scene.style.minHeight = "0";
+  scene.style.aspectRatio = "auto";
+
+  grid.style.height = `${Math.ceil(sceneHeight)}px`;
+  lines.style.height = `${Math.ceil(sceneHeight)}px`;
+
+placeCraftsCard(cards.spring, springLeft, springTop, scale);
+placeCraftsCard(cards.winter, winterLeft, middleTop, scale);
+placeCraftsCard(cards.exotic, exoticLeft, middleTop, scale);
+placeCraftsCard(cards.construction, constructionLeft, middleTop, scale);
+placeCraftsCard(cards.summer, summerLeft, bottomTop, scale);
+placeCraftsCard(cards.fall, fallLeft, bottomTop, scale);
+
+  updateCraftsLines(lines, cards, scale, sceneWidth, sceneHeight);
+}
+
+function updateCraftsLines(lines, cards, scale, width, height) {
+  const center = (card) => ({
+    x: card.offsetLeft + card.offsetWidth * scale / 2,
+    y: card.offsetTop + card.offsetHeight * scale / 2
+  });
+
+  const origin = center(cards.exotic);
+  const targets = [
+    center(cards.spring),
+    center(cards.winter),
+    center(cards.construction),
+    center(cards.summer),
+    center(cards.fall)
+  ];
+
+  lines.querySelectorAll("line").forEach((line, index) => {
+    const target = targets[index];
+    if (!target) return;
+
+    line.setAttribute("x1", (origin.x / width) * 100);
+    line.setAttribute("y1", (origin.y / height) * 100);
+    line.setAttribute("x2", (target.x / width) * 100);
+    line.setAttribute("y2", (target.y / height) * 100);
+  });
+}
+
   </script>
 </body>
 </html>
