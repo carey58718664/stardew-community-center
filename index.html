@@ -1720,23 +1720,20 @@
   }
 }
 
-/* 只缩短茶水间背景和内边框，不动树状图 */
+/* 只缩短茶水间背景图，不动里面的树状图 */
+.room[data-room-id="pantry"] .room-scene-bg {
+  top: 50%;
+  bottom: auto;
+  height: 84%;
+  object-fit: cover;
+  object-position: center center;
+  transform: translateY(-50%) scale(1.01);
+}
+
+/* 手机端同样只改背景图 */
 @media (max-width: 520px) {
   .room[data-room-id="pantry"] .room-scene-bg {
-    top: 6.5% !important;
-    bottom: 6.5% !important;
-    height: auto !important;
-    border-radius: 7px !important;
-  }
-
-  .room[data-room-id="pantry"] .room-scene::after {
-    top: calc(6.5% + 3px) !important;
-    bottom: calc(6.5% + 3px) !important;
-    left: 3px !important;
-    right: 3px !important;
-    inset: auto !important;
-    border-width: 1px !important;
-    border-radius: 6px !important;
+    height: 82%;
   }
 }
 
