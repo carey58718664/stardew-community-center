@@ -1712,67 +1712,161 @@
     inset: 4px;
   }
 }
-/* ===== 茶水间：缩短外框，但保持树状图原本展开尺寸 ===== */
 
+/* ===== 茶水间终版微调：卡片微放大 + 间距更均匀 + 背景缩短 ===== */
+
+/* 桌面端 */
 .room[data-room-id="pantry"] .room-scene {
-  height: 500px;
+  height: 468px;
   min-height: 0;
   aspect-ratio: auto;
 }
 
-.room[data-room-id="pantry"] .map-bundle-grid {
-  inset: auto;
-  left: 16px;
-  top: -58px;
-  width: calc(100% - 32px);
-  height: 680px;
-}
-
+.room[data-room-id="pantry"] .map-bundle-grid,
 .room[data-room-id="pantry"] .map-tree-lines {
   inset: auto;
   left: 16px;
-  top: -58px;
+  top: -34px;
   width: calc(100% - 32px);
-  height: 680px;
+  height: 598px;
 }
 
-.room[data-room-id="pantry"] .room-scene-bg {
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transform: scale(1.01);
+.room[data-room-id="pantry"] .map-bundle-node {
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  gap: 8px;
+  padding: 11px 13px 10px;
 }
 
-/* 手机端：茶水间单独处理 */
+.room[data-room-id="pantry"] .map-bundle-node[data-item-count="4"] {
+  width: 292px;
+}
+
+.room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
+  width: 162px;
+}
+
+.room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
+  width: 162px;
+}
+
+.room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
+  width: 346px;
+}
+
+.room[data-room-id="pantry"] .map-bundle-name {
+  font-size: 18px;
+}
+
+.room[data-room-id="pantry"] .map-item {
+  min-height: 70px;
+  padding: 6px 5px 5px;
+}
+
+.room[data-room-id="pantry"] .map-item .icon-wrap,
+.room[data-room-id="pantry"] .map-item .icon,
+.room[data-room-id="pantry"] .map-item .fallback-icon {
+  width: 28px;
+  height: 28px;
+}
+
+.room[data-room-id="pantry"] .map-item .quality {
+  width: 14px;
+  height: 14px;
+}
+
+.room[data-room-id="pantry"] .map-item-name {
+  font-size: 11.5px;
+}
+
+.room[data-room-id="pantry"] .map-item-count {
+  font-size: 11px;
+}
+
+.room[data-room-id="pantry"] .map-bundle-meta {
+  font-size: 12.5px;
+  padding: 3px 12px;
+}
+
+
+/* 手机端 */
 @media (max-width: 520px) {
   .room[data-room-id="pantry"] .room-scene {
-    height: 382px;
+    height: 356px;
     min-height: 0;
     aspect-ratio: auto;
   }
 
-  .room[data-room-id="pantry"] .map-bundle-grid {
-    inset: auto;
-    left: 4px;
-    top: -158px;
-    width: calc(100% - 8px);
-    height: 712px;
-  }
-
+  .room[data-room-id="pantry"] .map-bundle-grid,
   .room[data-room-id="pantry"] .map-tree-lines {
     inset: auto;
     left: 4px;
-    top: -158px;
+    top: -136px;
     width: calc(100% - 8px);
-    height: 712px;
+    height: 640px;
   }
 
   .room[data-room-id="pantry"] .map-bundle-node {
-    transform: translate(-50%, -50%) scale(1.06);
+    transform: translate(-50%, -50%);
     transform-origin: center;
+    gap: 4px;
+    padding: 5px 6px 4px 10px;
+  }
+
+  .room[data-room-id="pantry"] .map-bundle-node[data-item-count="4"] {
+    width: 154px;
+  }
+
+  .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] {
+    width: 92px;
+  }
+
+  .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] {
+    width: 92px;
+  }
+
+  .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
+    width: 154px;
+  }
+
+  .room[data-room-id="pantry"] .map-bundle-name {
+    font-size: 10.4px;
+    line-height: 1.12;
+  }
+
+  .room[data-room-id="pantry"] .map-item {
+    width: 32px;
+    min-height: 35px;
+    padding: 1px 0;
+  }
+
+  .room[data-room-id="pantry"] .map-item .icon-wrap,
+  .room[data-room-id="pantry"] .map-item .icon,
+  .room[data-room-id="pantry"] .map-item .fallback-icon {
+    width: 19px;
+    height: 19px;
+  }
+
+  .room[data-room-id="pantry"] .map-item .quality {
+    width: 9px;
+    height: 9px;
+  }
+
+  .room[data-room-id="pantry"] .map-item-name {
+    font-size: 8.4px;
+    line-height: 1.06;
+  }
+
+  .room[data-room-id="pantry"] .map-item-count {
+    font-size: 7px;
+  }
+
+  .room[data-room-id="pantry"] .map-bundle-meta {
+    padding: 2px 6px;
+    font-size: 7.4px;
   }
 }
+
   </style>
 </head>
 <body>
