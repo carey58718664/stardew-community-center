@@ -2202,17 +2202,18 @@ pantry: {
   }
 },
 
-      fish: {
-        core: { x: 50, y: 52 },
-        points: {
-          "river-fish": { x: 18, y: 32 },
-          "lake-fish": { x: 50, y: 20 },
-          "ocean-fish": { x: 82, y: 32 },
-          "night-fish": { x: 18, y: 76 },
-          "crab-pot": { x: 50, y: 84 },
-          "specialty-fish": { x: 82, y: 76 }
-        }
-      },
+    fish: {
+  core: { x: 50, y: 52 },
+  linkFrom: "crab-pot",
+  points: {
+    "river-fish": { x: 50, y: 15.5 },
+    "lake-fish": { x: 18, y: 39 },
+    "crab-pot": { x: 50, y: 43 },
+    "specialty-fish": { x: 82, y: 39 },
+    "ocean-fish": { x: 25, y: 74 },
+    "night-fish": { x: 75, y: 74 }
+  }
+},
       boiler: {
         core: { x: 50, y: 54 },
         points: {
@@ -2579,7 +2580,14 @@ function layoutMobileRoomVisuals() {
   if (typeof layoutPantryMobile === "function") {
     layoutPantryMobile();
   }
-  layoutCraftsMobile();
+
+  if (typeof layoutCraftsMobile === "function") {
+    layoutCraftsMobile();
+  }
+
+  if (typeof layoutFishMobile === "function") {
+    layoutFishMobile();
+  }
 }
 
     function renderRoom(roomData) {
@@ -3273,6 +3281,174 @@ function updateCraftsLines(lines, cards, scale, width, height) {
     center(cards.construction),
     center(cards.summer),
     center(cards.fall)
+  ];
+
+  lines.querySelectorAll("line").forEach((line, index) => {
+    const target = targets[index];
+    if (!target) return;
+
+    line.setAttribute("x1", (origin.x / width) * 100);
+    line.setAttribute("y1", (origin.y / height) * 100);
+    line.setAttribute("x2", (target.x / width) * 100);
+    line.setAttribute("y2", (target.y / height) * 100);
+  });
+}
+
+function placeFishCard(card, left, top, scale) {
+  card.style.left = `${Math.round(left)}px`;
+  card.style.top = `${Math.round(top)}px`;
+  card.style.transform = `scale(${scale})`;
+  card.style.transformOrigin = "top left";
+}
+
+function layoutFishMobile() {
+  const scene = document.querySelector('.room[data-room-id="fish"] .room-scene');
+  if (!scene) return;
+
+  const grid = scene.querySelector(".map-bundle-grid");
+  const lines = scene.querySelector(".map-tree-lines");
+
+  const cards = {
+    river: scene.querySelector('[data-bundle-id="river-fish"]'),
+    lake: scene.querySelector('[data-bundle-id="lake-fish"]'),
+    crab: scene.querySelector('[data-bundle-id="crab-pot"]'),
+    specialty: scene.querySelector('[data-bundle-id="specialty-fish"]'),
+    ocean: scene.querySelector('[data-bundle-id="ocean-fish"]'),
+    night: scene.querySelector('[data-bundle-id="night-fish"]')
+  };
+
+  if (!grid || !lines || Object.values(cards).some((card) => !card)) return;
+
+  const isMobile = window.matchMedia("(max-width: 520px)").matches;
+
+  if (!isMobile) {
+    scene.style.height = "";
+    scene.style.minHeight = "";
+    scene.style.aspectRatio = "";
+
+    [grid, lines].forEach((layer) => {
+      layer.style.inset = "";
+      layer.style.left = "";
+      layer.style.top = "";
+      layer.style.width = "";
+      layer.style.height = "";
+    });
+
+    Object.values(cards).forEach((card) => {
+      card.style.left = "";
+      card.style.top = "";
+      card.style.transform = "";
+      card.style.transformOrigin = "";
+    });
+
+    return;
+  }
+
+  const sceneWidth = scene.clientWidth;
+  if (!sceneWidth) return;
+
+  grid.style.inset = "0";
+  grid.style.left = "0";
+  grid.style.top = "0";
+  grid.style.width = "100%";
+
+  lines.style.display = "block";
+  lines.style.inset = "0";
+  lines.style.left = "0";
+  lines.style.top = "0";
+  lines.style.width = "100%";
+
+  Object.values(cards).forEach((card) => {
+    card.style.left = "0px";
+    card.style.top = "0px";
+    card.style.transform = "none";
+    card.style.transformOrigin = "top left";
+  });
+
+  const size = (node) => ({
+    w: node.offsetWidth,
+    h: node.offsetHeight
+  });
+
+  const riverSize = size(cards.river);
+  const lakeSize = size(cards.lake);
+  const crabSize = size(cards.crab);
+  const specialtySize = size(cards.specialty);
+  const oceanSize = size(cards.ocean);
+  const nightSize = size(cards.night);
+
+  const wantedScale = 1;
+  const minGap = 6;
+  const middleRowBaseWidth = lakeSize.w + crabSize.w + specialtySize.w;
+
+  let scale = Math.min(wantedScale, (sceneWidth - minGap * 4) / middleRowBaseWidth);
+  scale = Math.max(0.78, scale);
+
+  const scaled = (box) => ({
+    w: box.w * scale,
+    h: box.h * scale
+  });
+
+  const river = scaled(riverSize);
+  const lake = scaled(lakeSize);
+  const crab = scaled(crabSize);
+  const specialty = scaled(specialtySize);
+  const ocean = scaled(oceanSize);
+  const night = scaled(nightSize);
+
+  const middleGap = Math.max(6, (sceneWidth - lake.w - crab.w - specialty.w) / 4);
+
+  const lakeLeft = middleGap;
+  const crabLeft = lakeLeft + lake.w + middleGap;
+  const specialtyLeft = crabLeft + crab.w + middleGap;
+
+  const riverLeft = sceneWidth / 2 - river.w / 2;
+
+  const bottomGap = Math.max(8, (sceneWidth - ocean.w - night.w) / 3);
+  const oceanLeft = bottomGap;
+  const nightLeft = sceneWidth - night.w - bottomGap;
+
+  const topGap = Math.max(6, middleGap);
+
+  const riverTop = topGap;
+  const middleTop = riverTop + river.h + topGap;
+
+  const middleRowHeight = Math.max(lake.h, crab.h, specialty.h);
+  const bottomTop = middleTop + middleRowHeight + topGap;
+
+  const bottomRowHeight = Math.max(ocean.h, night.h);
+  const sceneHeight = bottomTop + bottomRowHeight + topGap;
+
+  scene.style.height = `${Math.ceil(sceneHeight)}px`;
+  scene.style.minHeight = "0";
+  scene.style.aspectRatio = "auto";
+
+  grid.style.height = `${Math.ceil(sceneHeight)}px`;
+  lines.style.height = `${Math.ceil(sceneHeight)}px`;
+
+  placeFishCard(cards.river, riverLeft, riverTop, scale);
+  placeFishCard(cards.lake, lakeLeft, middleTop, scale);
+  placeFishCard(cards.crab, crabLeft, middleTop, scale);
+  placeFishCard(cards.specialty, specialtyLeft, middleTop, scale);
+  placeFishCard(cards.ocean, oceanLeft, bottomTop, scale);
+  placeFishCard(cards.night, nightLeft, bottomTop, scale);
+
+  updateFishLines(lines, cards, scale, sceneWidth, sceneHeight);
+}
+
+function updateFishLines(lines, cards, scale, width, height) {
+  const center = (card) => ({
+    x: card.offsetLeft + card.offsetWidth * scale / 2,
+    y: card.offsetTop + card.offsetHeight * scale / 2
+  });
+
+  const origin = center(cards.crab);
+  const targets = [
+    center(cards.river),
+    center(cards.lake),
+    center(cards.specialty),
+    center(cards.ocean),
+    center(cards.night)
   ];
 
   lines.querySelectorAll("line").forEach((line, index) => {
