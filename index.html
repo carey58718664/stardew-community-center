@@ -2051,6 +2051,60 @@
   }
 }
 
+/* ===== 工艺室修复：恢复左侧色块 + 统一选项框间距 ===== */
+
+/* 恢复工艺室每张卡片左侧色块 */
+.room[data-room-id="crafts"] .map-bundle-node[data-slot="a"] {
+  box-shadow: inset 6px 0 0 rgba(143, 103, 207, 0.55), 0 6px 16px rgba(80, 50, 20, 0.14);
+}
+
+.room[data-room-id="crafts"] .map-bundle-node[data-slot="b"] {
+  box-shadow: inset 6px 0 0 rgba(56, 157, 98, 0.5), 0 6px 16px rgba(80, 50, 20, 0.14);
+}
+
+.room[data-room-id="crafts"] .map-bundle-node[data-slot="c"] {
+  box-shadow: inset 6px 0 0 rgba(216, 141, 50, 0.55), 0 6px 16px rgba(80, 50, 20, 0.14);
+}
+
+.room[data-room-id="crafts"] .map-bundle-node[data-slot="d"] {
+  box-shadow: inset 6px 0 0 rgba(47, 111, 176, 0.52), 0 6px 16px rgba(80, 50, 20, 0.14);
+}
+
+.room[data-room-id="crafts"] .map-bundle-node[data-slot="e"] {
+  box-shadow: inset 6px 0 0 rgba(184, 69, 50, 0.48), 0 6px 16px rgba(80, 50, 20, 0.14);
+}
+
+.room[data-room-id="crafts"] .map-bundle-node[data-slot="f"] {
+  box-shadow: inset 6px 0 0 rgba(111, 75, 34, 0.42), 0 6px 16px rgba(80, 50, 20, 0.14);
+}
+
+@media (max-width: 520px) {
+  .room[data-room-id="crafts"] .map-item-strip {
+    gap: 2px;
+    justify-content: center;
+    justify-items: center;
+  }
+
+.room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip {
+  justify-self: center;
+  width: 98px;
+  grid-template-columns: repeat(3, 30px);
+}
+
+.room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip {
+  justify-self: center;
+  width: 98px;
+  grid-template-columns: repeat(3, 30px);
+}
+
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] .map-item-strip,
+  .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] .map-item-strip {
+    justify-self: center;
+    width: 128px;
+    grid-template-columns: repeat(4, 30px);
+  }
+}
+
   </style>
 </head>
 <body>
@@ -3175,11 +3229,10 @@ function layoutCraftsMobile() {
 
   const springLeft = exoticCenter - spring.w / 2;
 
-  const summerCenter = (winterCenter + exoticCenter) / 2;
-  const fallCenter = (exoticCenter + constructionCenter) / 2;
+  const bottomGap = Math.max(8, (sceneWidth - summer.w - fall.w) / 3);
 
-  const summerLeft = clamp(summerCenter - summer.w / 2, gap, sceneWidth - summer.w - gap);
-  const fallLeft = clamp(fallCenter - fall.w / 2, gap, sceneWidth - fall.w - gap);
+const summerLeft = bottomGap;
+const fallLeft = sceneWidth - fall.w - bottomGap;
 
   const springTop = gap;
   const middleTop = springTop + spring.h + gap;
