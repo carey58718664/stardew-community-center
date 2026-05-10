@@ -2115,7 +2115,7 @@
 
 .room[data-room-id="pantry"] .room-scene-bg,
 .room[data-room-id="crafts"] .room-scene-bg {
-  opacity: 0.74;
+  opacity: 0.78;
   filter: blur(0.45px) saturate(0.95) brightness(0.96);
 }
 
@@ -2184,243 +2184,46 @@
   box-shadow: inset 6px 0 0 #6f4b22, 0 6px 16px rgba(80, 50, 20, 0.14);
 }
 
-/* ===== 鱼缸细节优化：按茶水间/工艺室的思路统一美化 ===== */
+/* ===== 鱼缸手机端终版：结构修正 + 卡片质感 + 选项框排布 ===== */
 
-/* 外层卡片 */
-.room[data-room-id="fish"] .room-scene-card {
-  border: 1px solid #e5cfaa;
-  border-radius: 20px;
-  background: rgba(255, 252, 242, 0.92);
-  padding: 10px;
-  box-shadow: 0 8px 20px rgba(80, 50, 20, 0.1);
-}
-
-/* 整个鱼缸画面 */
-.room[data-room-id="fish"] .room-scene {
-  min-height: 610px;
-  aspect-ratio: 16 / 10.4;
-  border: 1px solid rgba(184, 143, 84, 0.5);
-  border-radius: 18px;
-  background:
-    linear-gradient(rgba(255, 246, 224, 0.35), rgba(255, 246, 224, 0.35)),
-    linear-gradient(180deg, rgba(255, 252, 242, 0.76), rgba(244, 226, 190, 0.56));
-  box-shadow: inset 0 0 0 1px rgba(255, 252, 242, 0.55), 0 8px 22px rgba(80, 50, 20, 0.1);
-}
-
-.room[data-room-id="fish"] .room-scene::before {
-  background: rgba(255, 246, 224, 0.35);
-  backdrop-filter: blur(1px);
-}
-
-.room[data-room-id="fish"] .room-scene::after {
-  inset: 14px;
-  border-color: rgba(150, 112, 63, 0.18);
-  border-radius: 16px;
-}
-
-/* 背景图透明度和质感，跟你刚才喜欢的“下面那种感觉”靠近 */
-.room[data-room-id="fish"] .room-scene-bg {
-  opacity: 0.74;
-  filter: blur(0.8px) saturate(0.9) brightness(0.92);
-  transform: scale(1.01);
-}
-
-/* 连线 */
-.room[data-room-id="fish"] .map-tree-lines {
-  z-index: 1;
-}
-
-.room[data-room-id="fish"] .map-tree-lines line {
-  stroke: rgba(255, 248, 232, 0.72);
-  stroke-width: 2;
-  filter: drop-shadow(0 1px 2px rgba(80, 50, 20, 0.24));
-}
-
-/* 卡片层 */
-.room[data-room-id="fish"] .map-bundle-grid {
-  z-index: 2;
-  inset: 16px;
-}
-
-/* 中心“鱼缸” */
-.room[data-room-id="fish"] .map-room-core {
-  min-width: 86px;
-  padding: 8px 14px;
-  border: 1px solid rgba(145, 97, 44, 0.34);
-  background: rgba(255, 248, 236, 0.9);
-  color: #6f4b22;
-  box-shadow: 0 6px 14px rgba(76, 49, 29, 0.1);
-  font-size: 16px;
-}
-
-/* 各个收集包卡片 */
-.room[data-room-id="fish"] .map-bundle-node {
-  width: auto;
-  min-width: 0;
-  min-height: 0;
-  align-content: start;
-  gap: 7px;
-  border: 1px solid rgba(143, 108, 64, 0.24);
-  border-radius: 16px;
-  background: rgba(255, 252, 242, 0.94);
-  padding: 10px 12px 9px;
-  box-shadow: 0 6px 16px rgba(80, 50, 20, 0.14);
-}
-
-/* 左侧色块改成饱和版，和你刚调的工艺室/茶水间一致 */
-.room[data-room-id="fish"] .map-bundle-node[data-slot="a"] {
-  box-shadow: inset 6px 0 0 #8f67cf, 0 6px 16px rgba(80, 50, 20, 0.14);
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-slot="b"] {
-  box-shadow: inset 6px 0 0 #389d62, 0 6px 16px rgba(80, 50, 20, 0.14);
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-slot="c"] {
-  box-shadow: inset 6px 0 0 #d88d32, 0 6px 16px rgba(80, 50, 20, 0.14);
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-slot="d"] {
-  box-shadow: inset 6px 0 0 #2f6fb0, 0 6px 16px rgba(80, 50, 20, 0.14);
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-slot="e"] {
-  box-shadow: inset 6px 0 0 #b84532, 0 6px 16px rgba(80, 50, 20, 0.14);
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-slot="f"] {
-  box-shadow: inset 6px 0 0 #6f4b22, 0 6px 16px rgba(80, 50, 20, 0.14);
-}
-
-.room[data-room-id="fish"] .map-bundle-node.done {
-  border-color: rgba(76, 145, 91, 0.36);
-  background: rgba(248, 254, 242, 0.95);
-}
-
-/* 各卡片宽度微调 */
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"] {
-  width: 224px;
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] {
-  width: 224px;
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
-  width: 224px;
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] {
-  width: 224px;
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] {
-  width: 188px;
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
-  width: 236px;
-}
-
-/* 标题和底部规则 */
-.room[data-room-id="fish"] .map-bundle-name {
-  color: #2f2116;
-  font-size: 17px;
-  line-height: 1.16;
-}
-
-.room[data-room-id="fish"] .map-bundle-meta {
-  justify-self: center;
-  border-radius: 999px;
-  background: rgba(241, 226, 191, 0.9);
-  color: #6f4b22;
-  padding: 3px 11px;
-  font-size: 12px;
-  font-weight: 950;
-}
-
-.room[data-room-id="fish"] .map-bundle-node.done .map-bundle-meta {
-  background: rgba(223, 243, 228, 0.95);
-  color: #1f7549;
-}
-
-/* 物品格子 */
-.room[data-room-id="fish"] .map-item-strip {
-  gap: 6px;
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"] .map-item-strip,
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] .map-item-strip,
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] .map-item-strip,
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] .map-item-strip {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item-strip {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.room[data-room-id="fish"] .map-item {
-  min-height: 66px;
-  border: 1px solid rgba(140, 110, 70, 0.22);
-  border-radius: 10px;
-  background: rgba(255, 250, 238, 0.9);
-  padding: 5px 4px 4px;
-}
-
-.room[data-room-id="fish"] .map-item.checked {
-  border-color: rgba(76, 145, 91, 0.4);
-  background: rgba(233, 247, 229, 0.9);
-}
-
-.room[data-room-id="fish"] .map-item.checked::after {
-  right: 5px;
-  bottom: 3px;
-  font-size: 12px;
-}
-
-.room[data-room-id="fish"] .map-item .icon-wrap,
-.room[data-room-id="fish"] .map-item .icon,
-.room[data-room-id="fish"] .map-item .fallback-icon {
-  width: 26px;
-  height: 26px;
-}
-
-.room[data-room-id="fish"] .map-item-name {
-  color: #3c2a1d;
-  font-size: 11px;
-  line-height: 1.15;
-  -webkit-line-clamp: 2;
-}
-
-.room[data-room-id="fish"] .map-item-count {
-  font-size: 11px;
-}
-
-/* 手机端 */
 @media (max-width: 520px) {
   .room[data-room-id="fish"] .room-scene-card {
     padding: 2px;
-    border-width: 1px;
+    border: 1px solid #e5cfaa;
     border-radius: 8px;
+    background: rgba(255, 252, 242, 0.92);
+    box-shadow: 0 8px 20px rgba(80, 50, 20, 0.1);
   }
 
   .room[data-room-id="fish"] .room-scene {
-    height: auto;
     min-height: 0;
     aspect-ratio: auto;
-    border-width: 1px;
+    border: 1px solid rgba(184, 143, 84, 0.5);
     border-radius: 7px;
+    background:
+      linear-gradient(rgba(255, 246, 224, 0.35), rgba(255, 246, 224, 0.35)),
+      linear-gradient(180deg, rgba(255, 252, 242, 0.76), rgba(244, 226, 190, 0.56));
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 252, 242, 0.55),
+      0 8px 22px rgba(80, 50, 20, 0.1);
+  }
+
+  .room[data-room-id="fish"] .room-scene::before {
+    background: rgba(255, 246, 224, 0.35);
+    backdrop-filter: blur(1px);
   }
 
   .room[data-room-id="fish"] .room-scene::after {
     inset: 3px;
     border-width: 1px;
+    border-color: rgba(150, 112, 63, 0.18);
     border-radius: 6px;
+  }
+
+  .room[data-room-id="fish"] .room-scene-bg {
+    opacity: 0.78;
+    filter: blur(1px) saturate(0.9) brightness(0.92);
+    transform: scale(1.01);
   }
 
   .room[data-room-id="fish"] .map-bundle-grid,
@@ -2430,35 +2233,86 @@
     height: 100%;
   }
 
+  .room[data-room-id="fish"] .map-tree-lines {
+    display: block;
+    z-index: 1;
+  }
+
+  .room[data-room-id="fish"] .map-tree-lines line {
+    stroke: rgba(255, 248, 232, 0.62);
+    stroke-width: 1.55;
+    filter: drop-shadow(0 1px 2px rgba(80, 50, 20, 0.24));
+  }
+
+  .room[data-room-id="fish"] .map-bundle-grid {
+    z-index: 2;
+  }
+
+  .room[data-room-id="fish"] .map-room-core {
+    display: none;
+  }
+
   .room[data-room-id="fish"] .map-bundle-node {
-    border-radius: 7px;
+    min-height: 0;
+    align-content: start;
     gap: 3px;
+    border: 1px solid rgba(143, 108, 64, 0.24);
+    border-radius: 7px;
+    background: rgba(255, 252, 242, 0.94);
     padding: 4px 4px 3px 10px;
     transform-origin: top left;
   }
 
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"] {
-    width: 134px;
+  .room[data-room-id="fish"] .map-bundle-node.done {
+    border-color: rgba(76, 145, 91, 0.36);
+    background: rgba(248, 254, 242, 0.95);
   }
 
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] {
-    width: 134px;
+  /* 左侧色块：饱和度跟鱼缸当前版本一致 */
+  .room[data-room-id="fish"] .map-bundle-node[data-slot="a"] {
+    box-shadow: inset 6px 0 0 rgba(143, 103, 207, 0.9), 0 6px 16px rgba(80, 50, 20, 0.14);
   }
 
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
-    width: 134px;
+  .room[data-room-id="fish"] .map-bundle-node[data-slot="b"] {
+    box-shadow: inset 6px 0 0 rgba(56, 157, 98, 0.86), 0 6px 16px rgba(80, 50, 20, 0.14);
   }
 
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] {
-    width: 134px;
+  .room[data-room-id="fish"] .map-bundle-node[data-slot="c"] {
+    box-shadow: inset 6px 0 0 rgba(216, 141, 50, 0.9), 0 6px 16px rgba(80, 50, 20, 0.14);
   }
 
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] {
-    width: 102px;
+  .room[data-room-id="fish"] .map-bundle-node[data-slot="d"] {
+    box-shadow: inset 6px 0 0 rgba(47, 111, 176, 0.9), 0 6px 16px rgba(80, 50, 20, 0.14);
   }
 
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
-    width: 134px;
+  .room[data-room-id="fish"] .map-bundle-node[data-slot="e"] {
+    box-shadow: inset 6px 0 0 rgba(184, 69, 50, 0.9), 0 6px 16px rgba(80, 50, 20, 0.14);
+  }
+
+  .room[data-room-id="fish"] .map-bundle-node[data-slot="f"] {
+    box-shadow: inset 6px 0 0 rgba(111, 75, 34, 0.86), 0 6px 16px rgba(80, 50, 20, 0.14);
+  }
+
+  .room[data-room-id="fish"] .map-bundle-name {
+    color: #2f2116;
+    font-size: 10.4px;
+    line-height: 1.12;
+    white-space: nowrap;
+  }
+
+  .room[data-room-id="fish"] .map-bundle-meta {
+    justify-self: center;
+    border-radius: 999px;
+    background: rgba(241, 226, 191, 0.9);
+    color: #6f4b22;
+    padding: 2px 6px;
+    font-size: 7.4px;
+    font-weight: 950;
+  }
+
+  .room[data-room-id="fish"] .map-bundle-node.done .map-bundle-meta {
+    background: rgba(223, 243, 228, 0.95);
+    color: #1f7549;
   }
 
   .room[data-room-id="fish"] .map-item-strip {
@@ -2467,32 +2321,24 @@
     justify-items: center;
   }
 
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"] .map-item-strip,
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] .map-item-strip,
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] .map-item-strip,
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] .map-item-strip {
-    justify-self: center;
-    width: 128px;
-    grid-template-columns: repeat(4, 30px);
-  }
-
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip {
-    justify-self: center;
-    width: 96px;
-    grid-template-columns: repeat(3, 30px);
-  }
-
-  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item-strip {
-    justify-self: center;
-    width: 98px;
-    grid-template-columns: repeat(3, 30px);
-  }
-
   .room[data-room-id="fish"] .map-item {
     width: 30px;
     min-height: 31px;
+    border: 1px solid rgba(140, 110, 70, 0.22);
     border-radius: 4px;
+    background: rgba(255, 250, 238, 0.9);
     padding: 0;
+  }
+
+  .room[data-room-id="fish"] .map-item.checked {
+    border-color: rgba(76, 145, 91, 0.4);
+    background: rgba(233, 247, 229, 0.9);
+  }
+
+  .room[data-room-id="fish"] .map-item.checked::after {
+    right: 3px;
+    bottom: 1px;
+    font-size: 10px;
   }
 
   .room[data-room-id="fish"] .map-item .icon-wrap,
@@ -2502,29 +2348,80 @@
     height: 18px;
   }
 
+  .room[data-room-id="fish"] .map-item .quality {
+    width: 8px;
+    height: 8px;
+  }
+
   .room[data-room-id="fish"] .map-item-name {
     display: block;
-    white-space: nowrap;
     overflow: visible;
-    -webkit-line-clamp: unset;
-    -webkit-box-orient: initial;
+    color: #3c2a1d;
     font-size: 7.8px;
     line-height: 1.05;
+    white-space: nowrap;
+    -webkit-line-clamp: unset;
+    -webkit-box-orient: initial;
   }
 
   .room[data-room-id="fish"] .map-item-count {
     font-size: 6.5px;
   }
 
-  .room[data-room-id="fish"] .map-bundle-meta {
-    padding: 1px 5px;
-    font-size: 7px;
+  /* 河鱼、海鱼：一行4个 */
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"],
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] {
+    width: 134px;
   }
 
-  .room[data-room-id="fish"] .map-room-core {
-    min-width: 68px;
-    padding: 6px 9px;
-    font-size: 12px;
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"] .map-item-strip,
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] .map-item-strip {
+    justify-self: center;
+    width: 128px;
+    grid-template-columns: repeat(4, 30px);
+  }
+
+  /* 湖鱼、特色：两行，每行两个 */
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"],
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
+    width: 110px;
+  }
+
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] .map-item-strip,
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] .map-item-strip {
+    justify-self: center;
+    width: 62px;
+    grid-template-columns: repeat(2, 30px);
+  }
+
+  /* 夜间：一行3个 */
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] {
+    width: 102px;
+  }
+
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip {
+    justify-self: center;
+    width: 96px;
+    grid-template-columns: repeat(3, 30px);
+  }
+
+  /* 蟹笼：4 + 4 + 2，第三行居中 */
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+    width: 144px;
+  }
+
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item-strip {
+    justify-self: center;
+    width: 126px;
+    grid-template-columns: repeat(4, 30px);
+  }
+
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item:nth-child(9) {
+    grid-column: 2;
+  }
+
+  .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item:nth-child(10) {
+    grid-column: 3;
   }
 }
 
@@ -3059,7 +2956,7 @@ function layoutMobileRoomVisuals() {
               }).join("")}
               </div>
             </div>
-            ${["crafts", "pantry"].includes(roomData.id) ? "" : `<figcaption class="visual-caption">${escapeHtml(roomData.name)}房间位置与收集包分支</figcaption>`}
+          ${["crafts", "pantry", "fish"].includes(roomData.id) ? "" : `<figcaption class="visual-caption">${escapeHtml(roomData.name)}房间位置与收集包分支</figcaption>`}
           </figure>
       `;
     }
