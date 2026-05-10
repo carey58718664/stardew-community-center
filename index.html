@@ -1,5 +1,6 @@
 
 
+
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -1725,6 +1726,45 @@
   .room[data-room-id="pantry"] .room-scene {
     min-height: 0 !important;
     aspect-ratio: 16 / 12.4 !important;
+  }
+}
+
+/* ===== 最终修正：不动树状图，只缩短茶水间背景框 ===== */
+@media (max-width: 520px) {
+  .room[data-room-id="pantry"] .room-scene {
+    min-height: 0 !important;
+    height: auto !important;
+    aspect-ratio: 16 / 14.7 !important;
+    border-color: transparent !important;
+    background: transparent !important;
+  }
+
+  .room[data-room-id="pantry"] .room-scene-bg {
+    top: 6.5% !important;
+    bottom: 6.5% !important;
+    height: auto !important;
+    border-radius: 7px !important;
+  }
+
+  .room[data-room-id="pantry"] .room-scene::before {
+    top: 6.5% !important;
+    bottom: 6.5% !important;
+    left: 0 !important;
+    right: 0 !important;
+    border-radius: 7px !important;
+    background:
+      linear-gradient(rgba(255, 246, 224, 0.35), rgba(255, 246, 224, 0.35)),
+      linear-gradient(180deg, rgba(255, 252, 242, 0.76), rgba(244, 226, 190, 0.56)) !important;
+  }
+
+  .room[data-room-id="pantry"] .room-scene::after {
+    top: calc(6.5% + 3px) !important;
+    bottom: calc(6.5% + 3px) !important;
+    left: 3px !important;
+    right: 3px !important;
+    inset: auto !important;
+    border-width: 1px !important;
+    border-radius: 6px !important;
   }
 }
 
