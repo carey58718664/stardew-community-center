@@ -1712,6 +1712,13 @@
     inset: 4px;
   }
 }
+
+@media (max-width: 520px) {
+  .room[data-room-id="pantry"] .map-bundle-node {
+    transform: translate(-50%, -50%) scale(1.06);
+    transform-origin: center;
+  }
+}
   </style>
 </head>
 <body>
@@ -1799,12 +1806,12 @@ pantry: {
   core: { x: 50, y: 52 },
   linkFrom: "artisan",
   points: {
-    "spring-crops": { x: 50, y: 31 },
-    "quality-crops": { x: 14, y: 49 },
+    "spring-crops": { x: 50, y: 35 },
+    "quality-crops": { x: 13, y: 49 },
     artisan: { x: 50, y: 49 },
-    animal: { x: 86, y: 49 },
-    "summer-crops": { x: 27, y: 67 },
-    "fall-crops": { x: 73, y: 67 }
+    animal: { x: 87, y: 49 },
+    "summer-crops": { x: 26, y: 64 },
+    "fall-crops": { x: 74, y: 64 }
   }
 },
 
