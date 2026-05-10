@@ -1713,27 +1713,67 @@
   }
 }
 
+/* 茶水间：缩短外框，但不重排树状图 */
+.room[data-room-id="pantry"] .room-scene {
+  height: 500px;
+  min-height: 0;
+  aspect-ratio: auto;
+}
+
+/* 树状图层保持原尺寸 */
+.room[data-room-id="pantry"] .map-bundle-grid {
+  inset: auto;
+  left: 16px;
+  top: 16px;
+  width: calc(100% - 32px);
+  height: 578px;
+}
+
+/* 连接线跟树状图层一致 */
+.room[data-room-id="pantry"] .map-tree-lines {
+  inset: auto;
+  left: 16px;
+  top: 16px;
+  width: calc(100% - 32px);
+  height: 578px;
+}
+
+/* 背景铺满缩短后的外框 */
+.room[data-room-id="pantry"] .room-scene-bg {
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transform: scale(1.01);
+}
+
+/* 手机端 */
 @media (max-width: 520px) {
+  .room[data-room-id="pantry"] .room-scene {
+    height: 330px;
+    min-height: 0;
+    aspect-ratio: auto;
+  }
+
+  .room[data-room-id="pantry"] .map-bundle-grid {
+    inset: auto;
+    left: 4px;
+    top: -8px;
+    width: calc(100% - 8px);
+    height: 386px;
+  }
+
+  .room[data-room-id="pantry"] .map-tree-lines {
+    inset: auto;
+    left: 4px;
+    top: -8px;
+    width: calc(100% - 8px);
+    height: 386px;
+  }
+
   .room[data-room-id="pantry"] .map-bundle-node {
     transform: translate(-50%, -50%) scale(1.06);
     transform-origin: center;
-  }
-}
-
-/* 只缩短茶水间背景图，不动里面的树状图 */
-.room[data-room-id="pantry"] .room-scene-bg {
-  top: 50%;
-  bottom: auto;
-  height: 84%;
-  object-fit: cover;
-  object-position: center center;
-  transform: translateY(-50%) scale(1.01);
-}
-
-/* 手机端同样只改背景图 */
-@media (max-width: 520px) {
-  .room[data-room-id="pantry"] .room-scene-bg {
-    height: 82%;
   }
 }
 
