@@ -2214,6 +2214,13 @@
   backdrop-filter: blur(0.35px);
 }
 
+.room[data-room-id="fish"] .room-scene::after {
+  inset: 3px;
+  border-width: 1px;
+  border-color: rgba(150, 112, 63, 0.18);
+  border-radius: 6px;
+}
+
 .room[data-room-id="fish"] .room-scene-bg {
   opacity: 0.78;
   filter: blur(0.35px) saturate(1.03) brightness(0.98);
@@ -2316,13 +2323,13 @@
   }
 
 .room[data-room-id="fish"] .map-item {
-  width: 32px;
-  min-height: 35px;
-    border: 1px solid rgba(140, 110, 70, 0.22);
-    border-radius: 4px;
-    background: rgba(255, 250, 238, 0.9);
-    padding: 0;
-  }
+  width: 30px;
+  min-height: 33px;
+  border: 1px solid rgba(140, 110, 70, 0.22);
+  border-radius: 4px;
+  background: rgba(255, 250, 238, 0.9);
+  padding: 1px 0 0;
+}
 
   .room[data-room-id="fish"] .map-item.checked {
     border-color: rgba(76, 145, 91, 0.4);
@@ -2340,6 +2347,10 @@
 .room[data-room-id="fish"] .map-item .fallback-icon {
   width: 19px;
   height: 19px;
+}
+
+.room[data-room-id="fish"] .map-item .icon-wrap {
+  transform: translateY(1px);
 }
 
   .room[data-room-id="fish"] .map-item .quality {
@@ -2376,12 +2387,13 @@
 }
 
 /* 湖鱼、特色：两行，每行两个 */
+
 .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] {
-  width: 98px;
+  width: 112px;
 }
 
 .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
-  width: 112px;
+  width: 104px;
 }
 
 .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] .map-item-strip,
@@ -3694,12 +3706,12 @@ function layoutFishMobile() {
   const oceanSize = size(cards.ocean);
   const nightSize = size(cards.night);
 
-  const wantedScale = 1.02;
-  const minGap = 4;
-  const middleRowBaseWidth = lakeSize.w + crabSize.w + specialtySize.w;
+const wantedScale = 1.02;
+const minGap = 6;
+const middleRowBaseWidth = lakeSize.w + crabSize.w + specialtySize.w;
 
-  let scale = Math.min(wantedScale, (sceneWidth - minGap * 4) / middleRowBaseWidth);
-  scale = Math.max(0.92, scale);
+let scale = Math.min(wantedScale, (sceneWidth - minGap * 4) / middleRowBaseWidth);
+scale = Math.max(0.88, scale);
 
   const scaled = (box) => ({
     w: box.w * scale,
