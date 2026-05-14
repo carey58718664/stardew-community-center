@@ -1,3 +1,4 @@
+献祭 大体完成版
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -944,7 +945,7 @@
       }
 
       .room-scene-card {
-        padding: 2px;
+        padding: 1px;
         border-radius: 8px;
       }
 
@@ -957,7 +958,7 @@
       }
 
       .room-scene::after {
-        inset: 3px;
+        inset: 2px;
         border-radius: 6px;
       }
 
@@ -1339,7 +1340,7 @@
       .map-bundle-node,
       .room[data-room-id] .map-bundle-node {
         gap: 3px;
-        padding: 4px 2px 4px;
+        padding: 4px 1px 4px;
       }
 
       .map-item-strip,
@@ -1389,7 +1390,7 @@
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"],
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
-        width: 150px;
+        width: 158px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] .map-item-strip,
@@ -1413,17 +1414,15 @@
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"],
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"],
-      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"],
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"],
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"],
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"],
       .room[data-room-id="missing"] .map-bundle-node {
-        width: 113px;
+        width: 121px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip,
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip,
-      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip,
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"] .map-item-strip,
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"] .map-item-strip,
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"] .map-item-strip,
@@ -1438,7 +1437,7 @@
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"],
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"],
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
-        width: 76px;
+        width: 84px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
@@ -1452,13 +1451,28 @@
       }
 
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] {
-        width: 224px;
+        width: 232px;
       }
 
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] .map-item-strip {
         justify-self: center;
         width: 220px;
         grid-template-columns: repeat(6, 35px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] {
+        width: 84px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip {
+        justify-self: center;
+        width: 72px;
+        grid-template-columns: repeat(2, 35px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item:nth-child(3) {
+        grid-column: 1 / span 2;
+        justify-self: center;
       }
 
       .room[data-room-id="vault"] .map-bundle-node {
