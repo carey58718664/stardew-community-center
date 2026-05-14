@@ -1,10 +1,11 @@
+献祭 大体完成版
 <!doctype html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>社区中心献祭助手</title>
-  <!-- v7: 删除重新混合收集包，并微调手机端选项框宽度与工艺室卡片留白 -->
+  <!-- v8: 统一手机端选项框视觉宽度，并压缩房间背景边框留出空间 -->
   <style>
     :root {
       color-scheme: light;
@@ -1290,7 +1291,7 @@
     }
 
 
-    /* ===== v7 细调：选项框更宽一点，工艺室卡片留白更均匀 ===== */
+    /* ===== v8 细调：统一手机端选项框视觉宽度，压缩背景边框留出空间 ===== */
     .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
     .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] {
       width: 304px;
@@ -1310,8 +1311,41 @@
     }
 
     @media (max-width: 520px) {
+      .page {
+        width: min(100% - 6px, 1220px);
+      }
+
+      .room-map {
+        padding: 4px;
+      }
+
+      .room-body {
+        padding: 2px;
+      }
+
+      .room-scene-card {
+        padding: 0;
+        border-radius: 8px;
+      }
+
+      .room-scene {
+        border-radius: 7px;
+      }
+
+      .room-scene::after {
+        inset: 2px;
+        border-radius: 6px;
+      }
+
+      .map-bundle-node,
       .room[data-room-id] .map-bundle-node {
-        padding: 4px 5px 4px 9px;
+        gap: 3px;
+        padding: 4px 2px 4px;
+      }
+
+      .map-item-strip,
+      .room[data-room-id] .map-item-strip {
+        gap: 2px;
       }
 
       .room[data-room-id] .map-item,
@@ -1338,6 +1372,10 @@
         line-height: 1.05;
       }
 
+      .room[data-room-id] .map-item-count {
+        font-size: 6.5px;
+      }
+
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"],
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="spring-crops"],
@@ -1349,8 +1387,10 @@
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="geologist"],
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="adventurer"],
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"],
-      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"] {
-        width: 164px;
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+        width: 150px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] .map-item-strip,
@@ -1364,24 +1404,29 @@
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="geologist"] .map-item-strip,
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="adventurer"] .map-item-strip,
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"] .map-item-strip,
-      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"] .map-item-strip {
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"] .map-item-strip,
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item-strip {
         justify-self: center;
         width: 146px;
         grid-template-columns: repeat(4, 35px);
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"],
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"],
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"],
-      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"] {
-        width: 128px;
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"],
+      .room[data-room-id="missing"] .map-bundle-node {
+        width: 113px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip,
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip,
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip,
       .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"] .map-item-strip,
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"] .map-item-strip,
-      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip,
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"] .map-item-strip,
       .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item-strip {
         justify-self: center;
@@ -1394,7 +1439,7 @@
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"],
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"],
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
-        width: 98px;
+        width: 76px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
@@ -1407,17 +1452,8 @@
         grid-template-columns: repeat(2, 35px);
       }
 
-      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
-        width: 130px;
-      }
-
-      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
-      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
-        width: 92px;
-      }
-
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] {
-        width: 238px;
+        width: 224px;
       }
 
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] .map-item-strip {
@@ -1426,21 +1462,18 @@
         grid-template-columns: repeat(6, 35px);
       }
 
-      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
-      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
-        width: 164px;
-      }
-
-      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] .map-item-strip,
-      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item-strip {
-        justify-self: center;
-        width: 146px;
-        grid-template-columns: repeat(4, 35px);
+      .room[data-room-id="vault"] .map-bundle-node {
+        width: 48px;
       }
 
       .room[data-room-id="vault"] .map-bundle-node .map-item-strip {
+        justify-self: center;
         width: 35px;
         grid-template-columns: repeat(1, 35px);
+      }
+
+      .room[data-room-id="missing"] .room-scene {
+        height: 320px;
       }
     }
 
@@ -1600,17 +1633,19 @@
     };
 
     const mobileLayoutConfig = {
-      crafts: { wantedScale: 1.08, minScale: 0.88, minGap: 5, vGap: 6 },
-      pantry: { wantedScale: 1.04, minScale: 0.86, minGap: 6, vGap: 6, topOffset: 0 },
-      fish: { wantedScale: 1.02, minScale: 0.88, minGap: 6, vGap: 6 },
-      boiler: { wantedScale: 1.05, minScale: 0.9, minGap: 8, vGap: 12 },
-      board: { wantedScale: 1.02, minScale: 0.82, minGap: 7, vGap: 8 },
-      missing: { wantedScale: 1.02, minScale: 0.9, minGap: 10, vGap: 10, topOffset: 12 },
+      // 手机端统一缩放：让各房间的选项框视觉尺寸尽量跟工艺室保持一致。
+      // 极窄屏幕放不下时才轻微回退，避免节点溢出。
+      crafts: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 6 },
+      pantry: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 6, topOffset: 0 },
+      fish: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 6 },
+      boiler: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 10 },
+      board: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 8 },
+      missing: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 10, topOffset: 10 },
       vault: {
-        wantedScale: 1.04,
-        minScale: 0.92,
-        minGap: 12,
-        vGap: 12
+        wantedScale: 1.08,
+        minScale: 1,
+        minGap: 2,
+        vGap: 10
       }
     };
 
