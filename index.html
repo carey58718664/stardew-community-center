@@ -2814,6 +2814,49 @@
       }
     }
 
+
+    /* ===== v25 地图房间互跳链接 ===== */
+    .center-map-stage-ref .center-ref-title-dom,
+    .room-title-link {
+      color: inherit;
+      text-decoration: none;
+      -webkit-tap-highlight-color: rgba(216, 155, 43, 0.24);
+    }
+
+    .center-map-stage-ref .center-ref-title-dom {
+      cursor: pointer;
+      pointer-events: auto;
+    }
+
+    .center-map-stage-ref .center-ref-title-dom:active {
+      transform: scale(0.98);
+    }
+
+    .room-title-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      min-width: 0;
+      border-radius: 8px;
+    }
+
+    .room-title-link:hover,
+    .room-title-link:focus-visible {
+      color: var(--wood-dark);
+      text-decoration: none;
+    }
+
+    .room-title-link:focus-visible,
+    .center-map-stage-ref .center-ref-title-dom:focus-visible {
+      outline: 3px solid rgba(47, 111, 176, 0.32);
+      outline-offset: 3px;
+    }
+
+    .room,
+    #center-map-section {
+      scroll-margin-top: 14px;
+    }
+
   </style>
 </head>
 <body>
@@ -2844,7 +2887,7 @@
       <div class="progress-grid" id="progressGrid"></div>
     </section>
 
-    <section class="center-map-panel">
+    <section class="center-map-panel" id="center-map-section">
       <h2 class="panel-title">社区中心地图</h2>
       <div class="center-map-frame" id="centerMap"></div>
     </section>
@@ -3451,10 +3494,10 @@
       const checked = countCheckedInRoom(roomData);
       const total = roomData.bundles.reduce((sum, bundleData) => sum + bundleData.required, 0);
       return `
-        <article class="room" data-room-id="${roomData.id}">
+        <article class="room" id="room-${roomData.id}" data-room-id="${roomData.id}">
           <header class="room-header">
             <div>
-              <h2 class="room-title"><span>${roomData.icon}</span><span>${escapeHtml(roomData.name)}</span></h2>
+              <h2 class="room-title"><a class="room-title-link" href="#center-map-section" aria-label="返回社区中心地图"><span>${roomData.icon}</span><span class="room-title-text">${escapeHtml(roomData.name)}</span></a></h2>
               <p class="room-meta">${escapeHtml(roomData.unlock)} · 奖励：${escapeHtml(roomData.reward)}</p>
             </div>
             <div class="room-badge">${checked} / ${total}</div>
@@ -3593,7 +3636,7 @@
         <div class="center-map-stage center-map-stage-ref">
           ${renderExternalImage("center-map-image center-map-image-ref", CENTER_MAP_IMAGE, "社区中心整体地图")}
           ${centerRoomPins.map((pin) => `
-            <div class="center-ref-title-dom" style="--box-x:${pin.boxX}%;--box-y:${pin.boxY}%;--box-w:${pin.boxW}%;--box-h:${pin.boxH}%">${escapeHtml(pin.name)}</div>
+            <a class="center-ref-title-dom" href="#room-${pin.id}" aria-label="跳转到${escapeHtml(pin.name)}" style="--box-x:${pin.boxX}%;--box-y:${pin.boxY}%;--box-w:${pin.boxW}%;--box-h:${pin.boxH}%">${escapeHtml(pin.name)}</a>
             <div class="center-ref-note-dom" style="--note-x:${pin.boxX + pin.boxW / 2}%;--note-y:${pin.noteY}%;--note-w:${pin.boxW}%">${escapeHtml(pin.note)}</div>
           `).join("")}
           <svg class="center-map-overlay-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
