@@ -1,3 +1,4 @@
+献祭 大体完成版
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -902,7 +903,7 @@
 
       .progress-panel,
       .center-map-panel,
-      .room-map { padding: 8px; }
+      .room-map { padding: 7px; }
 
       .progress-grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -1339,7 +1340,7 @@
       .map-bundle-node,
       .room[data-room-id] .map-bundle-node {
         gap: 3px;
-        padding: 4px 1px 4px;
+        padding: 4px 5px 4px 9px;
       }
 
       .map-item-strip,
@@ -1389,7 +1390,7 @@
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"],
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
-        width: 158px;
+        width: 168px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] .map-item-strip,
@@ -1417,7 +1418,7 @@
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"],
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"],
       .room[data-room-id="missing"] .map-bundle-node {
-        width: 121px;
+        width: 140px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip,
@@ -1436,7 +1437,7 @@
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"],
       .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"],
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
-        width: 84px;
+        width: 94px;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
@@ -1450,7 +1451,7 @@
       }
 
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] {
-        width: 232px;
+        width: 244px;
       }
 
       .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] .map-item-strip {
@@ -1460,7 +1461,7 @@
       }
 
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] {
-        width: 84px;
+        width: 94px;
       }
 
       .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip {
@@ -1475,7 +1476,7 @@
       }
 
       .room[data-room-id="vault"] .map-bundle-node {
-        width: 48px;
+        width: 68px;
       }
 
       .room[data-room-id="vault"] .map-bundle-node .map-item-strip {
@@ -1657,7 +1658,11 @@
         wantedScale: 1.08,
         minScale: 1,
         minGap: 2,
-        vGap: 10
+        vGap: 10,
+        xByRow: {
+          0: { "vault-2500": 0.36, "vault-5000": 0.64 },
+          1: { "vault-10000": 0.36, "vault-25000": 0.64 }
+        }
       }
     };
 
