@@ -1,3 +1,4 @@
+献祭 大体完成版
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -1882,6 +1883,65 @@
       }
     }
 
+  
+
+    /* ===== v11 地图连接线修正 + 边框收窄 + 地图放大 ===== */
+    .center-pin-line {
+      transform: translateY(-50%) rotate(var(--line-a));
+      transform-origin: left center;
+    }
+
+    .center-map-panel {
+      padding: 10px;
+    }
+
+    .center-map-frame {
+      min-height: 0;
+      padding: 10px 6px;
+      border-radius: 12px;
+    }
+
+    .center-map-frame::before {
+      inset: 5px;
+      border-radius: 9px;
+    }
+
+    .center-map-stage {
+      width: calc(100% + 14px);
+      margin: 0 -7px;
+      aspect-ratio: 756 / 392;
+    }
+
+    .center-pin-label {
+      box-shadow: 0 4px 10px rgba(76, 49, 29, 0.10);
+    }
+
+    @media (max-width: 520px) {
+      .center-map-panel {
+        padding: 6px;
+      }
+
+      .center-map-frame {
+        padding: 8px 4px;
+        border-radius: 10px;
+      }
+
+      .center-map-frame::before {
+        inset: 4px;
+        border-radius: 8px;
+      }
+
+      .center-map-stage {
+        width: calc(100% + 20px);
+        margin: 0 -10px;
+        aspect-ratio: 756 / 390;
+      }
+
+      .center-pin-line {
+        border-top-width: 1px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2613,7 +2673,7 @@
         <div class="center-map-stage">
           ${renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图")}
           ${centerRoomPins.map((pin) => {
-            const lineLength = Math.max(14, Math.hypot(pin.dx, pin.dy) - 16);
+            const lineLength = Math.max(16, Math.hypot(pin.dx, pin.dy) - 12);
             const lineAngle = Math.atan2(pin.dy, pin.dx) * 180 / Math.PI;
             return `
               <div class="center-room-pin" style="--x:${pin.x}%;--y:${pin.y}%;--dx:${pin.dx}px;--dy:${pin.dy}px;--line-l:${lineLength}px;--line-a:${lineAngle}deg">
