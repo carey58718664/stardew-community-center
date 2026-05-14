@@ -2168,6 +2168,119 @@
       }
     }
 
+
+    /* ===== v14 金库/废弃Joja超市垂直居中 + 中心地图 pin 重新分布 ===== */
+    .center-room-pin[data-room-id="pantry"] {
+      --dx: 82px;
+      --dy: -38px;
+      --line-l: 88px;
+      --line-a: -25deg;
+    }
+
+    .center-room-pin[data-room-id="crafts"] {
+      --dx: 78px;
+      --dy: 48px;
+      --line-l: 88px;
+      --line-a: 32deg;
+    }
+
+    .center-room-pin[data-room-id="fish"] {
+      --dx: 0px;
+      --dy: -58px;
+      --line-l: 58px;
+      --line-a: -90deg;
+    }
+
+    .center-room-pin[data-room-id="vault"] {
+      --dx: -54px;
+      --dy: -42px;
+      --line-l: 66px;
+      --line-a: -142deg;
+    }
+
+    .center-room-pin[data-room-id="board"] {
+      --dx: 42px;
+      --dy: 54px;
+      --line-l: 66px;
+      --line-a: 52deg;
+    }
+
+    .center-room-pin[data-room-id="boiler"] {
+      --dx: -86px;
+      --dy: 46px;
+      --line-l: 96px;
+      --line-a: 152deg;
+    }
+
+    .center-pin-line {
+      border-top-width: 2.6px;
+      border-top-color: rgba(117, 83, 43, 0.62);
+    }
+
+    @media (max-width: 520px) {
+      .center-room-pin[data-room-id="pantry"] {
+        --dx: 58px;
+        --dy: -30px;
+        --line-l: 64px;
+        --line-a: -27deg;
+      }
+
+      .center-room-pin[data-room-id="crafts"] {
+        --dx: 54px;
+        --dy: 38px;
+        --line-l: 64px;
+        --line-a: 35deg;
+      }
+
+      .center-room-pin[data-room-id="fish"] {
+        --dx: 0px;
+        --dy: -40px;
+        --line-l: 40px;
+        --line-a: -90deg;
+      }
+
+      .center-room-pin[data-room-id="vault"] {
+        --dx: -42px;
+        --dy: -30px;
+        --line-l: 50px;
+        --line-a: -144deg;
+      }
+
+      .center-room-pin[data-room-id="board"] {
+        --dx: 28px;
+        --dy: 38px;
+        --line-l: 48px;
+        --line-a: 54deg;
+      }
+
+      .center-room-pin[data-room-id="boiler"] {
+        --dx: -58px;
+        --dy: 36px;
+        --line-l: 68px;
+        --line-a: 148deg;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-2500"] {
+        top: 31px !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-5000"] {
+        top: 31px !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-10000"] {
+        top: 134px !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-25000"] {
+        top: 134px !important;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] {
+        top: 56px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2306,7 +2419,7 @@
         core: { x: 50, y: 52 },
         linkFrom: "missing-bundle",
         points: {
-          "missing-bundle": { x: 50, y: 45 }
+          "missing-bundle": { x: 50, y: 50 }
         }
       }
     };
@@ -2902,7 +3015,7 @@
             const lineLength = Math.max(16, Math.hypot(pin.dx, pin.dy) - 12);
             const lineAngle = Math.atan2(pin.dy, pin.dx) * 180 / Math.PI;
             return `
-              <div class="center-room-pin" style="--x:${pin.x}%;--y:${pin.y}%;--dx:${pin.dx}px;--dy:${pin.dy}px;--line-l:${lineLength}px;--line-a:${lineAngle}deg">
+              <div class="center-room-pin" data-room-id="${pin.id}" style="--x:${pin.x}%;--y:${pin.y}%;--dx:${pin.dx}px;--dy:${pin.dy}px;--line-l:${lineLength}px;--line-a:${lineAngle}deg">
                 <span class="center-pin-line" aria-hidden="true"></span>
                 <span class="center-pin-dot" aria-hidden="true"></span>
                 <span class="center-pin-label">
