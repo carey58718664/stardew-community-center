@@ -876,6 +876,125 @@
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
 
+
+
+    .remix-panel {
+      margin-top: 14px;
+      padding: 12px;
+    }
+
+    .remix-note {
+      margin: -2px 0 12px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .remix-rooms {
+      display: grid;
+      gap: 14px;
+    }
+
+    .remix-room {
+      border: 1px solid #e8d8b8;
+      border-radius: 8px;
+      background: linear-gradient(180deg, #fffaf0, #f7ebd1);
+      overflow: hidden;
+    }
+
+    .remix-room-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(138, 90, 53, 0.08);
+    }
+
+    .remix-room-title {
+      margin: 0;
+      font-size: 17px;
+      font-weight: 950;
+    }
+
+    .remix-room-tip {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 900;
+      white-space: nowrap;
+    }
+
+    .remix-bundle-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(252px, 1fr));
+      gap: 10px;
+      padding: 10px;
+    }
+
+    .remix-bundle {
+      margin: 0;
+      padding: 9px;
+    }
+
+    .remix-bundle-head {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .remix-bundle-name {
+      margin: 0;
+      font-size: 14px;
+      font-weight: 950;
+      line-height: 1.2;
+    }
+
+    .remix-bundle-rule {
+      border-radius: 999px;
+      background: rgba(241, 226, 191, 0.9);
+      color: #6f4b22;
+      padding: 2px 8px;
+      font-size: 11px;
+      font-weight: 950;
+      white-space: nowrap;
+    }
+
+    .remix-items {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(76px, 1fr));
+      gap: 6px;
+    }
+
+    .remix-item {
+      display: grid;
+      justify-items: center;
+      align-content: start;
+      gap: 3px;
+      min-height: 58px;
+      border: 1px solid rgba(140, 110, 70, 0.22);
+      border-radius: 7px;
+      background: rgba(255, 250, 238, 0.9);
+      padding: 4px 3px;
+      text-align: center;
+    }
+
+    .remix-item-name {
+      color: #3c2a1d;
+      font-size: 10px;
+      font-weight: 850;
+      line-height: 1.12;
+    }
+
+    .remix-item-count {
+      color: var(--red);
+      font-size: 9px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
     @media (max-width: 980px) {
       .hero,
       .assistant-panel,
@@ -1219,6 +1338,98 @@
       }
     }
 
+
+    /* ===== 手机端选项框微放宽 + 厨师/湖鱼改一行 ===== */
+    @media (max-width: 520px) {
+      .room[data-room-id] .map-item {
+        width: 32px;
+        min-height: 34px;
+      }
+
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id] .map-item .fallback-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .room[data-room-id] .map-item-name {
+        font-size: 8px;
+      }
+
+      .room[data-room-id="pantry"] .map-item {
+        width: 33px;
+        min-height: 36px;
+      }
+
+      .room[data-room-id="pantry"] .map-item .icon-wrap,
+      .room[data-room-id="pantry"] .map-item .icon,
+      .room[data-room-id="pantry"] .map-item .fallback-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .room[data-room-id="pantry"] .map-item-name {
+        font-size: 8.5px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] {
+        width: 160px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] .map-item-strip {
+        justify-self: center;
+        width: 142px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] {
+        width: 232px;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] .map-item-strip {
+        justify-self: center;
+        width: 214px;
+        grid-template-columns: repeat(6, 34px);
+      }
+
+      .room[data-room-id="missing"] .room-scene {
+        height: 320px;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node {
+        width: 178px;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item-strip {
+        justify-self: center;
+        width: 106px;
+        grid-template-columns: repeat(3, 34px);
+      }
+
+      .remix-panel { padding: 8px; }
+
+      .remix-bundle-grid {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        padding: 8px;
+      }
+
+      .remix-items {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 5px;
+      }
+
+      .remix-item {
+        min-height: 56px;
+        padding: 3px 2px;
+      }
+
+      .remix-item-name {
+        font-size: 8.6px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1261,11 +1472,10 @@
       <div class="rooms" id="rooms"></div>
     </section>
 
-    <section class="room-map remix-note-panel">
-      <h2 class="panel-title">重新混合收集包说明</h2>
-      <div class="result-card">
-        <p class="empty-state">重新混合收集包是在开新档时于高级选项中开启的，不会额外占一个新房间，而是随机替换各房间里的部分收集包。每个存档抽到的组合可能不同，所以这版先保留标准收集包版面，并额外加入了失踪收集包。</p>
-      </div>
+    <section class="room-map remix-panel">
+      <h2 class="panel-title">重新混合收集包池</h2>
+      <p class="remix-note">重新混合收集包不是固定新房间，而是开档时随机替换部分房间内的收集包。这里把可能出现的包先单独列出来，方便对照存档。</p>
+      <div id="remixReference"></div>
     </section>
   </main>
 
@@ -1522,7 +1732,73 @@
       "五彩碎片": "Prismatic Shard.png",
       "上古水果": "Ancient Fruit.png",
       "虚空鲑鱼": "Void Salmon.png",
-      "金币": "Gold.png"
+      "金币": "Gold.png",
+      "春葱": "Spring Onion.png",
+      "冬青树": "Holly.png",
+      "树液": "Sap.png",
+      "苔藓": "Moss.png",
+      "纤维": "Fiber.png",
+      "橡子": "Acorn.png",
+      "枫树种子": "Maple Seed.png",
+      "白藻": "White Algae.png",
+      "啤酒花": "Hops.png",
+      "羽衣甘蓝": "Kale.png",
+      "胡萝卜": "Carrot.png",
+      "夏南瓜": "Summer Squash.png",
+      "西兰花": "Broccoli.png",
+      "上古水果": "Ancient Fruit.png",
+      "宝石甜莓": "Sweet Gem Berry.png",
+      "鱼籽": "Roe.png",
+      "陈年鱼籽": "Aged Roe.png",
+      "鱿鱼墨汁": "Squid Ink.png",
+      "郁金香": "Tulip.png",
+      "蓝爵": "Blue Jazz.png",
+      "夏季亮片": "Summer Spangle.png",
+      "向日葵": "Sunflower.png",
+      "玫瑰仙子": "Fairy Rose.png",
+      "蜂蜜酒": "Mead.png",
+      "淡啤酒": "Pale Ale.png",
+      "果酒": "Wine.png",
+      "蔬菜汁": "Juice.png",
+      "绿茶": "Green Tea.png",
+      "岩浆鳗鱼": "Lava Eel.png",
+      "蝎鲤鱼": "Scorpion Carp.png",
+      "章鱼": "Octopus.png",
+      "水滴鱼": "Blobfish.png",
+      "骨头碎片": "Bone Fragment.png",
+      "紫水晶": "Amethyst.png",
+      "海蓝宝石": "Aquamarine.png",
+      "钻石": "Diamond.png",
+      "翡翠": "Emerald.png",
+      "红宝石": "Ruby.png",
+      "黄水晶": "Topaz.png",
+      "铱矿石": "Iridium Ore.png",
+      "电池组": "Battery Pack.png",
+      "精炼石英": "Refined Quartz.png",
+      "煎蛋": "Fried Egg.png",
+      "甜菜": "Beet.png",
+      "苋菜": "Amaranth.png",
+      "杨桃": "Starfruit.png",
+      "红叶卷心菜": "Red Cabbage.png",
+      "铱锭": "Iridium Bar.png",
+      "鲢鱼": "Chub.png",
+      "冰封晶球": "Frozen Geode.png",
+      "美洲大树莓": "Salmonberry.png",
+      "曲奇": "Cookie.png",
+      "古代玩偶": "Ancient Doll.png",
+      "冰淇淋": "Ice Cream.png",
+      "小麦粉": "Wheat Flour.png",
+      "奖券": "Prize Ticket.png",
+      "谜之盒": "Mystery Box.png",
+      "星之果实茶": "Stardrop Tea.png",
+      "南瓜灯": "Jack-O-Lantern.png",
+      "葡萄布丁": "Plum Pudding.png",
+      "填料": "Stuffing.png",
+      "粉瓜": "Powdermelon.png",
+      "恐龙蛋黄酱": "Dinosaur Mayonnaise.png",
+      "五彩碎片": "Prismatic Shard.png",
+      "虚空鲑鱼": "Void Salmon.png",
+      "鱼子酱": "Caviar.png"
     };
 
     const rooms = [
@@ -1635,6 +1911,61 @@
       ])
     ];
 
+
+
+    const remixReferenceRooms = [
+      remixRoom("crafts", "🏠", "工艺室 · 重新混合池", "部分包固定，部分位置会从候选包中抽取", [
+        remixBundle("remix-spring-forage", "春季采集收集包", "随机4/5", [
+          item("野山葵", "forage"), item("黄水仙", "forage"), item("韭葱", "forage"), item("蒲公英", "forage"), item("春葱", "forage")
+        ]),
+        remixBundle("remix-summer-forage", "夏季采集收集包", "3/3", [
+          item("葡萄", "forage"), item("香味浆果", "forage"), item("甜豌豆", "forage")
+        ]),
+        remixBundle("remix-fall-forage", "秋季采集收集包", "4/4", [
+          item("普通蘑菇", "forage"), item("野李子", "forage"), item("榛子", "forage"), item("黑莓", "forage")
+        ]),
+        remixBundle("remix-winter-forage", "冬季采集收集包", "随机4/5", [
+          item("冬根", "forage"), item("水晶果", "forage"), item("雪山药", "forage"), item("番红花", "forage"), item("冬青树", "forage")
+        ]),
+        remixBundle("remix-sticky", "黏黏收集包", "1/1", [item("树液", "resource", 500)]),
+        remixBundle("remix-forest", "森林收集包", "随机3/4", [item("苔藓", "forage", 10), item("纤维", "resource", 200), item("橡子", "forage", 10), item("枫树种子", "forage", 10)]),
+        remixBundle("remix-wild-medicine", "野外药材收集包", "3/4", [item("紫蘑菇", "forage", 5), item("蕨菜", "forage", 5), item("白藻", "fish", 5), item("啤酒花", "crop", 5)])
+      ]),
+      remixRoom("pantry", "🍴", "茶水间 · 重新混合池", "作物会抽样，部分位置会换成花卉/鱼塘/酿造类包", [
+        remixBundle("remix-spring-crops", "春季作物收集包", "随机4/6", [item("防风草", "crop"), item("青豆", "crop"), item("花椰菜", "crop"), item("土豆", "crop"), item("羽衣甘蓝", "crop"), item("胡萝卜", "crop")]),
+        remixBundle("remix-summer-crops", "夏季作物收集包", "随机4/5", [item("番茄", "crop"), item("辣椒", "crop"), item("蓝莓", "crop"), item("甜瓜", "crop"), item("夏南瓜", "crop")]),
+        remixBundle("remix-fall-crops", "秋季作物收集包", "随机4/5", [item("玉米", "crop"), item("茄子", "crop"), item("南瓜", "crop"), item("山药", "crop"), item("西兰花", "crop")]),
+        remixBundle("remix-quality-crops", "优质作物收集包", "3/4", [item("防风草", "crop", 5, "gold"), item("甜瓜", "crop", 5, "gold"), item("南瓜", "crop", 5, "gold"), item("玉米", "crop", 5, "gold")]),
+        remixBundle("remix-rare-crops", "稀有作物收集包", "1/2", [item("上古水果", "crop"), item("宝石甜莓", "crop")]),
+        remixBundle("remix-fish-farmer", "鱼塘主收集包", "2/3", [item("鱼籽", "fish", 15), item("陈年鱼籽", "fish", 15), item("鱿鱼墨汁", "fish")]),
+        remixBundle("remix-garden", "花园收集包", "4/5", [item("郁金香", "crop"), item("蓝爵", "crop"), item("夏季亮片", "crop"), item("向日葵", "crop"), item("玫瑰仙子", "crop")]),
+        remixBundle("remix-brewer", "酿酒师收集包", "4/5", [item("蜂蜜酒", "animal"), item("淡啤酒", "animal"), item("果酒", "animal"), item("蔬菜汁", "animal"), item("绿茶", "animal")])
+      ]),
+      remixRoom("fish", "🐟", "鱼缸 · 重新混合池", "常规鱼包保留，特色鱼位置可能换成高品质/大师鱼包", [
+        remixBundle("remix-lake-fish", "湖鱼收集包", "4/4", [item("大嘴鲈鱼", "fish"), item("鲤鱼", "fish"), item("大头鱼", "fish"), item("鲟鱼", "fish")]),
+        remixBundle("remix-quality-fish", "优质鱼类收集包", "4/4", [item("大嘴鲈鱼", "fish", 1, "gold"), item("西鲱", "fish", 1, "gold"), item("金枪鱼", "fish", 1, "gold"), item("大眼鱼", "fish", 1, "gold")]),
+        remixBundle("remix-master-fisher", "钓鱼大师收集包", "2/4", [item("岩浆鳗鱼", "fish"), item("蝎鲤鱼", "fish"), item("章鱼", "fish"), item("水滴鱼", "fish")])
+      ]),
+      remixRoom("boiler", "⚡", "锅炉房 · 重新混合池", "3个包随机出现", [
+        remixBundle("remix-adventurer", "冒险家收集包", "随机4/5", [item("史莱姆", "mine", 99), item("蝙蝠翅膀", "mine", 10), item("太阳精华", "mine"), item("虚空精华", "mine"), item("骨头碎片", "mine", 10)]),
+        remixBundle("remix-treasure", "寻宝者收集包", "5/6", [item("紫水晶", "mine"), item("海蓝宝石", "mine"), item("钻石", "mine"), item("翡翠", "mine"), item("红宝石", "mine"), item("黄水晶", "mine")]),
+        remixBundle("remix-engineer", "工程师收集包", "3/3", [item("铱矿石", "mine"), item("电池组", "mine"), item("精炼石英", "mine", 5)])
+      ]),
+      remixRoom("board", "📋", "布告栏 · 重新混合池", "5个包随机出现", [
+        remixBundle("remix-chef", "厨师收集包", "6/6", [item("枫糖浆", "forage"), item("蕨菜", "forage"), item("松露", "animal"), item("罂粟", "crop"), item("鲭鱼", "animal"), item("煎蛋", "animal")]),
+        remixBundle("remix-dye", "染料收集包", "6/12", [item("红蘑菇", "forage"), item("甜菜", "crop"), item("海胆", "shellfish"), item("苋菜", "crop"), item("向日葵", "crop"), item("杨桃", "crop"), item("羽毛", "animal"), item("仙人掌果子", "forage"), item("海蓝宝石", "mine"), item("蓝莓", "crop"), item("红叶卷心菜", "crop"), item("铱锭", "mine")]),
+        remixBundle("remix-children", "儿童收集包", "3/4", [item("美洲大树莓", "forage", 10), item("曲奇", "animal"), item("古代玩偶", "mine"), item("冰淇淋", "animal")]),
+        remixBundle("remix-forager", "采集者收集包", "2/3", [item("美洲大树莓", "forage", 50), item("黑莓", "forage", 50), item("野李子", "forage", 15)]),
+        remixBundle("remix-home-cook", "家常菜收集包", "3/3", [item("大鸡蛋(白)", "animal", 10, "", "任意蛋"), item("大壶牛奶", "animal", 10, "", "任意奶"), item("小麦粉", "crop", 100)]),
+        remixBundle("remix-helper", "帮手收集包", "2/2", [item("奖券", "mine"), item("谜之盒", "mine", 5)]),
+        remixBundle("remix-spirit", "万灵节收集包", "3/3", [item("南瓜灯", "crop"), item("玉米", "crop", 10), item("蝙蝠翅膀", "mine", 10)]),
+        remixBundle("remix-winter-star", "冬日星盛宴收集包", "2/4", [item("冬青树", "forage", 5), item("葡萄布丁", "animal"), item("填料", "animal"), item("粉瓜", "crop", 5)])
+      ]),
+      remixRoom("vault", "💰", "金库 · 重新混合池", "金库金额不随机", [
+        remixBundle("remix-vault", "金库收集包", "共42,500G", [item("金币", "money", 2500, "", "2,500G"), item("金币", "money", 5000, "", "5,000G"), item("金币", "money", 10000, "", "10,000G"), item("金币", "money", 25000, "", "25,000G")])
+      ])
+    ];
+
     const state = {
       checked: loadCheckedItems(),
       showMissingOnly: false,
@@ -1736,6 +2067,7 @@
       renderCenterMap();
       renderProgress();
       renderSearchResults();
+      renderRemixReference();
       applyVisibility();
       markHighlights();
       requestAnimationFrame(layoutMobileRoomVisuals);
@@ -1861,6 +2193,61 @@
         ? `<img class="quality" src="${iconUrl(QUALITY_ICON[entry.quality])}" alt="金星" loading="lazy" />`
         : "";
       return `<span class="icon-wrap">${image}${quality}</span>`;
+    }
+
+
+
+    function remixRoom(id, icon, name, note, bundles) {
+      return { id, icon, name, note, bundles };
+    }
+
+    function remixBundle(id, name, rule, items) {
+      return { id, name, rule, items };
+    }
+
+    function renderRemixReference() {
+      const root = document.getElementById("remixReference");
+      if (!root) return;
+
+      root.innerHTML = `
+        <div class="remix-rooms">
+          ${remixReferenceRooms.map((roomData) => `
+            <article class="remix-room">
+              <header class="remix-room-head">
+                <h3 class="remix-room-title"><span>${roomData.icon}</span> ${escapeHtml(roomData.name)}</h3>
+                <span class="remix-room-tip">${escapeHtml(roomData.note)}</span>
+              </header>
+              <div class="remix-bundle-grid">
+                ${roomData.bundles.map(renderRemixBundle).join("")}
+              </div>
+            </article>
+          `).join("")}
+        </div>
+      `;
+    }
+
+    function renderRemixBundle(bundleData) {
+      return `
+        <section class="result-card remix-bundle">
+          <div class="remix-bundle-head">
+            <h4 class="remix-bundle-name">${escapeHtml(bundleData.name)}</h4>
+            <span class="remix-bundle-rule">${escapeHtml(bundleData.rule)}</span>
+          </div>
+          <div class="remix-items">
+            ${bundleData.items.map(renderRemixItem).join("")}
+          </div>
+        </section>
+      `;
+    }
+
+    function renderRemixItem(entry) {
+      return `
+        <div class="remix-item" title="${escapeAttribute(describeItem(entry))}">
+          ${renderIcon(entry)}
+          <span class="remix-item-name">${escapeHtml(entry.displayName || entry.name)}</span>
+          ${entry.count > 1 && !entry.displayName ? `<span class="remix-item-count">×${entry.count}</span>` : ""}
+        </div>
+      `;
     }
 
     function renderProgress() {
