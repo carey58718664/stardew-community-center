@@ -2491,6 +2491,171 @@
       }
     }
 
+
+    /* ===== v19 中心地图：按参考图重做标注样式 ===== */
+    .center-map-frame::after {
+      display: none !important;
+    }
+
+    .center-map-frame {
+      padding: 10px !important;
+      background: #fbf2da !important;
+      border-color: #e0cc9d !important;
+      border-radius: 14px !important;
+    }
+
+    .center-map-stage-ref {
+      position: relative;
+      width: 100%;
+      min-height: 300px;
+      aspect-ratio: 1100 / 700;
+      overflow: hidden;
+      border: 2px solid #e2ce9f;
+      border-radius: 16px;
+      background:
+        linear-gradient(90deg, rgba(228, 186, 76, 0.14) 0 2.8%, transparent 2.8% 97.2%, rgba(228, 186, 76, 0.14) 97.2% 100%),
+        linear-gradient(180deg, rgba(228, 186, 76, 0.14) 0 5.5%, transparent 5.5% 94.5%, rgba(228, 186, 76, 0.14) 94.5% 100%),
+        #ebd39a;
+      isolation: isolate;
+    }
+
+    .center-map-stage-ref::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(214, 170, 70, 0.05));
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .center-map-stage-ref .center-map-image.center-map-image-ref,
+    .center-map-stage-ref .image-fallback {
+      position: absolute !important;
+      left: 2.3% !important;
+      top: 17.2% !important;
+      width: 92% !important;
+      height: 66.8% !important;
+      min-height: 0 !important;
+      object-fit: contain !important;
+      object-position: center center !important;
+      image-rendering: pixelated;
+      filter: saturate(1.04) contrast(1.02);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .center-map-stage-ref .image-fallback {
+      display: grid;
+      place-items: center;
+      padding: 10px;
+      border-style: solid;
+      border-color: rgba(160, 120, 56, 0.3);
+      background: rgba(255, 248, 231, 0.62);
+      color: #7b582c;
+    }
+
+    .center-map-stage-ref .center-map-leaders-ref {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .center-map-stage-ref .center-map-leaders-ref polyline {
+      fill: none;
+      stroke: #ffffff;
+      stroke-width: 4.4px;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      vector-effect: non-scaling-stroke;
+      filter: drop-shadow(0 1px 1px rgba(143, 100, 39, 0.3));
+    }
+
+    .center-ref-callout {
+      position: absolute;
+      left: var(--label-x);
+      top: var(--label-y);
+      z-index: 3;
+      transform: translate(-50%, 0);
+      display: grid;
+      justify-items: start;
+      gap: 7px;
+      pointer-events: none;
+    }
+
+    .center-ref-title {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 8px 18px;
+      border-radius: 10px;
+      background: #d18a30;
+      color: #ffffff;
+      font-size: clamp(18px, 2.6vw, 27px);
+      font-weight: 950;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      white-space: nowrap;
+      box-shadow: 0 2px 0 rgba(155, 101, 35, 0.22);
+    }
+
+    .center-ref-note {
+      color: #949494;
+      font-size: clamp(14px, 2vw, 20px);
+      font-weight: 800;
+      line-height: 1.14;
+      white-space: nowrap;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+    }
+
+    .center-ref-callout[data-center-room="pantry"] .center-ref-note,
+    .center-ref-callout[data-center-room="fish"] .center-ref-note,
+    .center-ref-callout[data-center-room="vault"] .center-ref-note,
+    .center-ref-callout[data-center-room="crafts"] .center-ref-note {
+      margin-left: 2px;
+    }
+
+    @media (max-width: 700px) {
+      .center-map-frame {
+        padding: 8px !important;
+      }
+
+      .center-map-stage-ref {
+        border-radius: 14px;
+      }
+
+      .center-map-stage-ref .center-map-image.center-map-image-ref,
+      .center-map-stage-ref .image-fallback {
+        left: 2.2% !important;
+        top: 17.4% !important;
+        width: 92.6% !important;
+        height: 66.6% !important;
+      }
+
+      .center-map-stage-ref .center-map-leaders-ref polyline {
+        stroke-width: 3.9px;
+      }
+
+      .center-ref-callout {
+        gap: 5px;
+      }
+
+      .center-ref-title {
+        min-height: 30px;
+        padding: 5px 10px 6px;
+        border-radius: 8px;
+        font-size: clamp(12px, 3vw, 18px);
+      }
+
+      .center-ref-note {
+        font-size: clamp(9px, 2.2vw, 14px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2550,12 +2715,12 @@
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
     const centerRoomPins = [
-      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, labelX: 33, labelY: 17, lineX2: 27.8, lineY2: 21.6 },
-      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57.5, y: 28.5, labelX: 56, labelY: 15, lineX2: 56.4, lineY2: 21.2 },
-      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 30, labelX: 75.2, labelY: 17, lineX2: 78.4, lineY2: 22.0 },
-      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 76.5, labelX: 36, labelY: 87.2, lineX2: 31.8, lineY2: 82.0 },
-      { id: "board", name: "布告栏", note: "友谊 +2", x: 63.5, y: 75.5, labelX: 57.2, labelY: 88.2, lineX2: 58.8, lineY2: 81.8 },
-      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, labelX: 75.4, labelY: 87.2, lineX2: 79.2, lineY2: 82.0 }
+      { id: "pantry", name: "茶水间", note: "开放温室", labelX: 12.8, labelY: 6.6, path: "24.8,34.8 24.8,10.3 20.4,10.3" },
+      { id: "fish", name: "鱼缸", note: "移除矿井入口的巨石", labelX: 48.0, labelY: 8.1, path: "60.3,36.0 60.3,14.6 54.2,14.6" },
+      { id: "vault", name: "金库", note: "修复巴士站，去沙漠", labelX: 74.2, labelY: 6.6, path: "69.5,21.5 69.5,12.6" },
+      { id: "crafts", name: "工艺室", note: "维修矿井东边的桥", labelX: 26.8, labelY: 80.8, path: "16.8,70.6 16.8,84.2 23.8,84.2" },
+      { id: "board", name: "布告栏", note: "增加友谊", labelX: 69.8, labelY: 66.0, path: "67.8,42.4 67.8,63.8" },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", labelX: 89.5, labelY: 66.2, path: "89.6,53.6 89.6,63.8" }
     ];
 
     const bundleLayoutByRoom = {
@@ -3219,19 +3384,23 @@
 
     function renderCenterMap() {
       document.getElementById("centerMap").innerHTML = `
-        <div class="center-map-stage">
-          ${renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图")}
-          <svg class="center-map-leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+        <div class="center-map-stage center-map-stage-ref">
+          ${renderExternalImage("center-map-image center-map-image-ref", CENTER_MAP_IMAGE, "社区中心整体地图")}
+          <svg class="center-map-leaders center-map-leaders-ref" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <marker id="centerArrowHead" markerWidth="8" markerHeight="8" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
+              </marker>
+            </defs>
             ${centerRoomPins.map((pin) => `
-              <line x1="${pin.x}" y1="${pin.y}" x2="${pin.lineX2 ?? pin.labelX}" y2="${pin.lineY2 ?? pin.labelY}" />
+              <polyline points="${pin.path}" marker-end="url(#centerArrowHead)" />
             `).join("")}
           </svg>
           ${centerRoomPins.map((pin) => `
-            <span class="center-map-dot center-pin-dot" style="--x:${pin.x}%;--y:${pin.y}%;" aria-hidden="true"></span>
-            <span class="center-map-label center-pin-label" data-center-room="${pin.id}" style="--label-x:${pin.labelX}%;--label-y:${pin.labelY}%;">
-              <span class="center-pin-name">${escapeHtml(pin.name)}</span>
-              <span class="center-pin-note">${escapeHtml(pin.note)}</span>
-            </span>
+            <div class="center-ref-callout" data-center-room="${pin.id}" style="--label-x:${pin.labelX}%;--label-y:${pin.labelY}%;">
+              <div class="center-ref-title">${escapeHtml(pin.name)}</div>
+              <div class="center-ref-note">${escapeHtml(pin.note)}</div>
+            </div>
           `).join("")}
         </div>
       `;
