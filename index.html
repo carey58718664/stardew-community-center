@@ -1,3 +1,5 @@
+献祭ok地图微瑕
+
 
 <!doctype html>
 <html lang="zh-CN">
@@ -2779,18 +2781,25 @@
       position: absolute;
       left: var(--note-x);
       top: var(--note-y);
-      z-index: 3;
+      z-index: 4;
+      min-width: var(--note-w);
+      transform: translateX(-50%);
       color: #989898;
       font-size: clamp(10px, 2vw, 19px);
       font-weight: 800;
       line-height: 1.14;
       white-space: nowrap;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.55);
+      text-align: center;
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
       pointer-events: none;
     }
 
-    .center-map-stage-ref .center-map-overlay-svg {
+    .center-map-stage-ref .center-ref-title-dom {
       z-index: 4;
+    }
+
+    .center-map-stage-ref .center-map-overlay-svg {
+      z-index: 3;
     }
 
     @media (max-width: 700px) {
@@ -2869,54 +2878,54 @@
         name: "茶水间",
         note: "开放温室",
         boxX: 7.0, boxY: 7.2, boxW: 14.6, boxH: 8.2,
-        noteX: 7.0, noteY: 18.9,
-        path: "24.9,35.0 24.9,11.3 21.6,11.3",
-        arrow: "23.9,9.7 21.6,11.3 23.9,12.9"
+        noteX: 14.3, noteY: 17.0,
+        path: "24.9,35.0 24.9,11.3 22.9,11.3",
+        arrow: "25.0,9.7 22.9,11.3 25.0,12.9"
       },
       {
         id: "fish",
         name: "鱼缸",
         note: "移除矿井入口的巨石",
         boxX: 36.2, boxY: 7.5, boxW: 11.6, boxH: 8.2,
-        noteX: 35.9, noteY: 19.5,
-        path: "60.4,35.8 60.4,11.6 47.8,11.6",
-        arrow: "50.1,10.0 47.8,11.6 50.1,13.2"
+        noteX: 42.0, noteY: 17.4,
+        path: "60.4,35.8 60.4,11.6 49.1,11.6",
+        arrow: "51.2,10.0 49.1,11.6 51.2,13.2"
       },
       {
         id: "vault",
         name: "金库",
         note: "修复巴士站，去沙漠",
         boxX: 66.0, boxY: 6.3, boxW: 13.0, boxH: 8.2,
-        noteX: 64.8, noteY: 19.1,
-        path: "72.5,24.8 72.5,14.5",
-        arrow: "70.9,17.1 72.5,14.5 74.1,17.1"
+        noteX: 72.5, noteY: 16.9,
+        path: "70.7,24.8 70.7,16.1",
+        arrow: "69.1,18.6 70.7,16.1 72.3,18.6"
       },
       {
         id: "crafts",
         name: "工艺室",
         note: "维修矿井东边的桥",
         boxX: 20.6, boxY: 80.0, boxW: 16.0, boxH: 8.3,
-        noteX: 16.0, noteY: 94.8,
-        path: "17.0,70.7 17.0,84.15 20.6,84.15",
-        arrow: "18.3,82.55 20.6,84.15 18.3,85.75"
+        noteX: 28.6, noteY: 90.9,
+        path: "17.0,70.7 17.0,84.15 19.3,84.15",
+        arrow: "17.2,82.55 19.3,84.15 17.2,85.75"
       },
       {
         id: "board",
         name: "布告栏",
         note: "增加友谊",
         boxX: 60.0, boxY: 64.0, boxW: 16.0, boxH: 8.3,
-        noteX: 62.0, noteY: 78.2,
-        path: "68.0,45.0 68.0,64.0",
-        arrow: "66.4,61.4 68.0,64.0 69.6,61.4"
+        noteX: 68.0, noteY: 74.8,
+        path: "68.0,45.0 68.0,62.7",
+        arrow: "66.4,60.1 68.0,62.7 69.6,60.1"
       },
       {
         id: "boiler",
         name: "锅炉房",
         note: "修复矿车",
         boxX: 81.5, boxY: 64.0, boxW: 16.0, boxH: 8.3,
-        noteX: 82.3, noteY: 78.2,
-        path: "89.6,54.4 89.6,64.0",
-        arrow: "88.0,61.4 89.6,64.0 91.2,61.4"
+        noteX: 89.5, noteY: 74.8,
+        path: "89.6,54.4 89.6,62.7",
+        arrow: "88.0,60.1 89.6,62.7 91.2,60.1"
       }
     ];
 
@@ -3585,7 +3594,7 @@
           ${renderExternalImage("center-map-image center-map-image-ref", CENTER_MAP_IMAGE, "社区中心整体地图")}
           ${centerRoomPins.map((pin) => `
             <div class="center-ref-title-dom" style="--box-x:${pin.boxX}%;--box-y:${pin.boxY}%;--box-w:${pin.boxW}%;--box-h:${pin.boxH}%">${escapeHtml(pin.name)}</div>
-            <div class="center-ref-note-dom" style="--note-x:${pin.noteX}%;--note-y:${pin.noteY}%">${escapeHtml(pin.note)}</div>
+            <div class="center-ref-note-dom" style="--note-x:${pin.boxX + pin.boxW / 2}%;--note-y:${pin.noteY}%;--note-w:${pin.boxW}%">${escapeHtml(pin.note)}</div>
           `).join("")}
           <svg class="center-map-overlay-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             ${centerRoomPins.map((pin) => `
