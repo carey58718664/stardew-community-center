@@ -1,3 +1,4 @@
+献祭 大体完成版
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -628,6 +629,8 @@
     }
 
     .map-item-name {
+      justify-self: center;
+      width: 100%;
       max-width: 100%;
       overflow: hidden;
       color: #3c2a1d;
@@ -642,10 +645,13 @@
     }
 
     .map-item-count {
+      justify-self: center;
+      width: 100%;
       color: var(--red);
       font-size: 11px;
       font-weight: 950;
       line-height: 1;
+      text-align: center;
     }
 
     .map-item .icon-wrap,
@@ -657,15 +663,22 @@
 
     .icon-wrap {
       position: relative;
+      display: grid;
+      place-items: center;
+      justify-self: center;
       width: 28px;
       height: 28px;
     }
 
     .icon {
+      display: block;
+      justify-self: center;
       width: 28px;
       height: 28px;
+      margin: 0 auto;
       image-rendering: pixelated;
       object-fit: contain;
+      object-position: center center;
     }
 
     .quality {
@@ -680,11 +693,13 @@
     .fallback-icon {
       display: grid;
       place-items: center;
+      justify-self: center;
       border-radius: 6px;
       background: #f0dfbd;
       color: #6c4b28;
       font-size: 14px;
       font-weight: 950;
+      text-align: center;
     }
 
     .map-tree-lines {
@@ -1365,14 +1380,34 @@
         height: 22px;
       }
 
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id="pantry"] .map-item .icon-wrap {
+        display: grid;
+        place-items: center;
+        justify-self: center;
+      }
+
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id="pantry"] .map-item .icon {
+        display: block;
+        margin: 0 auto;
+        object-position: center center;
+      }
+
       .room[data-room-id] .map-item-name,
       .room[data-room-id="pantry"] .map-item-name {
+        justify-self: center;
+        width: 100%;
         font-size: 8.3px;
         line-height: 1.05;
+        text-align: center;
       }
 
       .room[data-room-id] .map-item-count {
+        justify-self: center;
+        width: 100%;
         font-size: 6.5px;
+        text-align: center;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
