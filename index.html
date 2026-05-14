@@ -1,3 +1,4 @@
+献祭 大体完成版
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -1606,6 +1607,146 @@
       }
     }
 
+  
+
+    /* ===== v9 顶部、搜索栏、中心地图微调 ===== */
+    .button-compact {
+      min-height: 36px;
+      padding: 0 12px;
+      font-size: 15px;
+    }
+
+    .hero-actions {
+      justify-self: end;
+      align-self: end;
+    }
+
+    .search-panel {
+      display: block;
+      padding: 12px;
+    }
+
+    .search-box {
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      gap: 8px;
+      margin-bottom: 0;
+    }
+
+    .result-list {
+      grid-column: auto;
+      margin-top: 8px;
+      max-height: 178px;
+    }
+
+    .center-map-panel {
+      padding: 12px;
+    }
+
+    .center-map-frame {
+      min-height: 334px;
+      padding: 16px 10px 20px;
+      background: #fff6df;
+    }
+
+    .center-map-stage {
+      position: relative;
+      width: 100%;
+      min-height: 294px;
+    }
+
+    .center-map-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .center-pin-label {
+      min-width: 70px;
+      padding: 5px 8px 6px;
+      border-radius: 10px;
+      box-shadow: 0 6px 14px rgba(76, 49, 29, 0.12);
+    }
+
+    .center-pin-name {
+      font-size: 12px;
+      line-height: 1.08;
+    }
+
+    .center-pin-note {
+      font-size: 9px;
+      line-height: 1.1;
+    }
+
+    .center-pin-line {
+      border-top-color: rgba(112, 78, 42, 0.36);
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 10px;
+        padding: 12px;
+      }
+
+      .hero-actions {
+        justify-self: end;
+        align-self: end;
+      }
+
+      .button-compact {
+        min-height: 34px;
+        padding: 0 10px;
+        font-size: 14px;
+      }
+
+      .search-panel {
+        padding: 10px;
+      }
+
+      .search-box {
+        grid-template-columns: minmax(0, 1fr) 42px 42px;
+      }
+
+      .search-input {
+        min-height: 40px;
+      }
+
+      .center-map-panel {
+        padding: 8px;
+      }
+
+      .center-map-frame {
+        min-height: 236px;
+        padding: 12px 8px 16px;
+      }
+
+      .center-map-stage {
+        min-height: 192px;
+      }
+
+      .center-room-pin {
+        transform: none;
+      }
+
+      .center-pin-label {
+        min-width: 52px;
+        border-radius: 8px;
+        padding: 3px 5px 4px;
+      }
+
+      .center-pin-name {
+        font-size: 9px;
+      }
+
+      .center-pin-note {
+        font-size: 7px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1616,16 +1757,14 @@
         <h1>社区中心献祭助手</h1>
       </div>
       <div class="hero-actions">
-        <button class="button" type="button" id="showMissing">只看未完成</button>
-        <button class="button" type="button" id="resetChecks">清空勾选</button>
+        <button class="button button-compact" type="button" id="resetChecks">清空勾选</button>
       </div>
     </header>
 
     <section class="assistant-panel">
       <div class="search-panel">
-        <h2 class="panel-title">手里有什么？</h2>
         <div class="search-box">
-          <input class="search-input" id="itemSearch" type="search" placeholder="输入物品名，比如：玉米、金星玉米、鲶鱼、木材" autocomplete="off" />
+          <input class="search-input" id="itemSearch" type="search" placeholder="输入物品名，定位收集包" autocomplete="off" />
           <button class="clear-button" id="clearSearch" type="button" aria-label="清空搜索">×</button>
           <button class="search-button" id="jumpSearch" type="button" aria-label="跳转到第一个匹配物品">⌕</button>
         </div>
@@ -1644,7 +1783,7 @@
     </section>
 
     <section class="room-map">
-      <h2 class="panel-title">社区中心房间分支</h2>
+      <h2 class="panel-title">社区中心房间</h2>
       <div class="rooms" id="rooms"></div>
     </section>
   </main>
@@ -1667,12 +1806,12 @@
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
     const centerRoomPins = [
-      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, dx: -34, dy: -38, line: 44, angle: 48 },
-      { id: "fish", name: "鱼缸", note: "移除巨石", x: 58, y: 29, dx: -10, dy: -48, line: 40, angle: 78 },
-      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 29, dx: 34, dy: -38, line: 44, angle: -48 },
-      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 77, dx: -34, dy: 38, line: 44, angle: -48 },
-      { id: "board", name: "布告栏", note: "友谊 +2", x: 63, y: 76, dx: 8, dy: 46, line: 40, angle: -78 },
-      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, dx: 36, dy: 38, line: 46, angle: 48 }
+      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 29, dx: -28, dy: -28, line: 34, angle: 42 },
+      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57, y: 27, dx: 0, dy: -36, line: 32, angle: 90 },
+      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 29, dx: 28, dy: -28, line: 34, angle: -42 },
+      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 77, dx: -26, dy: 34, line: 32, angle: -42 },
+      { id: "board", name: "布告栏", note: "友谊 +2", x: 63, y: 76, dx: 0, dy: 38, line: 30, angle: -90 },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, dx: 30, dy: 34, line: 34, angle: 42 }
     ];
 
     const bundleLayoutByRoom = {
@@ -2335,19 +2474,18 @@
     }
 
     function renderCenterMap() {
-      document.getElementById("centerMap").innerHTML = `
-        ${renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图")}
-        ${centerRoomPins.map((pin) => `
-          <div class="center-room-pin" style="--x:${pin.x}%;--y:${pin.y}%;--dx:${pin.dx}px;--dy:${pin.dy}px;--line-l:${pin.line}px;--line-a:${pin.angle}deg">
-            <span class="center-pin-line" aria-hidden="true"></span>
-            <span class="center-pin-dot" aria-hidden="true"></span>
-            <span class="center-pin-label">
-              <span class="center-pin-name">${escapeHtml(pin.name)}</span>
-              <span class="center-pin-note">${escapeHtml(pin.note)}</span>
-            </span>
-          </div>
-        `).join("")}
-      `;
+      document.getElementById("centerMap").innerHTML =                 '<div class="center-map-stage">' +
+        renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图") +
+        centerRoomPins.map((pin) =>           '<div class="center-room-pin" style="--x:' + pin.x + '%;--y:' + pin.y + '%;--dx:' + pin.dx + 'px;--dy:' + pin.dy + 'px;--line-l:' + pin.line + 'px;--line-a:' + pin.angle + 'deg">' +
+            '<span class="center-pin-line" aria-hidden="true"></span>' +
+            '<span class="center-pin-dot" aria-hidden="true"></span>' +
+            '<span class="center-pin-label">' +
+              '<span class="center-pin-name">' + escapeHtml(pin.name) + '</span>' +
+              '<span class="center-pin-note">' + escapeHtml(pin.note) + '</span>' +
+            '</span>' +
+          '</div>'
+        ).join('') +
+        '</div>';
     }
 
     function renderSearchResults() {
