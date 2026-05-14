@@ -1490,6 +1490,89 @@
       }
     }
 
+
+
+    /* ===== 手机端修复：金库 / 失踪包固定布局，避免自动排版挤飞 ===== */
+    @media (max-width: 520px) {
+      .room[data-room-id="vault"] .map-tree-lines,
+      .room[data-room-id="missing"] .map-tree-lines {
+        display: none !important;
+      }
+
+      .room[data-room-id="vault"] .room-scene {
+        height: 250px !important;
+        min-height: 0 !important;
+        aspect-ratio: auto !important;
+      }
+
+      .room[data-room-id="missing"] .room-scene {
+        height: 240px !important;
+        min-height: 0 !important;
+        aspect-ratio: auto !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-grid,
+      .room[data-room-id="missing"] .map-bundle-grid {
+        inset: 0 !important;
+        left: 0 !important;
+        top: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node {
+        width: 112px !important;
+        min-height: 0 !important;
+        gap: 3px !important;
+        padding: 4px 7px 4px 11px !important;
+        transform: scale(1.08) !important;
+        transform-origin: top left !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node .map-item-strip {
+        justify-self: center;
+        width: 35px !important;
+        grid-template-columns: repeat(1, 35px) !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-2500"] {
+        left: 17% !important;
+        top: 12px !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-5000"] {
+        left: 53% !important;
+        top: 12px !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-10000"] {
+        left: 17% !important;
+        top: 126px !important;
+      }
+
+      .room[data-room-id="vault"] .map-bundle-node[data-bundle-id="vault-25000"] {
+        left: 53% !important;
+        top: 126px !important;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] {
+        width: 152px !important;
+        min-height: 0 !important;
+        gap: 3px !important;
+        padding: 4px 7px 4px 11px !important;
+        left: calc(50% - 82px) !important;
+        top: 22px !important;
+        transform: scale(1.08) !important;
+        transform-origin: top left !important;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item-strip {
+        justify-self: center;
+        width: 109px !important;
+        grid-template-columns: repeat(3, 35px) !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2424,7 +2507,8 @@
       grid.style.top = "0";
       grid.style.width = "100%";
 
-      lines.style.display = "block";
+      const shouldHideLines = roomId === "vault" || roomId === "missing";
+      lines.style.display = shouldHideLines ? "none" : "block";
       lines.style.inset = "0";
       lines.style.left = "0";
       lines.style.top = "0";
@@ -2488,7 +2572,11 @@
       grid.style.height = `${sceneHeight}px`;
       lines.style.height = `${sceneHeight}px`;
 
-      updateRoomLines(roomId, lines, positioned, sceneWidth, sceneHeight);
+      if (shouldHideLines) {
+        lines.querySelectorAll("line").forEach((line) => { line.style.display = "none"; });
+      } else {
+        updateRoomLines(roomId, lines, positioned, sceneWidth, sceneHeight);
+      }
     }
 
     function placeMapCard(card, left, top, scale) {
