@@ -2457,6 +2457,40 @@
       }
     }
 
+
+    /* ===== v18 中心地图：线条端点改到文本框边缘，避免被卡片盖住 ===== */
+    .center-map-leaders line {
+      stroke: rgba(104, 71, 36, 0.82) !important;
+      stroke-width: 3px !important;
+      filter: drop-shadow(0 1px 1px rgba(255, 252, 242, 0.9)) !important;
+    }
+
+    .center-map-label.center-pin-label {
+      z-index: 5 !important;
+      background: rgba(255, 253, 247, 0.96) !important;
+      border-color: rgba(131, 93, 50, 0.28) !important;
+      box-shadow: 0 5px 12px rgba(76, 49, 29, 0.14) !important;
+    }
+
+    .center-map-dot.center-pin-dot {
+      z-index: 6 !important;
+      width: 9px !important;
+      height: 9px !important;
+      background: #c47a24 !important;
+      border: 2px solid rgba(255, 252, 242, 0.98) !important;
+    }
+
+    @media (max-width: 520px) {
+      .center-map-leaders line {
+        stroke-width: 2.8px !important;
+      }
+
+      .center-map-label.center-pin-label {
+        min-width: 66px !important;
+        padding: 5px 7px 6px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2516,12 +2550,12 @@
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
     const centerRoomPins = [
-      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, labelX: 33.5, labelY: 16.8, lineX2: 31, lineY2: 20.8 },
-      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57.5, y: 28.5, labelX: 56, labelY: 14.6, lineX2: 56, lineY2: 18.8 },
-      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 30, labelX: 74.5, labelY: 16.8, lineX2: 77.5, lineY2: 20.8 },
-      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 76.5, labelX: 36.5, labelY: 88.2, lineX2: 33.8, lineY2: 84.3 },
-      { id: "board", name: "布告栏", note: "友谊 +2", x: 63.5, y: 75.5, labelX: 57.5, labelY: 88, lineX2: 59.6, lineY2: 84 },
-      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, labelX: 74.8, labelY: 88.2, lineX2: 71.6, lineY2: 84.2 }
+      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, labelX: 33, labelY: 17, lineX2: 27.8, lineY2: 21.6 },
+      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57.5, y: 28.5, labelX: 56, labelY: 15, lineX2: 56.4, lineY2: 21.2 },
+      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 30, labelX: 75.2, labelY: 17, lineX2: 78.4, lineY2: 22.0 },
+      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 76.5, labelX: 36, labelY: 87.2, lineX2: 31.8, lineY2: 82.0 },
+      { id: "board", name: "布告栏", note: "友谊 +2", x: 63.5, y: 75.5, labelX: 57.2, labelY: 88.2, lineX2: 58.8, lineY2: 81.8 },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, labelX: 75.4, labelY: 87.2, lineX2: 79.2, lineY2: 82.0 }
     ];
 
     const bundleLayoutByRoom = {
