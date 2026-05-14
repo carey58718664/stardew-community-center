@@ -2400,6 +2400,63 @@
       }
     }
 
+
+    /* ===== v16 中心地图：改用 SVG 真实连线，文本框改为百分比坐标，避免手机端重叠和错位 ===== */
+    .center-map-stage {
+      overflow: visible;
+      isolation: isolate;
+    }
+
+    .center-map-image {
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .center-map-leaders {
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+      pointer-events: none;
+    }
+
+    .center-map-leaders line {
+      stroke: rgba(111, 78, 42, 0.64);
+      stroke-width: 2.4px;
+      stroke-linecap: round;
+      vector-effect: non-scaling-stroke;
+      filter: drop-shadow(0 1px 1px rgba(255, 252, 242, 0.72));
+    }
+
+    .center-map-dot.center-pin-dot {
+      position: absolute;
+      left: var(--x) !important;
+      top: var(--y) !important;
+      z-index: 3;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    .center-map-label.center-pin-label {
+      position: absolute;
+      left: var(--label-x) !important;
+      top: var(--label-y) !important;
+      z-index: 4;
+      transform: translate(-50%, -50%) !important;
+    }
+
+    @media (max-width: 520px) {
+      .center-map-leaders line {
+        stroke-width: 2px;
+      }
+
+      .center-map-label.center-pin-label {
+        min-width: 62px;
+        padding: 5px 7px 6px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2459,12 +2516,12 @@
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
     const centerRoomPins = [
-      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, dx: -28, dy: -26 },
-      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57.5, y: 28.5, dx: 0, dy: -34 },
-      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 30, dx: 28, dy: -26 },
-      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 76.5, dx: -26, dy: 34 },
-      { id: "board", name: "布告栏", note: "友谊 +2", x: 63.5, y: 75.5, dx: 0, dy: 40 },
-      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, dx: 30, dy: 34 }
+      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, labelX: 34, labelY: 21 },
+      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57.5, y: 28.5, labelX: 55, labelY: 18 },
+      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 30, labelX: 74, labelY: 22 },
+      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 76.5, labelX: 38, labelY: 84 },
+      { id: "board", name: "布告栏", note: "友谊 +2", x: 63.5, y: 75.5, labelX: 58, labelY: 86 },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, labelX: 76, labelY: 84 }
     ];
 
     const bundleLayoutByRoom = {
@@ -3130,20 +3187,18 @@
       document.getElementById("centerMap").innerHTML = `
         <div class="center-map-stage">
           ${renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图")}
-          ${centerRoomPins.map((pin) => {
-            const lineLength = Math.max(16, Math.hypot(pin.dx, pin.dy) - 12);
-            const lineAngle = Math.atan2(pin.dy, pin.dx) * 180 / Math.PI;
-            return `
-              <div class="center-room-pin" data-room-id="${pin.id}" style="--x:${pin.x}%;--y:${pin.y}%;">
-                <span class="center-pin-line" aria-hidden="true"></span>
-                <span class="center-pin-dot" aria-hidden="true"></span>
-                <span class="center-pin-label">
-                  <span class="center-pin-name">${escapeHtml(pin.name)}</span>
-                  <span class="center-pin-note">${escapeHtml(pin.note)}</span>
-                </span>
-              </div>
-            `;
-          }).join("")}
+          <svg class="center-map-leaders" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+            ${centerRoomPins.map((pin) => `
+              <line x1="${pin.x}" y1="${pin.y}" x2="${pin.labelX}" y2="${pin.labelY}" />
+            `).join("")}
+          </svg>
+          ${centerRoomPins.map((pin) => `
+            <span class="center-map-dot center-pin-dot" style="--x:${pin.x}%;--y:${pin.y}%;" aria-hidden="true"></span>
+            <span class="center-map-label center-pin-label" data-center-room="${pin.id}" style="--label-x:${pin.labelX}%;--label-y:${pin.labelY}%;">
+              <span class="center-pin-name">${escapeHtml(pin.name)}</span>
+              <span class="center-pin-note">${escapeHtml(pin.note)}</span>
+            </span>
+          `).join("")}
         </div>
       `;
     }
