@@ -1430,6 +1430,163 @@
       }
     }
 
+
+    /* ===== v10 微调：移除重新混合展示 + 选项框再放宽 + 工艺室留白协调 ===== */
+    @media (max-width: 520px) {
+      .room[data-room-id] .map-item {
+        width: 33px;
+        min-height: 35px;
+      }
+
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id] .map-item .fallback-icon {
+        width: 20px;
+        height: 20px;
+      }
+
+      .room[data-room-id] .map-item-name {
+        font-size: 8px;
+      }
+
+      .room[data-room-id="pantry"] .map-item {
+        width: 34px;
+        min-height: 36px;
+      }
+
+      .room[data-room-id="pantry"] .map-item-name {
+        font-size: 8.5px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="spring-crops"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="summer-crops"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="fall-crops"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"],
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="geologist"],
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="adventurer"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"] {
+        width: 156px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] .map-item-strip,
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] .map-item-strip,
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="spring-crops"] .map-item-strip,
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="summer-crops"] .map-item-strip,
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="fall-crops"] .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"] .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] .map-item-strip,
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="geologist"] .map-item-strip,
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="adventurer"] .map-item-strip,
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"] .map-item-strip,
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"] .map-item-strip {
+        width: 138px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"],
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"] {
+        width: 122px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip,
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"] .map-item-strip,
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"] .map-item-strip {
+        width: 104px;
+        grid-template-columns: repeat(3, 34px);
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] {
+        width: 114px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
+        width: 108px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] .map-item-strip,
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"] .map-item-strip,
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"] .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] .map-item-strip {
+        width: 70px;
+        grid-template-columns: repeat(2, 34px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] .map-item-strip {
+        width: 142px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+        width: 126px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip {
+        width: 104px;
+        grid-template-columns: repeat(3, 34px);
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] {
+        width: 158px;
+      }
+
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item-strip {
+        width: 138px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+        width: 156px;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] {
+        width: 232px;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] .map-item-strip {
+        width: 214px;
+        grid-template-columns: repeat(6, 34px);
+      }
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
+      width: 152px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+      width: 362px;
+    }
+
+
+    /* ===== v11 图标居中修复 ===== */
+    .icon-wrap,
+    .map-item .icon-wrap {
+      display: grid;
+      place-items: center;
+      line-height: 0;
+    }
+
+    .icon,
+    .map-item .icon,
+    .fallback-icon,
+    .map-item .fallback-icon {
+      display: block;
+      margin: 0 auto;
+    }
+
   </style>
 </head>
 <body>
@@ -1472,11 +1629,7 @@
       <div class="rooms" id="rooms"></div>
     </section>
 
-    <section class="room-map remix-panel">
-      <h2 class="panel-title">重新混合收集包池</h2>
-      <p class="remix-note">重新混合收集包不是固定新房间，而是开档时随机替换部分房间内的收集包。这里把可能出现的包先单独列出来，方便对照存档。</p>
-      <div id="remixReference"></div>
-    </section>
+
   </main>
 
   <script>
@@ -2067,7 +2220,6 @@
       renderCenterMap();
       renderProgress();
       renderSearchResults();
-      renderRemixReference();
       applyVisibility();
       markHighlights();
       requestAnimationFrame(layoutMobileRoomVisuals);
