@@ -843,9 +843,27 @@
     .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"] .map-item-strip { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 
 
+    .room[data-room-id="vault"] .map-tree-lines,
+    .room[data-room-id="vault"] .map-room-core,
     .room[data-room-id="missing"] .map-tree-lines,
     .room[data-room-id="missing"] .map-room-core {
       display: none;
+    }
+
+    .room[data-room-id="vault"] .map-bundle-node {
+      width: 206px;
+      min-height: 0;
+      align-content: start;
+    }
+
+    .room[data-room-id="vault"] .map-bundle-node .map-item-strip {
+      grid-template-columns: repeat(1, minmax(0, 1fr));
+      justify-items: center;
+    }
+
+    .room[data-room-id="missing"] .room-scene {
+      min-height: 360px;
+      aspect-ratio: 16 / 7.8;
     }
 
     .room[data-room-id="missing"] .map-bundle-node {
@@ -1132,6 +1150,18 @@
         width: 32px;
         grid-template-columns: repeat(1, 32px);
       }
+
+      .room[data-room-id="missing"] .room-scene {
+        height: 248px;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node { width: 152px; }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item-strip {
+        justify-self: center;
+        width: 100px;
+        grid-template-columns: repeat(3, 32px);
+      }
     }
 
     /* ===== 手机端修复：盖掉桌面端 70px 高度，避免茶水间/工艺室选项框被拉成长条 ===== */
@@ -1230,6 +1260,13 @@
       <h2 class="panel-title">社区中心房间分支</h2>
       <div class="rooms" id="rooms"></div>
     </section>
+
+    <section class="room-map remix-note-panel">
+      <h2 class="panel-title">重新混合收集包说明</h2>
+      <div class="result-card">
+        <p class="empty-state">重新混合收集包是在开新档时于高级选项中开启的，不会额外占一个新房间，而是随机替换各房间里的部分收集包。每个存档抽到的组合可能不同，所以这版先保留标准收集包版面，并额外加入了失踪收集包。</p>
+      </div>
+    </section>
   </main>
 
   <script>
@@ -1319,10 +1356,10 @@
         core: { x: 50, y: 52 },
         linkFrom: "vault-2500",
         points: {
-          "vault-2500": { x: 50, y: 28 },
-          "vault-25000": { x: 24, y: 50 },
-          "vault-5000": { x: 30, y: 74 },
-          "vault-10000": { x: 72, y: 74 }
+          "vault-2500": { x: 26, y: 28 },
+          "vault-5000": { x: 74, y: 28 },
+          "vault-10000": { x: 26, y: 72 },
+          "vault-25000": { x: 74, y: 72 }
         }
       },
       missing: {
@@ -1340,7 +1377,7 @@
       fish: [["river-fish"], ["night-fish", "crab-pot", "specialty-fish"], ["lake-fish", "ocean-fish"]],
       boiler: [["blacksmith"], ["geologist", "adventurer"]],
       board: [["chef"], ["dye", "fodder"], ["field-research", "enchanter"]],
-      vault: [["vault-2500"], ["vault-25000"], ["vault-5000", "vault-10000"]],
+      vault: [["vault-2500", "vault-5000"], ["vault-10000", "vault-25000"]],
       missing: [["missing-bundle"]]
     };
 
@@ -1352,15 +1389,10 @@
       board: { wantedScale: 1.02, minScale: 0.82, minGap: 7, vGap: 8 },
       missing: { wantedScale: 1.02, minScale: 0.9, minGap: 10, vGap: 10, topOffset: 12 },
       vault: {
-        wantedScale: 1.08,
+        wantedScale: 1.04,
         minScale: 0.92,
-        minGap: 18,
-        vGap: 18,
-        xByRow: [
-          { "vault-2500": 0.5 },
-          { "vault-25000": 0.27 },
-          { "vault-5000": 0.3, "vault-10000": 0.72 }
-        ]
+        minGap: 12,
+        vGap: 12
       }
     };
 
