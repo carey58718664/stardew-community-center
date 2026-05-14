@@ -2656,6 +2656,32 @@
       }
     }
 
+    /* ===== v20 修正：不用 SVG marker，箭头改成固定小折线，避免手机端被放大 ===== */
+    .center-map-stage-ref .center-map-leaders-ref .center-ref-line,
+    .center-map-stage-ref .center-map-leaders-ref .center-ref-arrow {
+      fill: none !important;
+      stroke: #ffffff !important;
+      stroke-linecap: round !important;
+      stroke-linejoin: round !important;
+      vector-effect: non-scaling-stroke !important;
+      filter: drop-shadow(0 1px 1px rgba(143, 100, 39, 0.3)) !important;
+    }
+
+    .center-map-stage-ref .center-map-leaders-ref .center-ref-line {
+      stroke-width: 3.2px !important;
+    }
+
+    .center-map-stage-ref .center-map-leaders-ref .center-ref-arrow {
+      stroke-width: 3.2px !important;
+    }
+
+    @media (max-width: 700px) {
+      .center-map-stage-ref .center-map-leaders-ref .center-ref-line,
+      .center-map-stage-ref .center-map-leaders-ref .center-ref-arrow {
+        stroke-width: 2.8px !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -2715,12 +2741,12 @@
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
     const centerRoomPins = [
-      { id: "pantry", name: "茶水间", note: "开放温室", labelX: 12.8, labelY: 6.6, path: "24.8,34.8 24.8,10.3 20.4,10.3" },
-      { id: "fish", name: "鱼缸", note: "移除矿井入口的巨石", labelX: 48.0, labelY: 8.1, path: "60.3,36.0 60.3,14.6 54.2,14.6" },
-      { id: "vault", name: "金库", note: "修复巴士站，去沙漠", labelX: 74.2, labelY: 6.6, path: "69.5,21.5 69.5,12.6" },
-      { id: "crafts", name: "工艺室", note: "维修矿井东边的桥", labelX: 26.8, labelY: 80.8, path: "16.8,70.6 16.8,84.2 23.8,84.2" },
-      { id: "board", name: "布告栏", note: "增加友谊", labelX: 69.8, labelY: 66.0, path: "67.8,42.4 67.8,63.8" },
-      { id: "boiler", name: "锅炉房", note: "修复矿车", labelX: 89.5, labelY: 66.2, path: "89.6,53.6 89.6,63.8" }
+      { id: "pantry", name: "茶水间", note: "开放温室", labelX: 12.8, labelY: 6.6, path: "24.8,34.8 24.8,10.3 20.4,10.3", arrow: "22.6,8.9 20.4,10.3 22.6,11.7" },
+      { id: "fish", name: "鱼缸", note: "移除矿井入口的巨石", labelX: 48.0, labelY: 8.1, path: "60.3,36.0 60.3,14.6 54.2,14.6", arrow: "56.4,13.2 54.2,14.6 56.4,16.0" },
+      { id: "vault", name: "金库", note: "修复巴士站，去沙漠", labelX: 74.2, labelY: 6.6, path: "69.5,21.5 69.5,12.6", arrow: "68.1,15.0 69.5,12.6 70.9,15.0" },
+      { id: "crafts", name: "工艺室", note: "维修矿井东边的桥", labelX: 26.8, labelY: 80.8, path: "16.8,70.6 16.8,84.2 23.8,84.2", arrow: "21.4,82.8 23.8,84.2 21.4,85.6" },
+      { id: "board", name: "布告栏", note: "增加友谊", labelX: 69.8, labelY: 66.0, path: "67.8,42.4 67.8,63.8", arrow: "66.4,61.4 67.8,63.8 69.2,61.4" },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", labelX: 89.5, labelY: 66.2, path: "89.6,53.6 89.6,63.8", arrow: "88.2,61.4 89.6,63.8 91.0,61.4" }
     ];
 
     const bundleLayoutByRoom = {
@@ -3387,13 +3413,9 @@
         <div class="center-map-stage center-map-stage-ref">
           ${renderExternalImage("center-map-image center-map-image-ref", CENTER_MAP_IMAGE, "社区中心整体地图")}
           <svg class="center-map-leaders center-map-leaders-ref" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <marker id="centerArrowHead" markerWidth="8" markerHeight="8" refX="6.2" refY="3.5" orient="auto" markerUnits="strokeWidth">
-                <path d="M0,0 L7,3.5 L0,7" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"></path>
-              </marker>
-            </defs>
             ${centerRoomPins.map((pin) => `
-              <polyline points="${pin.path}" marker-end="url(#centerArrowHead)" />
+              <polyline class="center-ref-line" points="${pin.path}" />
+              <polyline class="center-ref-arrow" points="${pin.arrow}" />
             `).join("")}
           </svg>
           ${centerRoomPins.map((pin) => `
