@@ -1110,6 +1110,62 @@
         grid-template-columns: repeat(1, 32px);
       }
     }
+
+    /* ===== 手机端修复：盖掉桌面端 70px 高度，避免茶水间/工艺室选项框被拉成长条 ===== */
+    @media (max-width: 520px) {
+      .room[data-room-id] .map-item {
+        width: 30px;
+        min-height: 33px;
+        align-content: start;
+        border-radius: 4px;
+        padding: 1px 0 0;
+      }
+
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id] .map-item .fallback-icon {
+        width: 19px;
+        height: 19px;
+      }
+
+      .room[data-room-id] .map-item .icon-wrap {
+        transform: translateY(1px);
+      }
+
+      .room[data-room-id] .map-item-name {
+        display: block;
+        overflow: visible;
+        font-size: 7.8px;
+        line-height: 1.05;
+        white-space: nowrap;
+        -webkit-line-clamp: unset;
+        -webkit-box-orient: initial;
+      }
+
+      .room[data-room-id="pantry"] .map-item {
+        width: 32px;
+        min-height: 35px;
+        padding-top: 1px;
+      }
+
+      .room[data-room-id="pantry"] .map-item .icon-wrap,
+      .room[data-room-id="pantry"] .map-item .icon,
+      .room[data-room-id="pantry"] .map-item .fallback-icon {
+        width: 19px;
+        height: 19px;
+      }
+
+      .room[data-room-id="pantry"] .map-item-name {
+        font-size: 8.4px;
+        line-height: 1.06;
+      }
+
+      .room[data-room-id="crafts"] .map-item {
+        width: 30px;
+        min-height: 33px;
+      }
+    }
+
   </style>
 </head>
 <body>
