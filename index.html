@@ -1,3 +1,4 @@
+献祭 大体完成版
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -1746,6 +1747,142 @@
       }
     }
 
+  
+
+    /* ===== v10 按钮缩小 + 地图居中与边框优化 ===== */
+    .button-compact {
+      min-height: 32px;
+      padding: 0 10px;
+      font-size: 13px;
+      border-radius: 7px;
+    }
+
+    .center-map-frame {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 344px;
+      padding: 16px 10px;
+      border: 1px solid #d8c291;
+      border-radius: 14px;
+      background: linear-gradient(180deg, #fff7e6, #fff2d3);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.72), 0 8px 18px rgba(76,49,29,0.05);
+    }
+
+    .center-map-frame::before {
+      content: "";
+      position: absolute;
+      inset: 8px;
+      border: 1px solid rgba(178, 141, 85, 0.24);
+      border-radius: 11px;
+      pointer-events: none;
+    }
+
+    .center-map-frame::after {
+      background: rgba(255, 246, 224, 0.06);
+    }
+
+    .center-map-stage {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 756 / 408;
+    }
+
+    .center-map-image {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      min-height: 0;
+      object-fit: contain;
+      object-position: center center;
+    }
+
+    .center-room-pin {
+      transform: none;
+      transform-origin: center;
+    }
+
+    .center-pin-label {
+      min-width: 70px;
+      padding: 5px 8px 6px;
+      border: 1px solid rgba(132, 96, 53, 0.22);
+      border-radius: 11px;
+      background: rgba(255, 252, 244, 0.94);
+      box-shadow: 0 6px 14px rgba(76, 49, 29, 0.12);
+    }
+
+    .center-pin-name {
+      font-size: 12px;
+      line-height: 1.08;
+    }
+
+    .center-pin-note {
+      font-size: 9px;
+      line-height: 1.12;
+    }
+
+    .center-pin-line {
+      border-top: 1.5px solid rgba(126, 92, 51, 0.34);
+      filter: none;
+    }
+
+    .center-pin-dot {
+      width: 8px;
+      height: 8px;
+      border: 2px solid rgba(255, 252, 242, 0.98);
+      box-shadow: 0 2px 5px rgba(76, 49, 29, 0.18);
+    }
+
+    @media (max-width: 520px) {
+      .button-compact {
+        min-height: 30px;
+        padding: 0 8px;
+        font-size: 12.5px;
+      }
+
+      .center-map-frame {
+        min-height: auto;
+        padding: 14px 8px;
+        border-radius: 12px;
+      }
+
+      .center-map-frame::before {
+        inset: 6px;
+        border-radius: 9px;
+      }
+
+      .center-map-stage {
+        width: 100%;
+        aspect-ratio: 756 / 408;
+      }
+
+      .center-pin-label {
+        min-width: 54px;
+        padding: 3px 5px 4px;
+        border-radius: 8px;
+      }
+
+      .center-pin-name {
+        font-size: 9px;
+      }
+
+      .center-pin-note {
+        font-size: 7px;
+      }
+
+      .center-pin-line {
+        border-top-width: 1.2px;
+      }
+
+      .center-pin-dot {
+        width: 7px;
+        height: 7px;
+        border-width: 1.5px;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1805,12 +1942,12 @@
     const CENTER_MAP_IMAGE = "Restored community centre.png";
 
     const centerRoomPins = [
-      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 29, dx: -28, dy: -28, line: 34, angle: 42 },
-      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57, y: 27, dx: 0, dy: -36, line: 32, angle: 90 },
-      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 29, dx: 28, dy: -28, line: 34, angle: -42 },
-      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 77, dx: -26, dy: 34, line: 32, angle: -42 },
-      { id: "board", name: "布告栏", note: "友谊 +2", x: 63, y: 76, dx: 0, dy: 38, line: 30, angle: -90 },
-      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, dx: 30, dy: 34, line: 34, angle: 42 }
+      { id: "pantry", name: "茶水间", note: "开放澡堂", x: 18, y: 30, dx: -28, dy: -26 },
+      { id: "fish", name: "鱼缸", note: "移除巨石", x: 57.5, y: 28.5, dx: 0, dy: -34 },
+      { id: "vault", name: "金库", note: "修复巴士", x: 82, y: 30, dx: 28, dy: -26 },
+      { id: "crafts", name: "工艺室", note: "修桥", x: 23, y: 76.5, dx: -26, dy: 34 },
+      { id: "board", name: "布告栏", note: "友谊 +2", x: 63.5, y: 75.5, dx: 0, dy: 40 },
+      { id: "boiler", name: "锅炉房", note: "修复矿车", x: 86, y: 76, dx: 30, dy: 34 }
     ];
 
     const bundleLayoutByRoom = {
@@ -2473,18 +2610,25 @@
     }
 
     function renderCenterMap() {
-      document.getElementById("centerMap").innerHTML =                 '<div class="center-map-stage">' +
-        renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图") +
-        centerRoomPins.map((pin) =>           '<div class="center-room-pin" style="--x:' + pin.x + '%;--y:' + pin.y + '%;--dx:' + pin.dx + 'px;--dy:' + pin.dy + 'px;--line-l:' + pin.line + 'px;--line-a:' + pin.angle + 'deg">' +
-            '<span class="center-pin-line" aria-hidden="true"></span>' +
-            '<span class="center-pin-dot" aria-hidden="true"></span>' +
-            '<span class="center-pin-label">' +
-              '<span class="center-pin-name">' + escapeHtml(pin.name) + '</span>' +
-              '<span class="center-pin-note">' + escapeHtml(pin.note) + '</span>' +
-            '</span>' +
-          '</div>'
-        ).join('') +
-        '</div>';
+      document.getElementById("centerMap").innerHTML = `
+        <div class="center-map-stage">
+          ${renderExternalImage("center-map-image", CENTER_MAP_IMAGE, "社区中心整体地图")}
+          ${centerRoomPins.map((pin) => {
+            const lineLength = Math.max(14, Math.hypot(pin.dx, pin.dy) - 16);
+            const lineAngle = Math.atan2(pin.dy, pin.dx) * 180 / Math.PI;
+            return `
+              <div class="center-room-pin" style="--x:${pin.x}%;--y:${pin.y}%;--dx:${pin.dx}px;--dy:${pin.dy}px;--line-l:${lineLength}px;--line-a:${lineAngle}deg">
+                <span class="center-pin-line" aria-hidden="true"></span>
+                <span class="center-pin-dot" aria-hidden="true"></span>
+                <span class="center-pin-label">
+                  <span class="center-pin-name">${escapeHtml(pin.name)}</span>
+                  <span class="center-pin-note">${escapeHtml(pin.note)}</span>
+                </span>
+              </div>
+            `;
+          }).join("")}
+        </div>
+      `;
     }
 
     function renderSearchResults() {
