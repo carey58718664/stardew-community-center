@@ -1570,6 +1570,182 @@
       width: 362px;
     }
 
+
+    /* ===== v11 图标居中修复 ===== */
+    .icon-wrap,
+    .map-item .icon-wrap {
+      display: grid;
+      place-items: center;
+      line-height: 0;
+    }
+
+    .icon,
+    .map-item .icon,
+    .fallback-icon,
+    .map-item .fallback-icon {
+      display: block;
+      margin: 0 auto;
+    }
+
+
+    /* ===== v12 细节精修收尾 ===== */
+
+    /* 工艺室：修正异国情调包留白失衡，顺手统一几张卡片的内边距观感 */
+    .room[data-room-id="crafts"] .map-bundle-node {
+      padding: 10px 12px 9px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] {
+      width: 286px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] {
+      width: 224px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
+      width: 156px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+      width: 322px;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] .map-item-strip,
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] .map-item-strip,
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip,
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] .map-item-strip,
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip {
+      justify-self: center;
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip {
+      width: 190px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] .map-item-strip {
+      width: 124px;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip {
+      width: 200px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    /* 鱼缸和布告栏：继续保留一行排布，并轻微加宽，避免挤感 */
+    @media (max-width: 520px) {
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"] {
+        width: 156px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"] .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"] .map-item-strip,
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"] .map-item-strip,
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"] .map-item-strip {
+        width: 138px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"],
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"] {
+        width: 122px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"] .map-item-strip,
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="blacksmith"] .map-item-strip,
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"] .map-item-strip {
+        width: 104px;
+        grid-template-columns: repeat(3, 34px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] {
+        width: 146px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"] .map-item-strip {
+        width: 142px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
+        width: 108px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] .map-item-strip {
+        width: 70px;
+        grid-template-columns: repeat(2, 34px);
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+        width: 156px;
+      }
+
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] .map-item-strip {
+        width: 138px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] {
+        width: 234px;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"] .map-item-strip {
+        width: 216px;
+        grid-template-columns: repeat(6, 34px);
+      }
+
+      /* 工艺室手机端终版：彻底压住异国包宽度串掉的问题 */
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] {
+        width: 156px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"] .map-item-strip,
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] .map-item-strip {
+        width: 138px;
+        grid-template-columns: repeat(4, 34px);
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] {
+        width: 122px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] .map-item-strip {
+        width: 104px;
+        grid-template-columns: repeat(3, 34px);
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
+        width: 114px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"] .map-item-strip,
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] .map-item-strip {
+        width: 70px;
+        grid-template-columns: repeat(2, 34px);
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+        width: 126px;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-item-strip {
+        width: 104px;
+        grid-template-columns: repeat(3, 34px);
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -1740,6 +1916,33 @@
         minGap: 12,
         vGap: 12
       }
+    };
+
+
+
+    mobileLayoutConfig.crafts = {
+      ...mobileLayoutConfig.crafts,
+      wantedScale: 1.04,
+      minScale: 0.9,
+      minGap: 6,
+      vGap: 7
+    };
+
+    mobileLayoutConfig.fish = {
+      ...mobileLayoutConfig.fish,
+      wantedScale: 0.99,
+      minScale: 0.9,
+      minGap: 6,
+      vGap: 5
+    };
+
+    mobileLayoutConfig.board = {
+      ...mobileLayoutConfig.board,
+      wantedScale: 1,
+      minScale: 0.86,
+      minGap: 7,
+      vGap: 7,
+      topOffset: 4
     };
 
     const categories = [
