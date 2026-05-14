@@ -2879,8 +2879,8 @@
         note: "开放温室",
         boxX: 7.8, boxY: 7.5, boxW: 13.0, boxH: 7.2,
         noteX: 14.3, noteY: 16.2,
-        path: "24.9,35.0 24.9,11.1 21.1,11.1",
-        arrow: "23.2,9.7 21.5,11.1 23.2,12.5"
+        path: "24.9,35.0 24.9,11.1 20.8,11.1",
+        arrow: ""
       },
       {
         id: "fish",
@@ -2888,8 +2888,8 @@
         note: "移除矿井入口的巨石",
         boxX: 36.8, boxY: 7.8, boxW: 10.2, boxH: 7.2,
         noteX: 41.9, noteY: 16.6,
-        path: "60.4,35.8 60.4,11.4 47.0,11.4",
-        arrow: "48.7,10.0 47.4,11.4 48.7,12.8"
+        path: "60.4,35.8 60.4,11.4 36.8,11.4",
+        arrow: ""
       },
       {
         id: "vault",
@@ -2897,8 +2897,8 @@
         note: "修复巴士站，去沙漠",
         boxX: 66.6, boxY: 6.9, boxW: 11.8, boxH: 7.0,
         noteX: 72.5, noteY: 15.9,
-        path: "72.5,24.8 72.5,14.1",
-        arrow: "71.2,16.1 72.5,14.5 73.8,16.1"
+        path: "72.5,24.8 72.5,13.9",
+        arrow: ""
       },
       {
         id: "crafts",
@@ -2906,8 +2906,8 @@
         note: "维修矿井东边的桥",
         boxX: 21.4, boxY: 80.6, boxW: 14.4, boxH: 7.3,
         noteX: 28.6, noteY: 89.9,
-        path: "17.0,70.7 17.0,84.25 20.6,84.25",
-        arrow: "18.7,82.85 20.2,84.25 18.7,85.65"
+        path: "17.0,70.7 17.0,84.25 21.4,84.25",
+        arrow: ""
       },
       {
         id: "board",
@@ -2915,8 +2915,8 @@
         note: "增加友谊",
         boxX: 60.8, boxY: 64.4, boxW: 14.4, boxH: 7.3,
         noteX: 68.0, noteY: 73.6,
-        path: "68.0,45.0 68.0,64.0",
-        arrow: "66.7,62.0 68.0,63.8 69.3,62.0"
+        path: "68.0,45.0 68.0,64.4",
+        arrow: ""
       },
       {
         id: "boiler",
@@ -2924,8 +2924,8 @@
         note: "修复矿车",
         boxX: 82.3, boxY: 64.4, boxW: 14.4, boxH: 7.3,
         noteX: 89.5, noteY: 73.6,
-        path: "89.5,54.4 89.5,64.0",
-        arrow: "88.2,62.0 89.5,63.8 90.8,62.0"
+        path: "89.5,54.4 89.5,64.4",
+        arrow: ""
       }
     ];
 
@@ -3599,7 +3599,6 @@
           <svg class="center-map-overlay-svg" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
             ${centerRoomPins.map((pin) => `
               <polyline class="center-route" points="${pin.path}" />
-              <polyline class="center-route-arrow" points="${pin.arrow}" />
             `).join("")}
           </svg>
         </div>
