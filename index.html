@@ -3843,6 +3843,160 @@
       }
     }
 
+
+
+    /* ===== v28 手机端再对齐参考图：树状图缩字，下方卡片回到参考层级 ===== */
+    @media (max-width: 520px) {
+      .room-header {
+        padding: 10px 12px 9px !important;
+      }
+
+      .room-title {
+        font-size: 23px !important;
+      }
+
+      .room-meta {
+        font-size: 12px !important;
+        line-height: 1.3 !important;
+      }
+
+      .room-badge {
+        font-size: 13px !important;
+      }
+
+      .room-scene {
+        height: 308px !important;
+      }
+
+      .map-bundle-node,
+      .room[data-room-id] .map-bundle-node {
+        gap: 3px !important;
+        padding: 6px 7px 6px 10px !important;
+      }
+
+      .map-bundle-name {
+        font-size: 11.8px !important;
+        font-weight: 950 !important;
+        line-height: 1.08 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .map-bundle-meta {
+        padding: 2px 7px !important;
+        font-size: 10.8px !important;
+        font-weight: 900 !important;
+        line-height: 1 !important;
+      }
+
+      .room[data-room-id] .map-item,
+      .room[data-room-id="crafts"] .map-item,
+      .room[data-room-id="pantry"] .map-item {
+        width: 33px !important;
+        min-height: 34px !important;
+        padding: 2px 0 1px !important;
+      }
+
+      .map-item .icon-wrap,
+      .map-item .icon,
+      .map-item .fallback-icon,
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id] .map-item .fallback-icon {
+        width: 19px !important;
+        height: 19px !important;
+      }
+
+      .map-item-name {
+        font-size: 7.2px !important;
+        line-height: 1.02 !important;
+      }
+
+      .map-item-count {
+        font-size: 6px !important;
+      }
+
+      .visual-caption {
+        margin-top: 8px !important;
+        font-size: 11.5px !important;
+        font-weight: 850 !important;
+        line-height: 1.22 !important;
+      }
+
+      .bundle-detail-card {
+        padding: 15px 12px 14px 18px !important;
+        border-radius: 13px !important;
+      }
+
+      .bundle-detail-head {
+        grid-template-columns: minmax(0, 1fr) auto !important;
+        align-items: start !important;
+        gap: 8px !important;
+        margin-bottom: 10px !important;
+      }
+
+      .bundle-detail-title {
+        font-size: 20.5px !important;
+        font-weight: 950 !important;
+        line-height: 1.13 !important;
+      }
+
+      .bundle-detail-sub {
+        margin-top: 4px !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+        line-height: 1.28 !important;
+      }
+
+      .bundle-detail-rule {
+        justify-self: end !important;
+        padding: 5px 11px !important;
+        font-size: 13px !important;
+        font-weight: 950 !important;
+        line-height: 1 !important;
+      }
+
+      .detail-items {
+        gap: 9px 10px !important;
+      }
+
+      .detail-item {
+        grid-template-columns: 30px minmax(0, 1fr) !important;
+        gap: 8px !important;
+        min-height: 50px !important;
+        border-radius: 9px !important;
+        padding: 5px 26px 5px 8px !important;
+      }
+
+      .detail-item .icon-wrap,
+      .detail-item .icon,
+      .detail-item .fallback-icon {
+        width: 27px !important;
+        height: 27px !important;
+      }
+
+      .detail-item .quality {
+        width: 11px !important;
+        height: 11px !important;
+      }
+
+      .detail-item-name {
+        font-size: 15.8px !important;
+        font-weight: 900 !important;
+        line-height: 1.08 !important;
+      }
+
+      .detail-item-count {
+        font-size: 12px !important;
+      }
+
+      .detail-item.checked::after {
+        right: 7px !important;
+        font-size: 18px !important;
+      }
+    }
+
 </style>
 </head>
 <body>
