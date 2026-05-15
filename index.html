@@ -3602,262 +3602,611 @@
         font-size: 24px;
       }
     }
-  
-    /* ===== v11 字号调整：只缩小标题、树状图、中心地图以外的文字 ===== */
-    .hero-kicker,
-    .button,
-    .search-input,
-    .clear-button,
-    .search-button,
-    .empty-state,
-    .result-title,
-    .result-path,
-    .status,
-    .category-top,
-    .category-count,
-    .room-meta,
-    .room-badge,
-    .visual-caption,
-    .bundle-detail-sub,
-    .bundle-detail-rule,
-    .detail-item-name,
-    .detail-item-count,
-    .item-text,
-    .item-count {
-      line-height: 1.25;
-    }
 
-    .hero-kicker { font-size: 12px; }
-    .button { font-size: 12.5px; }
-    .search-input,
-    .clear-button { font-size: 13px; }
-    .search-button { font-size: 17px; }
-    .empty-state { font-size: 12px; }
-    .result-title { font-size: 13px; }
-    .result-path { font-size: 11.5px; }
-    .status { font-size: 10.5px; }
-    .category-top { font-size: 12px; }
-    .category-count { font-size: 11px; }
-    .room-meta { font-size: 12px; }
-    .room-badge { font-size: 12px; }
-    .visual-caption { font-size: 10.5px; }
-    .bundle-detail-sub { font-size: 13px; }
-    .bundle-detail-rule { font-size: 14px; }
-    .detail-item-name { font-size: 16px; }
-    .detail-item-count { font-size: 11.5px; }
-    .item-text { font-size: 11px; }
-    .item-count { font-size: 10px; }
-
+    /* ===== v11：按批注压缩手机端排版 ===== */
     @media (max-width: 520px) {
-      .button { font-size: 12px; }
-      .search-input,
-      .clear-button { font-size: 12.5px; }
-      .search-button { font-size: 16px; }
-      .empty-state { font-size: 12px; }
-      .result-title { font-size: 12.5px; }
-      .result-path { font-size: 11px; }
-      .status { font-size: 10px; }
-      .category-top { font-size: 12.5px; }
-      .category-count { font-size: 13px; }
-      .room-meta { font-size: 13px; }
-      .room-badge { font-size: 20px; }
-      .visual-caption { font-size: 12px; }
-      .bundle-detail-sub { font-size: 13px; }
-      .bundle-detail-rule { font-size: 14px; }
-      .detail-item-name { font-size: 15.5px; }
-      .detail-item-count { font-size: 11px; }
-      .detail-item.checked::after { font-size: 19px; }
-    }
+      .page {
+        width: min(100% - 10px, 430px);
+        padding-top: 6px;
+      }
 
-    @media (max-width: 374px) {
-      .room-badge { font-size: 19px; }
-      .detail-item-name { font-size: 15px; }
-    }
-
-
-
-    /* ===== v12 字号回调：按参考图放大常规文字，标题/树状图/地图不动 ===== */
-    .hero-kicker,
-    .button,
-    .search-input,
-    .clear-button,
-    .search-button,
-    .empty-state,
-    .result-title,
-    .result-path,
-    .status,
-    .category-top,
-    .category-count,
-    .room-meta,
-    .room-badge,
-    .visual-caption,
-    .bundle-detail-sub,
-    .bundle-detail-rule,
-    .detail-item-name,
-    .detail-item-count,
-    .item-text,
-    .item-count {
-      line-height: 1.28;
-    }
-
-    .hero-kicker { font-size: 13px; }
-    .button { font-size: 13.5px; }
-    .search-input,
-    .clear-button { font-size: 16px; }
-    .search-button { font-size: 18px; }
-    .empty-state { font-size: 13px; }
-    .result-title { font-size: 14px; }
-    .result-path { font-size: 12px; }
-    .status { font-size: 11px; }
-    .category-top { font-size: 13.5px; }
-    .category-count { font-size: 12.5px; }
-    .room-meta { font-size: 15px; line-height: 1.42; }
-    .room-badge { font-size: 24px; line-height: 1; }
-    .visual-caption { font-size: 15px; }
-    .bundle-detail-sub { font-size: 16px; line-height: 1.42; }
-    .bundle-detail-rule { font-size: 17px; }
-    .detail-item-name { font-size: 20px; line-height: 1.16; }
-    .detail-item-count { font-size: 13px; }
-    .item-text { font-size: 12px; }
-    .item-count { font-size: 10.5px; }
-
-    @media (max-width: 520px) {
-      .button { font-size: 13px; }
-      .search-input,
-      .clear-button { font-size: 16px; }
-      .search-button { font-size: 18px; }
-      .empty-state { font-size: 13px; }
-      .result-title { font-size: 13.5px; }
-      .result-path { font-size: 12px; }
-      .status { font-size: 11px; }
-      .category-top { font-size: 13px; }
-      .category-count { font-size: 12.5px; }
-      .room-meta { font-size: 15px; }
-      .room-badge { font-size: 24px; }
-      .visual-caption { font-size: 15px; }
-      .bundle-detail-sub { font-size: 15px; }
-      .bundle-detail-rule { font-size: 17px; }
-      .detail-item-name { font-size: 19px; }
-      .detail-item-count { font-size: 13px; }
-      .detail-item.checked::after { font-size: 22px; }
-    }
-
-    @media (max-width: 374px) {
-      .room-badge { font-size: 22px; }
-      .detail-item-name { font-size: 18px; }
-    }
-
-
-
-    /* ===== v13 预览修正：按参考图恢复手机端顶部与分类密度 ===== */
-    @media (max-width: 520px) {
       .hero {
-        grid-template-columns: minmax(0, 1fr) auto !important;
-        gap: 10px !important;
-        align-items: end !important;
-        margin-bottom: 8px !important;
-        padding: 12px !important;
-        border-width: 2px !important;
-        border-radius: 8px !important;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: end;
+        gap: 8px;
+        padding: 9px 12px;
       }
 
       .hero-kicker {
-        display: block !important;
-        margin-bottom: 4px !important;
-        font-size: 13px !important;
-        line-height: 1.15 !important;
+        display: block;
+        margin-bottom: 2px !important;
+        color: #ffe0a2;
+        font-size: 12px;
+        line-height: 1.1;
       }
 
       h1 {
-        font-size: clamp(24px, 7vw, 32px) !important;
-        line-height: 1.12 !important;
+        margin-top: 2px !important;
+        font-size: 21px;
+        line-height: 1.12;
       }
 
       .hero-actions {
-        display: flex !important;
-        justify-self: end !important;
-        align-self: end !important;
+        display: flex;
+        justify-self: end;
+        justify-content: flex-end;
+        align-self: end;
       }
 
-      .button,
-      .button-compact {
-        min-height: 34px !important;
-        padding: 0 10px !important;
-        border-width: 2px !important;
-        border-radius: 7px !important;
-        font-size: 14px !important;
-        line-height: 1.2 !important;
+      .button {
+        min-height: 34px;
+        padding: 0 10px;
+        font-size: 13px;
       }
 
-      .search-panel {
-        padding: 10px !important;
-        border-radius: 8px !important;
+      .progress-panel,
+      .center-map-panel,
+      .room-map {
+        padding: 7px;
       }
 
-      .search-box {
-        grid-template-columns: minmax(0, 1fr) 42px 42px !important;
-        gap: 8px !important;
+      .progress-panel .panel-title {
+        margin: 0 0 6px;
+        font-size: 15px;
+        line-height: 1.15;
       }
 
-      .search-input {
-        min-height: 40px !important;
-        border-width: 2px !important;
-        font-size: 16px !important;
+      .center-map-panel .panel-title,
+      .room-map > .panel-title {
+        margin: 0 2px 7px;
+        font-size: 14px;
+        line-height: 1.15;
       }
 
       .progress-grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-        gap: 5px !important;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 4px;
       }
 
       .category {
-        min-height: 55px !important;
-        padding: 6px 5px !important;
-        border-radius: 8px !important;
+        min-height: 54px;
+        border-radius: 8px;
+        padding: 6px 5px;
       }
 
       .category-top {
-        display: grid !important;
-        gap: 2px !important;
-        align-items: start !important;
-        font-size: 11px !important;
-        line-height: 1.12 !important;
+        display: grid;
+        gap: 2px;
+        font-size: 12px;
+        line-height: 1.08;
       }
 
       .category-count {
-        font-size: 12px !important;
-        line-height: 1.1 !important;
+        margin-top: 0;
+        font-size: 12px;
+        line-height: 1;
       }
 
       .bar {
-        height: 7px !important;
-        margin-top: 5px !important;
+        height: 6px;
+        margin-top: 8px;
       }
 
-      .panel-title,
-      .center-map-panel .panel-title,
-      .search-panel .panel-title {
-        font-size: 22px !important;
-        line-height: 1.15 !important;
+      .center-map-frame {
+        min-height: 190px;
+      }
+
+      .center-map-stage-ref {
+        min-height: 190px;
+      }
+
+      .center-map-stage-ref .center-map-image.center-map-image-ref,
+      .center-map-stage-ref .image-fallback {
+        min-height: 190px;
+      }
+
+      .center-map-stage-ref .center-ref-title-dom {
+        height: calc(var(--box-h) * 0.84);
+        padding: 0 3px;
+        border-radius: 7px;
+        font-size: clamp(8px, 2.12vw, 10px);
+      }
+
+      .center-map-stage-ref .center-ref-note-dom {
+        top: calc(var(--note-y) + 5px);
+        font-size: clamp(6px, 1.58vw, 7.5px);
+        line-height: 1.06;
+        opacity: 0.9;
+      }
+
+      .room-header {
+        padding: 9px 12px 8px;
+      }
+
+      .room-title {
+        margin-bottom: 3px;
+        font-size: 20px;
+        line-height: 1.08;
       }
 
       .room-meta {
-        font-size: 15px !important;
-        line-height: 1.42 !important;
+        font-size: 11px;
+        line-height: 1.25;
+      }
+
+      .room-badge {
+        font-size: 18px;
+        line-height: 1.08;
+      }
+
+      .room-body {
+        gap: 10px;
+        padding: 9px 8px 12px;
+      }
+
+      .room-scene-card {
+        padding: 7px;
+      }
+
+      .room-scene {
+        height: 220px !important;
+      }
+
+      .map-bundle-node,
+      .room[data-room-id] .map-bundle-node {
+        width: 102px !important;
+        max-width: 102px !important;
+        border-radius: 8px !important;
+        padding: 5px 5px 5px 9px !important;
+        gap: 2px !important;
+      }
+
+      .map-bundle-name {
+        overflow: hidden;
+        font-size: 9.2px !important;
+        line-height: 1.05;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+
+      .map-bundle-meta {
+        font-size: 8.5px !important;
+        line-height: 1.05;
+        white-space: nowrap;
+      }
+
+      .map-item-strip,
+      .room[data-room-id] .map-item-strip {
+        gap: 2px !important;
+      }
+
+      .map-item .icon-wrap,
+      .map-item .icon,
+      .map-item .fallback-icon,
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id] .map-item .fallback-icon {
+        width: 13px !important;
+        height: 13px !important;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"] {
+        width: 116px !important;
+        max-width: 116px !important;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
+        width: 90px !important;
+        max-width: 90px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+        width: 108px !important;
+        max-width: 108px !important;
+      }
+
+      .visual-caption {
+        margin-top: 7px;
+        font-size: 12px;
+        line-height: 1.15;
+      }
+
+      .bundle-detail-card {
+        border-radius: 10px;
+        padding: 10px 9px 10px 17px;
+      }
+
+      .bundle-detail-card::before {
+        width: 6px;
+      }
+
+      .bundle-detail-head {
+        gap: 5px;
+        margin-bottom: 7px;
+      }
+
+      .bundle-detail-title {
+        font-size: 16px;
+        line-height: 1.12;
       }
 
       .bundle-detail-sub {
-        font-size: 15px !important;
-        line-height: 1.42 !important;
+        margin-top: 3px;
+        font-size: 11px;
+        line-height: 1.2;
+      }
+
+      .bundle-detail-rule {
+        padding: 4px 9px;
+        font-size: 12px;
+      }
+
+      .detail-items {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 5px 6px;
+      }
+
+      .detail-item {
+        grid-template-columns: 25px minmax(0, 1fr);
+        gap: 6px;
+        min-height: 39px;
+        border-width: 1px;
+        border-radius: 8px;
+        padding: 5px 20px 5px 7px;
+      }
+
+      .detail-item .icon-wrap,
+      .detail-item .icon,
+      .detail-item .fallback-icon {
+        width: 23px;
+        height: 23px;
       }
 
       .detail-item-name {
-        font-size: 18px !important;
-        line-height: 1.14 !important;
+        font-size: 13px;
+        line-height: 1.08;
+      }
+
+      .detail-item-count {
+        margin-top: 1px;
+        font-size: 10px;
+      }
+
+      .detail-item.checked::after {
+        right: 7px;
+        font-size: 16px;
       }
     }
 
-</style>
+    @media (max-width: 374px) {
+      .detail-items {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .room-title {
+        font-size: 18px;
+      }
+
+      .room-badge {
+        font-size: 16px;
+      }
+    }
+
+    /* ===== v12：对照参考图重新平衡手机端字号与背景色彩 ===== */
+    @media (max-width: 520px) {
+      .progress-panel .panel-title {
+        font-size: 16px;
+      }
+
+      .center-map-panel .panel-title,
+      .room-map > .panel-title {
+        font-size: 18px;
+        line-height: 1.12;
+      }
+
+      .room-header {
+        padding: 11px 14px 10px;
+      }
+
+      .room-title {
+        font-size: 17px;
+        line-height: 1.08;
+      }
+
+      .room-meta {
+        font-size: 13px;
+        line-height: 1.25;
+      }
+
+      .room-badge {
+        font-size: 17px;
+        line-height: 1.08;
+      }
+
+      .room-scene {
+        background:
+          linear-gradient(rgba(255, 236, 177, 0.16), rgba(255, 236, 177, 0.16)),
+          #f4ddb0;
+      }
+
+      .room-scene::before {
+        background: rgba(255, 236, 177, 0.12);
+        backdrop-filter: blur(0.25px);
+      }
+
+      .room-scene-bg {
+        opacity: 0.78;
+        filter: blur(0.35px) saturate(1.14) contrast(1.04) brightness(1.02);
+        transform: scale(1.02);
+      }
+
+      .room[data-room-id="fish"] .room-scene-bg,
+      .room[data-room-id="boiler"] .room-scene-bg,
+      .room[data-room-id="board"] .room-scene-bg,
+      .room[data-room-id="vault"] .room-scene-bg {
+        opacity: 0.76;
+        filter: blur(0.3px) saturate(1.15) contrast(1.03) brightness(1.01);
+      }
+
+      .map-bundle-node,
+      .room[data-room-id] .map-bundle-node {
+        width: 108px !important;
+        max-width: 108px !important;
+        padding: 6px 6px 5px 10px !important;
+        cursor: pointer;
+      }
+
+      .map-bundle-node.active {
+        border-color: rgba(47, 111, 176, 0.45) !important;
+        background: rgba(255, 253, 247, 0.98);
+      }
+
+      .map-bundle-name {
+        font-size: 10.8px !important;
+        line-height: 1.08;
+      }
+
+      .map-bundle-meta {
+        font-size: 9.8px !important;
+        line-height: 1.08;
+      }
+
+      .map-item .icon-wrap,
+      .map-item .icon,
+      .map-item .fallback-icon,
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id] .map-item .fallback-icon {
+        width: 15px !important;
+        height: 15px !important;
+      }
+
+      .map-item .quality {
+        right: -3px;
+        bottom: -3px;
+        width: 7px;
+        height: 7px;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"] {
+        width: 122px !important;
+        max-width: 122px !important;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
+        width: 96px !important;
+        max-width: 96px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+        width: 114px !important;
+        max-width: 114px !important;
+      }
+
+      .visual-caption {
+        display: none !important;
+      }
+
+      .bundle-detail-card {
+        padding: 12px 10px 12px 18px;
+      }
+
+      .bundle-detail-head {
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: start;
+        gap: 6px;
+        margin-bottom: 8px;
+      }
+
+      .bundle-detail-title {
+        font-size: 18px;
+        line-height: 1.1;
+      }
+
+      .bundle-detail-sub {
+        font-size: 12px;
+        line-height: 1.18;
+      }
+
+      .bundle-detail-rule {
+        justify-self: end;
+        align-self: start;
+        padding: 5px 10px;
+        font-size: 12px;
+      }
+
+      .detail-items {
+        gap: 6px;
+      }
+
+      .detail-item {
+        grid-template-columns: 28px minmax(0, 1fr);
+        min-height: 43px;
+        padding: 5px 22px 5px 8px;
+      }
+
+      .detail-item .icon-wrap,
+      .detail-item .icon,
+      .detail-item .fallback-icon {
+        width: 26px;
+        height: 26px;
+      }
+
+      .detail-item-name {
+        font-size: 14px;
+        line-height: 1.08;
+      }
+
+      .detail-item.checked::after {
+        font-size: 18px;
+      }
+
+      .bundle-detail-card:not(.active) {
+        display: none;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] {
+        width: 150px !important;
+        max-width: 150px !important;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item-strip {
+        max-width: 122px !important;
+        margin: 0 auto;
+        flex-wrap: nowrap;
+      }
+
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item .icon-wrap,
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item .icon,
+      .room[data-room-id="missing"] .map-bundle-node[data-bundle-id="missing-bundle"] .map-item .fallback-icon {
+        width: 13px !important;
+        height: 13px !important;
+      }
+
+      .detail-item-count {
+        display: inline;
+        margin: 0 0 0 3px;
+        font-size: 11px;
+        vertical-align: baseline;
+      }
+    }
+
+    /* ===== v13：按最新手机批注压缩搜索区、微调字号与树状图留白 ===== */
+    @media (max-width: 520px) {
+      .assistant-panel {
+        margin-bottom: 4px !important;
+      }
+
+      .search-panel {
+        margin-bottom: 2px !important;
+        padding: 6px !important;
+      }
+
+      .search-box {
+        grid-template-columns: minmax(0, 1fr) 38px 38px !important;
+        gap: 5px !important;
+      }
+
+      .search-input {
+        min-height: 36px !important;
+        padding: 0 10px !important;
+        font-size: 14px !important;
+      }
+
+      .clear-button,
+      .search-button {
+        display: grid !important;
+        place-items: center !important;
+        width: 38px !important;
+        min-width: 38px !important;
+        min-height: 36px !important;
+        padding: 0 !important;
+        line-height: 1 !important;
+      }
+
+      .clear-button {
+        font-size: 27px !important;
+      }
+
+      .search-button {
+        font-size: 25px !important;
+      }
+
+      .progress-panel {
+        margin-bottom: 7px !important;
+      }
+
+      .category {
+        border: 2px solid #f0d8a8 !important;
+        background: linear-gradient(135deg, #fffef9, #fff8e8) !important;
+      }
+
+      .center-map-stage-ref .center-ref-title-dom {
+        height: calc(var(--box-h) * 0.76) !important;
+        padding: 0 3px !important;
+        font-size: clamp(7.6px, 2vw, 9.4px) !important;
+      }
+
+      .center-map-stage-ref .center-ref-note-dom {
+        top: calc(var(--note-y) - 1px) !important;
+        font-weight: 750 !important;
+        line-height: 1 !important;
+      }
+
+      .room-title-link {
+        border-color: rgba(138, 90, 53, 0.22) !important;
+        background: linear-gradient(180deg, rgba(246, 229, 190, 0.98), rgba(232, 207, 156, 0.98)) !important;
+        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.52), 0 2px 7px rgba(95, 58, 34, 0.12) !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+        width: 126px !important;
+        max-width: 126px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-bundle-name {
+        font-size: 10.2px !important;
+      }
+
+      .bundle-detail-title {
+        line-height: 1.18 !important;
+      }
+
+      .bundle-detail-sub {
+        margin-top: 5px !important;
+        color: #6f6254 !important;
+        font-weight: 600 !important;
+        line-height: 1.36 !important;
+      }
+
+      .detail-item {
+        border-width: 2px !important;
+        border-color: #decca6 !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="page">
@@ -4011,7 +4360,7 @@
       },
       boiler: {
         core: { x: 50, y: 54 },
-        linkFrom: "geologist",
+        linkFrom: "blacksmith",
         points: {
           blacksmith: { x: 50, y: 25 },
           geologist: { x: 30, y: 62 },
@@ -4062,19 +4411,46 @@
       // 手机端统一缩放：让各房间的选项框视觉尺寸尽量跟工艺室保持一致。
       // 极窄屏幕放不下时才轻微回退，避免节点溢出。
       crafts: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8 },
-      pantry: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8, topOffset: 0 },
+      pantry: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8 },
       fish: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8 },
-      boiler: { wantedScale: 1.02, minScale: 0.82, minGap: 2, vGap: 10 },
-      board: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 10 },
-      missing: { wantedScale: 1.02, minScale: 0.82, minGap: 2, vGap: 10, topOffset: 10 },
+      boiler: {
+        wantedScale: 1.02,
+        minScale: 0.82,
+        minGap: 2,
+        vGap: 10,
+        xByRow: {
+          0: { blacksmith: 0.5 },
+          1: { geologist: 0.34, adventurer: 0.66 }
+        }
+      },
+      board: {
+        wantedScale: 1.02,
+        minScale: 0.78,
+        minGap: 2,
+        vGap: 10,
+        xByRow: {
+          0: { dye: 0.5 },
+          1: { chef: 0.27, "field-research": 0.73 },
+          2: { fodder: 0.35, enchanter: 0.65 }
+        }
+      },
+      missing: {
+        wantedScale: 1.02,
+        minScale: 0.82,
+        minGap: 2,
+        vGap: 10,
+        xByRow: {
+          0: { "missing-bundle": 0.5 }
+        }
+      },
       vault: {
         wantedScale: 1.02,
         minScale: 0.82,
         minGap: 2,
         vGap: 10,
         xByRow: {
-          0: { "vault-2500": 0.36, "vault-5000": 0.64 },
-          1: { "vault-10000": 0.36, "vault-25000": 0.64 }
+          0: { "vault-2500": 0.34, "vault-5000": 0.66 },
+          1: { "vault-10000": 0.34, "vault-25000": 0.66 }
         }
       }
     };
@@ -4373,7 +4749,7 @@
         bundle("vault-25000", "25,000G 收集包", "1选1", "总计: 42,500G", [item("金币", "money", 25000, "", "25,000G")])
       ]),
       room("missing", "🎬", "废弃Joja超市", "社区中心全部完成后，首个雨天或雷雨日前夜解锁（Joja路线无）", "电影院", [
-        bundle("missing-bundle", "失踪收集包", "6选5", "奖 励：电影院", [
+        bundle("missing-bundle", "失踪收集包", "6选5", "电影院", [
           item("葡萄酒", "animal", 1, "silver"),
           item("恐龙蛋黄酱", "animal"),
           item("五彩碎片", "mine"),
@@ -4436,6 +4812,11 @@
 
         const result = event.target.closest("[data-jump-id]");
         if (result) focusItem(result.dataset.jumpId);
+
+        const mapBundle = event.target.closest(".map-bundle-node[data-bundle-id]");
+        if (mapBundle && !event.target.closest(".map-item")) {
+          activateBundleDetail(mapBundle.closest(".room"), mapBundle.dataset.bundleId);
+        }
 
         if (event.target.closest("#jumpSearch")) jumpToFirstSearchResult();
       });
@@ -4536,7 +4917,7 @@
       const slot = getSlot(bundleIndex);
       const point = mapLayout.points[bundleData.id] || { x: 50, y: 50 };
       return `
-        <div class="map-bundle-node ${complete ? "done" : ""}" data-bundle-id="${bundleData.id}" data-item-count="${bundleData.items.length}" data-slot="${slot}" style="--x:${point.x}%;--y:${point.y}%" title="${escapeAttribute(bundleData.name)}">
+        <div class="map-bundle-node ${complete ? "done" : ""} ${bundleIndex === 0 ? "active" : ""}" data-bundle-id="${bundleData.id}" data-item-count="${bundleData.items.length}" data-slot="${slot}" style="--x:${point.x}%;--y:${point.y}%" title="${escapeAttribute(bundleData.name)}">
           <div class="map-bundle-name">${escapeHtml(bundleData.name)}</div>
           ${renderMapBundleItems(bundleData)}
           <div class="map-bundle-meta">${escapeHtml(bundleData.rule)} · ${done}/${bundleData.required}</div>
@@ -4545,9 +4926,33 @@
     }
 
     function renderRoomBundleDetails(roomData) {
+      if (roomData.id === "vault") return renderVaultBundleDetail(roomData);
+
       return `
         <div class="room-detail-list" aria-label="${escapeAttribute(roomData.name)}收集包明细">
           ${roomData.bundles.map((bundleData, bundleIndex) => renderBundleDetail(roomData, bundleData, bundleIndex)).join("")}
+        </div>
+      `;
+    }
+
+    function renderVaultBundleDetail(roomData) {
+      const entries = roomData.bundles.flatMap((bundleData) => bundleData.items);
+      const checked = entries.filter((entry) => isChecked(entry.uid)).length;
+      const total = entries.length;
+      return `
+        <div class="room-detail-list" aria-label="${escapeAttribute(roomData.name)}收集包明细">
+          <section class="bundle-detail-card active" data-detail-bundle-id="vault-summary" data-slot="a">
+            <header class="bundle-detail-head">
+              <div>
+                <h3 class="bundle-detail-title">金库收集包</h3>
+                <p class="bundle-detail-sub">总计：42,500G</p>
+              </div>
+              <div class="bundle-detail-rule">${total}选${total} · ${checked}/${total}</div>
+            </header>
+            <div class="detail-items">
+              ${entries.map((entry) => renderDetailItem(entry)).join("")}
+            </div>
+          </section>
         </div>
       `;
     }
@@ -4557,13 +4962,14 @@
       const complete = checked >= bundleData.required;
       const done = Math.min(checked, bundleData.required);
       const slot = getSlot(bundleIndex);
-      const reward = bundleData.reward ? ` · 奖励：${escapeHtml(bundleData.reward)}` : "";
+      const rewardText = cleanRewardText(bundleData.reward);
+      const reward = rewardText ? `<p class="bundle-detail-sub">奖励：${escapeHtml(rewardText)}</p>` : "";
       return `
-        <section class="bundle-detail-card ${complete ? "done" : ""}" data-detail-bundle-id="${bundleData.id}" data-slot="${slot}">
+        <section class="bundle-detail-card ${complete ? "done" : ""} ${bundleIndex === 0 ? "active" : ""}" data-detail-bundle-id="${bundleData.id}" data-slot="${slot}">
           <header class="bundle-detail-head">
             <div>
               <h3 class="bundle-detail-title">${escapeHtml(bundleData.name)}</h3>
-              <p class="bundle-detail-sub"><span class="bundle-detail-index">图示第 ${bundleIndex + 1} 项</span>${reward} · ${escapeHtml(roomData.name)}分支</p>
+              ${reward}
             </div>
             <div class="bundle-detail-rule">${escapeHtml(bundleData.rule)} · ${done}/${bundleData.required}</div>
           </header>
@@ -4587,6 +4993,23 @@
           </span>
         </label>
       `;
+    }
+
+    function activateBundleDetail(roomNode, bundleId) {
+      if (!roomNode) return;
+      const targetId = roomNode.dataset.roomId === "vault" ? "vault-summary" : bundleId;
+      roomNode.querySelectorAll("[data-detail-bundle-id]").forEach((node) => {
+        node.classList.toggle("active", node.dataset.detailBundleId === targetId);
+      });
+      roomNode.querySelectorAll(".map-bundle-node[data-bundle-id]").forEach((node) => {
+        node.classList.toggle("active", node.dataset.bundleId === bundleId);
+      });
+    }
+
+    function cleanRewardText(value) {
+      return String(value || "")
+        .replace(/奖\s*励[:：]\s*/g, "")
+        .trim();
     }
 
     function renderExternalImage(className, fileName, alt) {
@@ -4771,6 +5194,8 @@
     }
 
     function focusItem(uid) {
+      const [roomId, bundleId] = uid.split(":");
+      activateBundleDetail(document.querySelector(`.room[data-room-id="${roomId}"]`), bundleId);
       const node = document.querySelector(`.detail-item[data-item-card="${uid}"]`) || document.querySelector(`[data-item-card="${uid}"]`);
       if (!node) return;
       node.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -4844,6 +5269,17 @@
             if (detailRule) detailRule.textContent = `${bundleData.rule} · ${done}/${bundleData.required}`;
           });
         });
+
+        if (roomData.id === "vault") {
+          const entries = roomData.bundles.flatMap((bundleData) => bundleData.items);
+          const checkedEntries = entries.filter((entry) => isChecked(entry.uid)).length;
+          const summary = roomNode.querySelector('[data-detail-bundle-id="vault-summary"]');
+          if (summary) {
+            summary.classList.toggle("done", checkedEntries >= entries.length);
+            const detailRule = summary.querySelector(".bundle-detail-rule");
+            if (detailRule) detailRule.textContent = `${entries.length}选${entries.length} · ${checkedEntries}/${entries.length}`;
+          }
+        }
       });
     }
 
@@ -4913,23 +5349,24 @@
       if (!grid || !lines || Object.values(cards).some((card) => !card)) return;
 
       if (!isMobile) {
-        scene.style.height = "";
-        scene.style.minHeight = "";
-        scene.style.aspectRatio = "";
+        scene.style.removeProperty("height");
+        scene.style.removeProperty("min-height");
+        scene.style.removeProperty("aspect-ratio");
 
         [grid, lines].forEach((layer) => {
-          layer.style.inset = "";
-          layer.style.left = "";
-          layer.style.top = "";
-          layer.style.width = "";
-          layer.style.height = "";
+          layer.style.removeProperty("display");
+          layer.style.removeProperty("inset");
+          layer.style.removeProperty("left");
+          layer.style.removeProperty("top");
+          layer.style.removeProperty("width");
+          layer.style.removeProperty("height");
         });
 
         Object.values(cards).forEach((card) => {
-          card.style.left = "";
-          card.style.top = "";
-          card.style.transform = "";
-          card.style.transformOrigin = "";
+          card.style.removeProperty("left");
+          card.style.removeProperty("top");
+          card.style.removeProperty("transform");
+          card.style.removeProperty("transform-origin");
         });
         return;
       }
@@ -4946,23 +5383,23 @@
         return;
       }
 
-      grid.style.inset = "0";
-      grid.style.left = "0";
-      grid.style.top = "0";
-      grid.style.width = "100%";
+      grid.style.setProperty("inset", "0", "important");
+      grid.style.setProperty("left", "0", "important");
+      grid.style.setProperty("top", "0", "important");
+      grid.style.setProperty("width", "100%", "important");
 
       const shouldHideLines = roomId === "vault" || roomId === "missing";
-      lines.style.display = shouldHideLines ? "none" : "block";
-      lines.style.inset = "0";
-      lines.style.left = "0";
-      lines.style.top = "0";
-      lines.style.width = "100%";
+      lines.style.setProperty("display", shouldHideLines ? "none" : "block", "important");
+      lines.style.setProperty("inset", "0", "important");
+      lines.style.setProperty("left", "0", "important");
+      lines.style.setProperty("top", "0", "important");
+      lines.style.setProperty("width", "100%", "important");
 
       Object.values(cards).forEach((card) => {
-        card.style.left = "0px";
-        card.style.top = "0px";
-        card.style.transform = "none";
-        card.style.transformOrigin = "top left";
+        card.style.setProperty("left", "0px", "important");
+        card.style.setProperty("top", "0px", "important");
+        card.style.setProperty("transform", "none", "important");
+        card.style.setProperty("transform-origin", "top left", "important");
       });
 
       const minGap = config.minGap ?? 6;
@@ -4980,13 +5417,21 @@
       scale = Math.max(minScale, scale);
 
       const vGap = Math.max(vGapBase, minGap * scale);
-      let top = config.topOffset ?? minGap;
+      const rowHeights = visibleRows.map((row) => Math.max(...row.map((id) => cards[id].offsetHeight * scale)));
+      const contentHeight = rowHeights.reduce((sum, height) => sum + height, 0) + vGap * Math.max(0, rowHeights.length - 1);
+      let sceneHeight = Math.ceil(Math.max(
+        contentHeight + minGap * 2,
+        config.sceneHeight ?? sceneWidth * (config.heightRatio ?? 0.68)
+      ));
+      const topBase = config.topOffset ?? Math.max(minGap, (sceneHeight - contentHeight) / 2);
+      sceneHeight = Math.ceil(Math.max(sceneHeight, topBase + contentHeight + minGap));
+      let top = topBase;
       const positioned = {};
 
       visibleRows.forEach((row, rowIndex) => {
         const scaledWidth = row.reduce((sum, id) => sum + cards[id].offsetWidth * scale, 0);
         const gap = Math.max(minGap, (sceneWidth - scaledWidth) / (row.length + 1));
-        const rowHeight = Math.max(...row.map((id) => cards[id].offsetHeight * scale));
+        const rowHeight = rowHeights[rowIndex];
         const xOverrides = config.xByRow?.[rowIndex] || {};
         let left = gap;
 
@@ -5009,12 +5454,11 @@
         top += rowHeight + vGap;
       });
 
-      const sceneHeight = Math.ceil(top);
-      scene.style.height = `${sceneHeight}px`;
-      scene.style.minHeight = "0";
-      scene.style.aspectRatio = "auto";
-      grid.style.height = `${sceneHeight}px`;
-      lines.style.height = `${sceneHeight}px`;
+      scene.style.setProperty("height", `${sceneHeight}px`, "important");
+      scene.style.setProperty("min-height", "0", "important");
+      scene.style.setProperty("aspect-ratio", "auto", "important");
+      grid.style.setProperty("height", `${sceneHeight}px`, "important");
+      lines.style.setProperty("height", `${sceneHeight}px`, "important");
 
       if (shouldHideLines) {
         lines.querySelectorAll("line").forEach((line) => { line.style.display = "none"; });
@@ -5024,10 +5468,10 @@
     }
 
     function placeMapCard(card, left, top, scale) {
-      card.style.left = `${Math.round(left)}px`;
-      card.style.top = `${Math.round(top)}px`;
-      card.style.transform = `scale(${scale})`;
-      card.style.transformOrigin = "top left";
+      card.style.setProperty("left", `${Math.round(left)}px`, "important");
+      card.style.setProperty("top", `${Math.round(top)}px`, "important");
+      card.style.setProperty("transform", `scale(${scale})`, "important");
+      card.style.setProperty("transform-origin", "top left", "important");
     }
 
     function updateRoomLines(roomId, lines, positioned, width, height) {
