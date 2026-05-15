@@ -4396,6 +4396,146 @@
       }
     }
 
+
+    /* ===== v31：认真修正手机端压扁感与字号 ===== */
+    @media (max-width: 520px) {
+      /* 上半区：再压扁，减少空白 */
+      .room-body {
+        padding: 8px !important;
+      }
+      .room-scene-card {
+        padding: 6px !important;
+        border-radius: 14px !important;
+      }
+      .room-scene {
+        height: 208px !important;
+        min-height: 0 !important;
+        aspect-ratio: auto !important;
+        border-radius: 13px !important;
+        border-width: 1px !important;
+      }
+      .room-scene::after {
+        inset: 8px !important;
+        border-radius: 10px !important;
+        border-color: rgba(150,112,63,0.20) !important;
+      }
+      .map-bundle-grid,
+      .map-tree-lines {
+        inset: 10px !important;
+      }
+      .map-tree-lines {
+        width: calc(100% - 20px) !important;
+        height: calc(100% - 20px) !important;
+      }
+      .visual-caption {
+        margin-top: 6px !important;
+        font-size: 11px !important;
+      }
+
+      /* 树状图卡片 */
+      .map-bundle-node,
+      .room[data-room-id] .map-bundle-node {
+        gap: 2px !important;
+        min-height: 50px !important;
+        max-height: 56px !important;
+        padding: 4px 7px 4px 10px !important;
+        border-radius: 8px !important;
+        box-shadow: inset 4px 0 0 var(--preview-accent, #8f67cf), 0 3px 8px rgba(80,50,20,0.10) !important;
+      }
+      .map-bundle-name {
+        font-size: 10.9px !important;
+        line-height: 1.02 !important;
+      }
+      .map-bundle-meta,
+      .map-bundle-node.done .map-bundle-meta {
+        font-size: 10.2px !important;
+      }
+      .map-bundle-node .map-item-strip,
+      .room[data-room-id] .map-bundle-node .map-item-strip {
+        gap: 1px 4px !important;
+      }
+      .map-bundle-node .map-item,
+      .room[data-room-id] .map-bundle-node .map-item {
+        width: 22px !important;
+        min-width: 22px !important;
+        height: 22px !important;
+        min-height: 22px !important;
+      }
+      .map-bundle-node .map-item .icon-wrap,
+      .map-bundle-node .map-item .icon,
+      .map-bundle-node .map-item .fallback-icon,
+      .room[data-room-id] .map-bundle-node .map-item .icon-wrap,
+      .room[data-room-id] .map-bundle-node .map-item .icon,
+      .room[data-room-id] .map-bundle-node .map-item .fallback-icon {
+        width: 21px !important;
+        height: 21px !important;
+      }
+      .room[data-room-id] .map-bundle-node[data-item-count="3"] { width: 112px !important; max-width: 112px !important; }
+      .room[data-room-id] .map-bundle-node[data-item-count="4"] { width: 124px !important; max-width: 124px !important; }
+      .room[data-room-id] .map-bundle-node[data-item-count="5"],
+      .room[data-room-id] .map-bundle-node[data-item-count="6"] { width: 138px !important; max-width: 138px !important; }
+      .room[data-room-id] .map-bundle-node[data-item-count="9"],
+      .room[data-room-id] .map-bundle-node[data-item-count="10"] { width: 146px !important; max-width: 146px !important; }
+
+      /* 下半区：字体缩小，选项框压扁 */
+      .bundle-detail-card {
+        border-radius: 12px !important;
+        padding: 12px 12px 12px 20px !important;
+      }
+      .bundle-detail-card::before {
+        width: 7px !important;
+      }
+      .bundle-detail-head {
+        gap: 8px !important;
+        margin-bottom: 8px !important;
+      }
+      .bundle-detail-title {
+        font-size: 18px !important;
+        line-height: 1.10 !important;
+      }
+      .bundle-detail-sub {
+        margin-top: 3px !important;
+        font-size: 11.8px !important;
+        line-height: 1.25 !important;
+      }
+      .bundle-detail-rule {
+        padding: 5px 11px !important;
+        font-size: 12.6px !important;
+      }
+      .detail-items {
+        gap: 8px 10px !important;
+      }
+      .detail-item {
+        grid-template-columns: 34px minmax(0, 1fr) !important;
+        gap: 7px !important;
+        min-height: 46px !important;
+        border-width: 2px !important;
+        border-radius: 9px !important;
+        padding: 5px 11px 5px 8px !important;
+      }
+      .detail-item .icon-wrap,
+      .detail-item .icon,
+      .detail-item .fallback-icon {
+        width: 29px !important;
+        height: 29px !important;
+      }
+      .detail-item .quality {
+        width: 11px !important;
+        height: 11px !important;
+      }
+      .detail-item-name {
+        font-size: 14px !important;
+        line-height: 1.08 !important;
+      }
+      .detail-item-count {
+        font-size: 11px !important;
+      }
+      .detail-item.checked::after {
+        right: 10px !important;
+        font-size: 18px !important;
+      }
+    }
+
 </style>
 </head>
 <body>
