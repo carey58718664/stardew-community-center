@@ -3364,6 +3364,244 @@
         font-size: 25px;
       }
     }
+
+    /* ===== v10：真正手机端信息流，降低预览密度，强化可点击明细 ===== */
+    @media (max-width: 520px) {
+      h1 {
+        font-size: 24px;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-bottom: 8px;
+        padding: 10px 12px;
+        border-width: 1px;
+        border-radius: 10px;
+      }
+
+      .hero-kicker {
+        display: none;
+      }
+
+      .hero-actions {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+
+      .button {
+        min-height: 36px;
+        padding: 0 8px;
+        font-size: 14px;
+      }
+
+      .search-panel {
+        margin-bottom: 8px;
+        border-color: #e5c882;
+        border-radius: 12px;
+        padding: 10px;
+      }
+
+      .search-panel .panel-title {
+        font-size: 20px;
+      }
+
+      .search-box {
+        grid-template-columns: minmax(0, 1fr) 44px 44px;
+        gap: 6px;
+      }
+
+      .search-input {
+        min-height: 40px;
+        border-width: 1px;
+      }
+
+      .progress-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .category {
+        min-height: 74px;
+        border: 1px solid #efc477;
+        border-radius: 10px;
+        background: linear-gradient(135deg, rgba(255, 255, 255, 0.92), rgba(255, 245, 217, 0.84));
+        padding: 10px;
+      }
+
+      .category-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        font-size: 15px;
+        line-height: 1.15;
+      }
+
+      .category-count {
+        color: #2b2118;
+        font-size: 17px;
+      }
+
+      .bar {
+        height: 9px;
+        margin-top: 12px;
+      }
+
+      .center-map-panel {
+        border-color: #e5c882;
+        border-radius: 12px;
+      }
+
+      .center-map-panel .panel-title {
+        font-size: 22px;
+      }
+
+      .center-map-frame {
+        min-height: 210px;
+      }
+
+      .center-map-stage-ref {
+        min-height: 210px;
+      }
+
+      .room-scene-card {
+        padding: 9px;
+      }
+
+      .room-scene {
+        height: 236px !important;
+      }
+
+      .map-bundle-node,
+      .room[data-room-id] .map-bundle-node {
+        width: 108px !important;
+        max-width: 108px !important;
+        padding: 7px 7px 6px 11px !important;
+      }
+
+      .map-bundle-name {
+        overflow: hidden;
+        font-size: 12px !important;
+        text-overflow: ellipsis;
+      }
+
+      .map-bundle-meta {
+        font-size: 10px !important;
+      }
+
+      .map-item .icon-wrap,
+      .map-item .icon,
+      .map-item .fallback-icon,
+      .room[data-room-id] .map-item .icon-wrap,
+      .room[data-room-id] .map-item .icon,
+      .room[data-room-id] .map-item .fallback-icon {
+        width: 16px !important;
+        height: 16px !important;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"] {
+        width: 128px !important;
+        max-width: 128px !important;
+      }
+
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="fodder"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="quality-crops"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="animal"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="night-fish"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="specialty-fish"] {
+        width: 94px !important;
+        max-width: 94px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+        width: 116px !important;
+        max-width: 116px !important;
+      }
+
+      .visual-caption {
+        margin-top: 10px;
+        font-size: 16px;
+      }
+
+      .bundle-detail-card {
+        padding: 15px 12px 14px 22px;
+      }
+
+      .bundle-detail-head {
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      .bundle-detail-title {
+        font-size: 24px;
+      }
+
+      .bundle-detail-sub {
+        font-size: 15px;
+      }
+
+      .bundle-detail-rule {
+        justify-self: start;
+        padding: 6px 12px;
+        font-size: 17px;
+      }
+
+      .detail-items {
+        gap: 9px;
+      }
+
+      .detail-item {
+        grid-template-columns: 34px minmax(0, 1fr);
+        gap: 8px;
+        min-height: 54px;
+        padding: 7px 28px 7px 8px;
+      }
+
+      .detail-item .icon-wrap,
+      .detail-item .icon,
+      .detail-item .fallback-icon {
+        width: 31px;
+        height: 31px;
+      }
+
+      .detail-item-name {
+        font-size: 18px;
+        line-height: 1.12;
+      }
+
+      .detail-item.checked::after {
+        right: 9px;
+        font-size: 22px;
+      }
+    }
+
+    @media (max-width: 374px) {
+      .detail-items {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-item {
+        min-height: 56px;
+      }
+
+      .room-title {
+        font-size: 28px;
+      }
+
+      .room-badge {
+        font-size: 24px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -3568,15 +3806,15 @@
     const mobileLayoutConfig = {
       // 手机端统一缩放：让各房间的选项框视觉尺寸尽量跟工艺室保持一致。
       // 极窄屏幕放不下时才轻微回退，避免节点溢出。
-      crafts: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 6 },
-      pantry: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 6, topOffset: 0 },
-      fish: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 6 },
-      boiler: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 10 },
-      board: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 8 },
-      missing: { wantedScale: 1.08, minScale: 1, minGap: 2, vGap: 10, topOffset: 10 },
+      crafts: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8 },
+      pantry: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8, topOffset: 0 },
+      fish: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8 },
+      boiler: { wantedScale: 1.02, minScale: 0.82, minGap: 2, vGap: 10 },
+      board: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 10 },
+      missing: { wantedScale: 1.02, minScale: 0.82, minGap: 2, vGap: 10, topOffset: 10 },
       vault: {
-        wantedScale: 1.08,
-        minScale: 1,
+        wantedScale: 1.02,
+        minScale: 0.82,
         minGap: 2,
         vGap: 10,
         xByRow: {
