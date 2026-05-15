@@ -3997,6 +3997,238 @@
       }
     }
 
+
+    /* ===== v29：树状图卡片只显示图标预览，贴近参考图 ===== */
+    @media (max-width: 520px) {
+      .room-map > .panel-title {
+        display: none !important;
+      }
+
+      .room-scene {
+        height: 300px !important;
+        min-height: 0 !important;
+        aspect-ratio: auto !important;
+      }
+
+      .map-tree-lines {
+        z-index: 1 !important;
+      }
+
+      .map-bundle-grid {
+        z-index: 3 !important;
+      }
+
+      .map-tree-lines line {
+        stroke: rgba(255, 250, 238, 0.82) !important;
+        stroke-width: 2 !important;
+      }
+
+      .map-room-core {
+        position: absolute !important;
+        left: var(--x) !important;
+        top: var(--y) !important;
+        z-index: 2 !important;
+        display: grid !important;
+        place-items: center !important;
+        min-width: 58px !important;
+        min-height: 30px !important;
+        padding: 5px 10px !important;
+        border: 1px solid #e1c99a !important;
+        border-radius: 999px !important;
+        background: rgba(255, 253, 247, 0.96) !important;
+        color: #6f4b22 !important;
+        font-size: 13px !important;
+        font-weight: 950 !important;
+        line-height: 1 !important;
+        box-shadow: 0 3px 8px rgba(80, 50, 20, 0.12) !important;
+        transform: translate(-50%, -50%) !important;
+        pointer-events: none !important;
+      }
+
+      .map-bundle-node,
+      .room[data-room-id] .map-bundle-node {
+        display: grid !important;
+        align-content: center !important;
+        justify-items: center !important;
+        gap: 4px !important;
+        min-height: 66px !important;
+        max-height: 78px !important;
+        overflow: hidden !important;
+        border-radius: 10px !important;
+        padding: 7px 8px 6px 13px !important;
+        background: rgba(255, 253, 247, 0.96) !important;
+        border: 1px solid rgba(161, 125, 82, 0.28) !important;
+        box-shadow: inset 5px 0 0 var(--preview-accent, #8f67cf), 0 4px 10px rgba(80, 50, 20, 0.12) !important;
+      }
+
+      .map-bundle-node.done,
+      .room[data-room-id] .map-bundle-node.done {
+        background: rgba(246, 254, 242, 0.97) !important;
+      }
+
+      .map-bundle-name {
+        width: 100% !important;
+        color: #241a10 !important;
+        font-size: 12.2px !important;
+        font-weight: 950 !important;
+        line-height: 1.08 !important;
+        letter-spacing: 0 !important;
+        text-align: center !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+      }
+
+      .map-bundle-meta,
+      .map-bundle-node.done .map-bundle-meta {
+        justify-self: center !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        color: #5f4528 !important;
+        font-size: 11.5px !important;
+        font-weight: 950 !important;
+        line-height: 1 !important;
+        text-align: center !important;
+      }
+
+      .map-bundle-node .map-item-strip,
+      .room[data-room-id] .map-bundle-node .map-item-strip,
+      .room[data-room-id="crafts"] .map-bundle-node .map-item-strip,
+      .room[data-room-id="pantry"] .map-bundle-node .map-item-strip,
+      .room[data-room-id="fish"] .map-bundle-node .map-item-strip,
+      .room[data-room-id="boiler"] .map-bundle-node .map-item-strip,
+      .room[data-room-id="board"] .map-bundle-node .map-item-strip,
+      .room[data-room-id="vault"] .map-bundle-node .map-item-strip,
+      .room[data-room-id="missing"] .map-bundle-node .map-item-strip {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        justify-self: center !important;
+        gap: 2px 4px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        grid-template-columns: none !important;
+      }
+
+      .map-bundle-node .map-item,
+      .room[data-room-id] .map-bundle-node .map-item,
+      .room[data-room-id="crafts"] .map-bundle-node .map-item,
+      .room[data-room-id="pantry"] .map-bundle-node .map-item,
+      .room[data-room-id="fish"] .map-bundle-node .map-item,
+      .room[data-room-id="boiler"] .map-bundle-node .map-item,
+      .room[data-room-id="board"] .map-bundle-node .map-item,
+      .room[data-room-id="vault"] .map-bundle-node .map-item,
+      .room[data-room-id="missing"] .map-bundle-node .map-item {
+        display: grid !important;
+        place-items: center !important;
+        width: 18px !important;
+        min-width: 18px !important;
+        height: 18px !important;
+        min-height: 18px !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        box-shadow: none !important;
+        outline: none !important;
+        cursor: pointer !important;
+      }
+
+      .map-bundle-node .map-item:hover,
+      .map-bundle-node .map-item.checked,
+      .room[data-room-id] .map-bundle-node .map-item.checked {
+        border: 0 !important;
+        background: transparent !important;
+      }
+
+      .map-bundle-node .map-item.checked::after,
+      .room[data-room-id] .map-bundle-node .map-item.checked::after {
+        content: none !important;
+        display: none !important;
+      }
+
+      .map-bundle-node .map-item input,
+      .map-bundle-node .map-item-name,
+      .map-bundle-node .map-item-count,
+      .room[data-room-id] .map-bundle-node .map-item-name,
+      .room[data-room-id] .map-bundle-node .map-item-count {
+        display: none !important;
+      }
+
+      .map-bundle-node .map-item .icon-wrap,
+      .map-bundle-node .map-item .icon,
+      .map-bundle-node .map-item .fallback-icon,
+      .room[data-room-id] .map-bundle-node .map-item .icon-wrap,
+      .room[data-room-id] .map-bundle-node .map-item .icon,
+      .room[data-room-id] .map-bundle-node .map-item .fallback-icon {
+        width: 17px !important;
+        height: 17px !important;
+        margin: 0 !important;
+        transform: none !important;
+      }
+
+      .map-bundle-node .map-item .quality {
+        width: 7px !important;
+        height: 7px !important;
+        right: -3px !important;
+        bottom: -3px !important;
+      }
+
+      .room[data-room-id] .map-bundle-node[data-item-count="3"] {
+        width: 112px !important;
+        max-width: 112px !important;
+      }
+
+      .room[data-room-id] .map-bundle-node[data-item-count="4"] {
+        width: 126px !important;
+        max-width: 126px !important;
+      }
+
+      .room[data-room-id] .map-bundle-node[data-item-count="5"],
+      .room[data-room-id] .map-bundle-node[data-item-count="6"] {
+        width: 138px !important;
+        max-width: 138px !important;
+      }
+
+      .room[data-room-id] .map-bundle-node[data-item-count="9"],
+      .room[data-room-id] .map-bundle-node[data-item-count="10"] {
+        width: 144px !important;
+        max-width: 144px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="river-fish"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="ocean-fish"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="lake-fish"],
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="geologist"],
+      .room[data-room-id="boiler"] .map-bundle-node[data-bundle-id="adventurer"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="field-research"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="enchanter"],
+      .room[data-room-id="pantry"] .map-bundle-node[data-bundle-id="artisan"],
+      .room[data-room-id="fish"] .map-bundle-node[data-bundle-id="crab-pot"] {
+        width: 132px !important;
+        max-width: 132px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="chef"],
+      .room[data-room-id="board"] .map-bundle-node[data-bundle-id="dye"] {
+        width: 138px !important;
+        max-width: 138px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+        width: 144px !important;
+        max-width: 144px !important;
+      }
+    }
+
 </style>
 </head>
 <body>
