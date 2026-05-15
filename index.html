@@ -4536,6 +4536,192 @@
       }
     }
 
+
+    /* ===== v32：工艺室底纹、树状图居中、明细压扁 ===== */
+    .visual-caption {
+      display: none !important;
+    }
+
+    @media (max-width: 520px) {
+      .room[data-room-id="crafts"] .room-scene {
+        height: 208px !important;
+        border: 2px solid rgba(116, 77, 50, 0.54) !important;
+        border-radius: 14px !important;
+        background:
+          radial-gradient(circle at 50% 50%, rgba(255, 250, 228, 0.46) 0 24%, transparent 52%),
+          linear-gradient(180deg, rgba(255, 246, 220, 0.68) 0%, rgba(239, 213, 164, 0.70) 100%),
+          #ecd4a8 !important;
+        box-shadow:
+          inset 0 0 0 1px rgba(255, 251, 239, 0.60),
+          inset 0 10px 24px rgba(255, 245, 216, 0.25),
+          0 5px 14px rgba(83, 55, 31, 0.08) !important;
+      }
+
+      .room[data-room-id="crafts"] .room-scene::before {
+        background:
+          linear-gradient(180deg, rgba(255, 249, 230, 0.50), rgba(210, 167, 104, 0.16)),
+          repeating-linear-gradient(90deg, rgba(112, 82, 50, 0.055) 0 1px, transparent 1px 18px) !important;
+        backdrop-filter: blur(0.35px) !important;
+      }
+
+      .room[data-room-id="crafts"] .room-scene::after {
+        inset: 8px !important;
+        border: 1px solid rgba(119, 82, 52, 0.18) !important;
+        border-radius: 11px !important;
+      }
+
+      .room[data-room-id="crafts"] .room-scene-bg {
+        opacity: 0.48 !important;
+        filter: blur(0.8px) saturate(0.86) brightness(1.08) contrast(0.96) !important;
+        transform: scale(1.025) !important;
+      }
+
+      .room[data-room-id="crafts"] .map-tree-lines line {
+        stroke: rgba(255, 251, 240, 0.92) !important;
+        stroke-width: 1.55px !important;
+        filter: drop-shadow(0 1px 1px rgba(92, 61, 35, 0.26)) !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node {
+        min-height: 50px !important;
+        max-height: 60px !important;
+        gap: 2px !important;
+        padding: 4px 7px 4px 11px !important;
+        border-radius: 8px !important;
+        overflow: visible !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-name {
+        overflow: visible !important;
+        color: #241a12 !important;
+        font-size: 10.2px !important;
+        line-height: 1.05 !important;
+        letter-spacing: -0.02em !important;
+        text-overflow: clip !important;
+        white-space: nowrap !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-meta,
+      .room[data-room-id="crafts"] .map-bundle-node.done .map-bundle-meta {
+        font-size: 9.5px !important;
+        line-height: 1.02 !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node .map-item-strip {
+        gap: 1px 4px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node .map-item {
+        width: 21px !important;
+        min-width: 21px !important;
+        height: 21px !important;
+        min-height: 21px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node .map-item .icon-wrap,
+      .room[data-room-id="crafts"] .map-bundle-node .map-item .icon,
+      .room[data-room-id="crafts"] .map-bundle-node .map-item .fallback-icon {
+        width: 20px !important;
+        height: 20px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="spring-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="fall-forage"] {
+        width: 132px !important;
+        max-width: 132px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="winter-forage"],
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="construction"] {
+        width: 128px !important;
+        max-width: 128px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="summer-forage"] {
+        width: 118px !important;
+        max-width: 118px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
+        width: 156px !important;
+        max-width: 156px !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] .map-bundle-name {
+        font-size: 9.4px !important;
+        letter-spacing: -0.05em !important;
+      }
+
+      .room[data-room-id="crafts"] .map-bundle-grid,
+      .room[data-room-id="crafts"] .map-tree-lines {
+        inset: 0 !important;
+      }
+
+      .bundle-detail-card {
+        padding: 11px 12px 11px 20px !important;
+        border-radius: 12px !important;
+      }
+
+      .bundle-detail-head {
+        gap: 7px !important;
+        margin-bottom: 7px !important;
+      }
+
+      .bundle-detail-title {
+        font-size: 16.5px !important;
+        line-height: 1.08 !important;
+      }
+
+      .bundle-detail-sub {
+        margin-top: 3px !important;
+        font-size: 11.2px !important;
+        line-height: 1.22 !important;
+      }
+
+      .bundle-detail-rule {
+        padding: 4px 10px !important;
+        font-size: 12px !important;
+      }
+
+      .detail-items {
+        gap: 6px 8px !important;
+      }
+
+      .detail-item {
+        grid-template-columns: 30px minmax(0, 1fr) !important;
+        gap: 6px !important;
+        min-height: 40px !important;
+        border-radius: 8px !important;
+        padding: 4px 26px 4px 7px !important;
+      }
+
+      .detail-item .icon-wrap,
+      .detail-item .icon,
+      .detail-item .fallback-icon {
+        width: 26px !important;
+        height: 26px !important;
+      }
+
+      .detail-item .quality {
+        width: 10px !important;
+        height: 10px !important;
+      }
+
+      .detail-item-name {
+        font-size: 13px !important;
+        line-height: 1.06 !important;
+      }
+
+      .detail-item-count {
+        font-size: 10px !important;
+      }
+
+      .detail-item.checked::after {
+        right: 9px !important;
+        font-size: 17px !important;
+      }
+    }
+
 </style>
 </head>
 <body>
@@ -4740,7 +4926,18 @@
     const mobileLayoutConfig = {
       // 手机端统一缩放：让各房间的选项框视觉尺寸尽量跟工艺室保持一致。
       // 极窄屏幕放不下时才轻微回退，避免节点溢出。
-      crafts: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8 },
+      crafts: {
+        wantedScale: 0.98,
+        minScale: 0.74,
+        minGap: 6,
+        vGap: 7,
+        topOffset: 16,
+        xByRow: {
+          0: { "spring-forage": 0.50 },
+          1: { "winter-forage": 0.17, "exotic-forage": 0.50, construction: 0.83 },
+          2: { "summer-forage": 0.31, "fall-forage": 0.69 }
+        }
+      },
       pantry: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8, topOffset: 0 },
       fish: { wantedScale: 1.02, minScale: 0.78, minGap: 2, vGap: 8 },
       boiler: { wantedScale: 1.02, minScale: 0.82, minGap: 2, vGap: 10 },
@@ -5209,7 +5406,7 @@
               ${roomData.bundles.map((bundleData, bundleIndex) => renderMapBundle(roomData, bundleData, bundleIndex, mapLayout)).join("")}
             </div>
           </div>
-          <figcaption class="visual-caption">${escapeHtml(roomData.name)}房间位置与收集包分支</figcaption>
+          <figcaption class="visual-caption" aria-hidden="true"></figcaption>
         </figure>
         ${renderRoomBundleDetails(roomData)}
       `;
@@ -5720,6 +5917,11 @@
       } else {
         updateRoomLines(roomId, lines, positioned, sceneWidth, sceneHeight);
       }
+    }
+
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
     }
 
     function placeMapCard(card, left, top, scale) {
