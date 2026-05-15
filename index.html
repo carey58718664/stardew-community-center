@@ -285,7 +285,7 @@
 
     .center-map-panel {
       margin-bottom: 10px;
-      padding: 12px;
+      padding: 10px;
     }
 
     .center-map-frame {
@@ -2500,24 +2500,27 @@
     }
 
     .center-map-frame {
-      padding: 8px 10px !important;
-      background: #fbf2da !important;
-      border-color: #e0cc9d !important;
-      border-radius: 14px !important;
+      padding: 6px 8px !important;
+      background: linear-gradient(180deg, #fcf5e4, #f7ecd3) !important;
+      border-color: #dfcb9c !important;
+      border-radius: 16px !important;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.44);
     }
 
     .center-map-stage-ref {
       position: relative;
       width: 100%;
-      min-height: 286px;
-      aspect-ratio: 1100 / 660;
+      min-height: 304px;
+      aspect-ratio: 1100 / 675;
       overflow: hidden;
-      border: 2px solid #e2ce9f;
-      border-radius: 16px;
+      border: 1px solid #dec48f;
+      border-radius: 18px;
       background:
-        linear-gradient(90deg, rgba(228, 186, 76, 0.14) 0 2.8%, transparent 2.8% 97.2%, rgba(228, 186, 76, 0.14) 97.2% 100%),
-        linear-gradient(180deg, rgba(228, 186, 76, 0.14) 0 5.5%, transparent 5.5% 94.5%, rgba(228, 186, 76, 0.14) 94.5% 100%),
-        #ebd39a;
+        linear-gradient(180deg, rgba(255, 255, 255, 0.18), rgba(255, 255, 255, 0.04)),
+        linear-gradient(90deg, rgba(216, 171, 69, 0.10) 0 3%, transparent 3% 97%, rgba(216, 171, 69, 0.10) 97% 100%),
+        linear-gradient(180deg, rgba(216, 171, 69, 0.10) 0 5.5%, transparent 5.5% 94.5%, rgba(216, 171, 69, 0.10) 94.5% 100%),
+        #ecd7a6;
+      box-shadow: inset 0 0 0 1px rgba(255, 249, 236, 0.42);
       isolation: isolate;
     }
 
@@ -2525,7 +2528,9 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(214, 170, 70, 0.05));
+      background:
+        radial-gradient(circle at top, rgba(255, 255, 255, 0.16), transparent 34%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(214, 170, 70, 0.03));
       pointer-events: none;
       z-index: 0;
     }
@@ -2623,11 +2628,12 @@
 
     @media (max-width: 700px) {
       .center-map-frame {
-        padding: 7px 8px !important;
+        padding: 6px 7px !important;
       }
 
       .center-map-stage-ref {
-        border-radius: 14px;
+        min-height: 296px;
+        border-radius: 16px;
       }
 
       .center-map-stage-ref .center-map-image.center-map-image-ref,
@@ -2700,19 +2706,20 @@
     .center-map-stage-ref .center-map-overlay-svg .center-route,
     .center-map-stage-ref .center-map-overlay-svg .center-route-arrow {
       fill: none;
-      stroke: #ffffff;
+      stroke: #fff8ed;
       stroke-linecap: butt;
       stroke-linejoin: round;
       vector-effect: non-scaling-stroke;
-      filter: drop-shadow(0 1px 1px rgba(143, 100, 39, 0.28));
+      filter: drop-shadow(0 1px 2px rgba(125, 84, 28, 0.22));
+      opacity: 0.98;
     }
 
     .center-map-stage-ref .center-map-overlay-svg .center-route {
-      stroke-width: 3.1px;
+      stroke-width: 3.5px;
     }
 
     .center-map-stage-ref .center-map-overlay-svg .center-route-arrow {
-      stroke-width: 3.1px;
+      stroke-width: 3.5px;
     }
 
     .center-map-stage-ref .center-map-overlay-svg .center-title-box {
@@ -2739,7 +2746,7 @@
     @media (max-width: 700px) {
       .center-map-stage-ref .center-map-overlay-svg .center-route,
       .center-map-stage-ref .center-map-overlay-svg .center-route-arrow {
-        stroke-width: 2.9px;
+        stroke-width: 3.2px;
       }
 
       .center-map-stage-ref .center-map-overlay-svg .center-title-text {
@@ -2764,16 +2771,19 @@
       width: var(--box-w);
       min-height: 0;
       height: var(--box-h);
-      padding: 0 4px;
-      border-radius: 10px;
-      background: #d18a30;
+      padding: 0 5px;
+      border: 1px solid rgba(255, 246, 225, 0.34);
+      border-bottom-color: rgba(141, 96, 42, 0.34);
+      border-radius: 11px;
+      background: linear-gradient(180deg, #d9a24b 0%, #cc8a30 54%, #bf7a28 100%);
       color: #ffffff;
-      font-size: clamp(12.5px, 2.35vw, 23px);
+      font-size: clamp(12.8px, 2.42vw, 23.5px);
       font-weight: 950;
       line-height: 1;
       letter-spacing: 0;
       white-space: nowrap;
-      box-shadow: 0 2px 0 rgba(155, 101, 35, 0.22);
+      text-shadow: 0 1px 0 rgba(126, 79, 26, 0.34);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.18), 0 3px 8px rgba(128, 86, 31, 0.18);
       pointer-events: none;
     }
 
@@ -2784,13 +2794,13 @@
       z-index: 4;
       min-width: var(--note-w);
       transform: translateX(-50%);
-      color: #989898;
-      font-size: clamp(10px, 2vw, 19px);
-      font-weight: 800;
-      line-height: 1.14;
+      color: #968978;
+      font-size: clamp(10px, 2.04vw, 19px);
+      font-weight: 850;
+      line-height: 1.16;
       white-space: nowrap;
       text-align: center;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.65);
+      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.72);
       pointer-events: none;
     }
 
@@ -2804,13 +2814,13 @@
 
     @media (max-width: 700px) {
       .center-map-stage-ref .center-ref-title-dom {
-        padding: 0 3px;
-        border-radius: 8px;
-        font-size: clamp(10.5px, 2.65vw, 16px);
+        padding: 0 4px;
+        border-radius: 9px;
+        font-size: clamp(10.8px, 2.72vw, 16.4px);
       }
 
       .center-map-stage-ref .center-ref-note-dom {
-        font-size: clamp(8px, 2.15vw, 13px);
+        font-size: clamp(8px, 2.18vw, 13px);
       }
     }
 
