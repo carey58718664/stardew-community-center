@@ -1,3 +1,5 @@
+献祭codex 微瑕 ✓
+
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -4206,6 +4208,85 @@
         border-color: #decca6 !important;
       }
     }
+  
+
+    /* ===== v13：树状图只导航，不勾选；整体选项框压扁；手机端树状图居中 ===== */
+    .map-bundle-node {
+      cursor: pointer;
+    }
+
+    .map-item {
+      pointer-events: none;
+      min-height: 60px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    .map-item input {
+      display: none !important;
+    }
+
+    .map-item.checked::after {
+      content: none !important;
+    }
+
+    .detail-item {
+      min-height: 54px;
+      padding-top: 6px;
+      padding-bottom: 6px;
+    }
+
+    .item {
+      min-height: 40px;
+      padding-top: 4px;
+      padding-bottom: 4px;
+    }
+
+    @media (max-width: 520px) {
+      .room-scene {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .map-bundle-grid,
+      .map-tree-lines {
+        align-self: center;
+      }
+
+      .map-bundle-node,
+      .room[data-room-id] .map-bundle-node {
+        padding-top: 5px !important;
+        padding-bottom: 4px !important;
+      }
+
+      .map-item,
+      .room[data-room-id] .map-item,
+      .room[data-room-id="crafts"] .map-item,
+      .room[data-room-id="pantry"] .map-item {
+        min-height: 0 !important;
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+      }
+
+      .detail-item {
+        min-height: 46px !important;
+        padding-top: 5px !important;
+        padding-bottom: 5px !important;
+      }
+
+      .detail-item .icon-wrap,
+      .detail-item .icon,
+      .detail-item .fallback-icon {
+        width: 28px !important;
+        height: 28px !important;
+      }
+
+      .detail-item-name {
+        line-height: 1.05 !important;
+      }
+    }
+
   </style>
 </head>
 <body>
@@ -4417,10 +4498,11 @@
         wantedScale: 1.02,
         minScale: 0.82,
         minGap: 2,
-        vGap: 10,
+        vGap: 8,
+        heightRatio: 0.58,
         xByRow: {
           0: { blacksmith: 0.5 },
-          1: { geologist: 0.34, adventurer: 0.66 }
+          1: { geologist: 0.32, adventurer: 0.68 }
         }
       },
       board: {
@@ -4814,8 +4896,14 @@
         if (result) focusItem(result.dataset.jumpId);
 
         const mapBundle = event.target.closest(".map-bundle-node[data-bundle-id]");
-        if (mapBundle && !event.target.closest(".map-item")) {
-          activateBundleDetail(mapBundle.closest(".room"), mapBundle.dataset.bundleId);
+        if (mapBundle) {
+          const roomNode = mapBundle.closest(".room");
+          const bundleId = mapBundle.dataset.bundleId;
+          activateBundleDetail(roomNode, bundleId);
+          const detailId = roomNode?.dataset.roomId === "vault" ? "vault-summary" : bundleId;
+          const detailNode = roomNode?.querySelector(`[data-detail-bundle-id="${detailId}"]`);
+          detailNode?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          return;
         }
 
         if (event.target.closest("#jumpSearch")) jumpToFirstSearchResult();
@@ -5047,12 +5135,12 @@
       const checked = isChecked(entry.uid);
       const title = describeItem(entry);
       return `
-        <label class="map-item ${checked ? "checked" : ""}" data-item-card="${entry.uid}" title="${escapeAttribute(title)}">
-          <input type="checkbox" data-item-id="${entry.uid}" ${checked ? "checked" : ""} aria-label="${escapeAttribute(title)}" />
+        <div class="map-item" data-item-card="${entry.uid}" title="${escapeAttribute(title)}">
+          <input type="checkbox" data-item-id="${entry.uid}" ${checked ? "checked" : ""} aria-label="${escapeAttribute(title)}" disabled hidden />
           ${renderIcon(entry)}
           <span class="map-item-name">${escapeHtml(entry.displayName || entry.name)}</span>
           ${entry.count > 1 && !entry.displayName ? `<span class="map-item-count">×${entry.count}</span>` : ""}
-        </label>
+        </div>
       `;
     }
 
@@ -5423,9 +5511,13 @@
         contentHeight + minGap * 2,
         config.sceneHeight ?? sceneWidth * (config.heightRatio ?? 0.68)
       ));
-      const topBase = config.topOffset ?? Math.max(minGap, (sceneHeight - contentHeight) / 2);
+      const topBase = typeof config.topOffset === "number"
+        ? config.topOffset
+        : Math.max(minGap, (sceneHeight - contentHeight) / 2);
       sceneHeight = Math.ceil(Math.max(sceneHeight, topBase + contentHeight + minGap));
-      let top = topBase;
+      let top = typeof config.topOffset === "number"
+        ? config.topOffset
+        : Math.max(minGap, (sceneHeight - contentHeight) / 2);
       const positioned = {};
 
       visibleRows.forEach((row, rowIndex) => {
