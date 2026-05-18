@@ -1,5 +1,3 @@
-献祭codex 微瑕 ✓
-
 <!doctype html>
 <html lang="zh-CN">
 <head>
@@ -4150,10 +4148,12 @@
 
       .clear-button {
         font-size: 27px !important;
+        font-weight: 400 !important;
       }
 
       .search-button {
-        font-size: 25px !important;
+        font-size: 27px !important;
+        font-weight: 400 !important;
       }
 
       .progress-panel {
@@ -4172,15 +4172,25 @@
       }
 
       .center-map-stage-ref .center-ref-note-dom {
-        top: calc(var(--note-y) - 1px) !important;
+        top: calc(var(--note-y) - 3px) !important;
         font-weight: 750 !important;
         line-height: 1 !important;
+      }
+
+      .center-map-stage-ref .center-map-overlay-svg .center-route,
+      .center-map-stage-ref .center-map-overlay-svg .center-route-arrow {
+        stroke-width: 2.4px !important;
       }
 
       .room-title-link {
         border-color: rgba(138, 90, 53, 0.22) !important;
         background: linear-gradient(180deg, rgba(246, 229, 190, 0.98), rgba(232, 207, 156, 0.98)) !important;
         box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.52), 0 2px 7px rgba(95, 58, 34, 0.12) !important;
+      }
+
+      .room-title-link .room-title-text {
+        color: inherit;
+        text-shadow: none;
       }
 
       .room[data-room-id="crafts"] .map-bundle-node[data-bundle-id="exotic-forage"] {
@@ -4206,87 +4216,11 @@
       .detail-item {
         border-width: 2px !important;
         border-color: #decca6 !important;
+        min-height: 35px !important;
+        padding-top: 3px !important;
+        padding-bottom: 3px !important;
       }
     }
-  
-
-    /* ===== v13：树状图只导航，不勾选；整体选项框压扁；手机端树状图居中 ===== */
-    .map-bundle-node {
-      cursor: pointer;
-    }
-
-    .map-item {
-      pointer-events: none;
-      min-height: 60px;
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
-
-    .map-item input {
-      display: none !important;
-    }
-
-    .map-item.checked::after {
-      content: none !important;
-    }
-
-    .detail-item {
-      min-height: 54px;
-      padding-top: 6px;
-      padding-bottom: 6px;
-    }
-
-    .item {
-      min-height: 40px;
-      padding-top: 4px;
-      padding-bottom: 4px;
-    }
-
-    @media (max-width: 520px) {
-      .room-scene {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .map-bundle-grid,
-      .map-tree-lines {
-        align-self: center;
-      }
-
-      .map-bundle-node,
-      .room[data-room-id] .map-bundle-node {
-        padding-top: 5px !important;
-        padding-bottom: 4px !important;
-      }
-
-      .map-item,
-      .room[data-room-id] .map-item,
-      .room[data-room-id="crafts"] .map-item,
-      .room[data-room-id="pantry"] .map-item {
-        min-height: 0 !important;
-        padding-top: 0 !important;
-        padding-bottom: 0 !important;
-      }
-
-      .detail-item {
-        min-height: 46px !important;
-        padding-top: 5px !important;
-        padding-bottom: 5px !important;
-      }
-
-      .detail-item .icon-wrap,
-      .detail-item .icon,
-      .detail-item .fallback-icon {
-        width: 28px !important;
-        height: 28px !important;
-      }
-
-      .detail-item-name {
-        line-height: 1.05 !important;
-      }
-    }
-
   </style>
 </head>
 <body>
@@ -4350,54 +4284,54 @@
         id: "pantry",
         name: "茶水间",
         note: "开放温室",
-        boxX: 9.0, boxY: 7.5, boxW: 13.0, boxH: 7.2,
-        noteX: 15.5, noteY: 16.2,
-        path: "26.1,35.0 26.1,11.1 22.0,11.1",
+        boxX: 7.7, boxY: 5.4, boxW: 13.0, boxH: 7.2,
+        noteX: 14.2, noteY: 13.8,
+        path: "26.1,35.0 26.1,8.2 20.7,8.2",
         arrow: ""
       },
       {
         id: "fish",
         name: "鱼缸",
         note: "移除矿井入口的巨石",
-        boxX: 38.0, boxY: 7.8, boxW: 10.2, boxH: 7.2,
-        noteX: 43.1, noteY: 16.6,
-        path: "61.6,35.8 61.6,11.4 38.0,11.4",
+        boxX: 38.0, boxY: 5.5, boxW: 10.2, boxH: 7.2,
+        noteX: 43.1, noteY: 14.0,
+        path: "61.6,35.8 61.6,8.2 38.0,8.2",
         arrow: ""
       },
       {
         id: "vault",
         name: "金库",
         note: "修复巴士站，去沙漠",
-        boxX: 67.8, boxY: 6.9, boxW: 11.8, boxH: 7.0,
-        noteX: 73.7, noteY: 15.9,
-        path: "73.7,24.8 73.7,13.9",
+        boxX: 68.6, boxY: 4.8, boxW: 11.8, boxH: 7.0,
+        noteX: 74.5, noteY: 13.3,
+        path: "74.5,24.8 74.5,10.1",
         arrow: ""
       },
       {
         id: "crafts",
         name: "工艺室",
         note: "维修矿井东边的桥",
-        boxX: 22.6, boxY: 80.6, boxW: 14.4, boxH: 7.3,
-        noteX: 29.8, noteY: 89.9,
-        path: "18.2,70.7 18.2,84.25 22.6,84.25",
+        boxX: 21.2, boxY: 84.0, boxW: 14.4, boxH: 7.3,
+        noteX: 28.4, noteY: 92.8,
+        path: "18.2,70.7 18.2,86.8 21.2,86.8",
         arrow: ""
       },
       {
         id: "board",
         name: "布告栏",
         note: "增加友谊",
-        boxX: 62.0, boxY: 64.4, boxW: 14.4, boxH: 7.3,
-        noteX: 69.2, noteY: 73.6,
-        path: "69.2,45.0 69.2,64.4",
+        boxX: 60.3, boxY: 70.0, boxW: 14.4, boxH: 7.3,
+        noteX: 67.5, noteY: 78.7,
+        path: "67.5,45.0 67.5,70.0",
         arrow: ""
       },
       {
         id: "boiler",
         name: "锅炉房",
         note: "修复矿车",
-        boxX: 83.5, boxY: 64.4, boxW: 14.4, boxH: 7.3,
-        noteX: 90.7, noteY: 73.6,
-        path: "90.7,54.4 90.7,64.4",
+        boxX: 84.0, boxY: 70.0, boxW: 14.4, boxH: 7.3,
+        noteX: 91.2, noteY: 78.7,
+        path: "91.2,54.4 91.2,70.0",
         arrow: ""
       }
     ];
@@ -4450,7 +4384,6 @@
       },
       board: {
         core: { x: 50, y: 51 },
-        linkFrom: "dye",
         points: {
           dye: { x: 50, y: 18 },
           chef: { x: 22, y: 45 },
@@ -4498,11 +4431,10 @@
         wantedScale: 1.02,
         minScale: 0.82,
         minGap: 2,
-        vGap: 8,
-        heightRatio: 0.58,
+        vGap: 10,
         xByRow: {
           0: { blacksmith: 0.5 },
-          1: { geologist: 0.32, adventurer: 0.68 }
+          1: { geologist: 0.34, adventurer: 0.66 }
         }
       },
       board: {
@@ -4521,6 +4453,8 @@
         minScale: 0.82,
         minGap: 2,
         vGap: 10,
+        heightRatio: 0.6,
+        topOffset: 62,
         xByRow: {
           0: { "missing-bundle": 0.5 }
         }
@@ -4529,10 +4463,11 @@
         wantedScale: 1.02,
         minScale: 0.82,
         minGap: 2,
-        vGap: 10,
+        vGap: 3,
+        heightRatio: 0.52,
         xByRow: {
-          0: { "vault-2500": 0.34, "vault-5000": 0.66 },
-          1: { "vault-10000": 0.34, "vault-25000": 0.66 }
+          0: { "vault-2500": 0.32, "vault-5000": 0.68 },
+          1: { "vault-10000": 0.32, "vault-25000": 0.68 }
         }
       }
     };
@@ -4897,12 +4832,8 @@
 
         const mapBundle = event.target.closest(".map-bundle-node[data-bundle-id]");
         if (mapBundle) {
-          const roomNode = mapBundle.closest(".room");
-          const bundleId = mapBundle.dataset.bundleId;
-          activateBundleDetail(roomNode, bundleId);
-          const detailId = roomNode?.dataset.roomId === "vault" ? "vault-summary" : bundleId;
-          const detailNode = roomNode?.querySelector(`[data-detail-bundle-id="${detailId}"]`);
-          detailNode?.scrollIntoView({ behavior: "smooth", block: "nearest" });
+          const detail = activateBundleDetail(mapBundle.closest(".room"), mapBundle.dataset.bundleId);
+          detail?.scrollIntoView({ behavior: "smooth", block: "start" });
           return;
         }
 
@@ -5084,14 +5015,18 @@
     }
 
     function activateBundleDetail(roomNode, bundleId) {
-      if (!roomNode) return;
+      if (!roomNode) return null;
       const targetId = roomNode.dataset.roomId === "vault" ? "vault-summary" : bundleId;
+      let activeDetail = null;
       roomNode.querySelectorAll("[data-detail-bundle-id]").forEach((node) => {
-        node.classList.toggle("active", node.dataset.detailBundleId === targetId);
+        const active = node.dataset.detailBundleId === targetId;
+        node.classList.toggle("active", active);
+        if (active) activeDetail = node;
       });
       roomNode.querySelectorAll(".map-bundle-node[data-bundle-id]").forEach((node) => {
         node.classList.toggle("active", node.dataset.bundleId === bundleId);
       });
+      return activeDetail;
     }
 
     function cleanRewardText(value) {
@@ -5135,12 +5070,11 @@
       const checked = isChecked(entry.uid);
       const title = describeItem(entry);
       return `
-        <div class="map-item" data-item-card="${entry.uid}" title="${escapeAttribute(title)}">
-          <input type="checkbox" data-item-id="${entry.uid}" ${checked ? "checked" : ""} aria-label="${escapeAttribute(title)}" disabled hidden />
+        <span class="map-item ${checked ? "checked" : ""}" data-item-card="${entry.uid}" title="${escapeAttribute(title)}" aria-label="${escapeAttribute(title)}">
           ${renderIcon(entry)}
           <span class="map-item-name">${escapeHtml(entry.displayName || entry.name)}</span>
           ${entry.count > 1 && !entry.displayName ? `<span class="map-item-count">×${entry.count}</span>` : ""}
-        </div>
+        </span>
       `;
     }
 
@@ -5250,7 +5184,7 @@
 
     function applyVisibility() {
       document.querySelectorAll("[data-bundle-id]").forEach((node) => {
-        const hasMissing = Boolean(node.querySelector("[data-item-id]:not(:checked)"));
+        const hasMissing = hasMissingInBundleNode(node);
         node.hidden = state.showMissingOnly && !hasMissing;
       });
 
@@ -5267,6 +5201,17 @@
       document.querySelectorAll(".map-tree-lines line").forEach((line) => {
         line.style.display = state.showMissingOnly ? "none" : "";
       });
+    }
+
+    function hasMissingInBundleNode(node) {
+      const checkbox = node.querySelector("[data-item-id]");
+      if (checkbox) return Boolean(node.querySelector("[data-item-id]:not(:checked)"));
+
+      const roomNode = node.closest("[data-room-id]");
+      const roomData = rooms.find((entry) => entry.id === roomNode?.dataset.roomId);
+      const bundleData = roomData?.bundles.find((entry) => entry.id === node.dataset.bundleId);
+      if (!bundleData) return false;
+      return bundleData.items.some((entry) => !isChecked(entry.uid));
     }
 
     function markHighlights() {
@@ -5511,13 +5456,9 @@
         contentHeight + minGap * 2,
         config.sceneHeight ?? sceneWidth * (config.heightRatio ?? 0.68)
       ));
-      const topBase = typeof config.topOffset === "number"
-        ? config.topOffset
-        : Math.max(minGap, (sceneHeight - contentHeight) / 2);
+      const topBase = config.topOffset ?? Math.max(minGap, (sceneHeight - contentHeight) / 2);
       sceneHeight = Math.ceil(Math.max(sceneHeight, topBase + contentHeight + minGap));
-      let top = typeof config.topOffset === "number"
-        ? config.topOffset
-        : Math.max(minGap, (sceneHeight - contentHeight) / 2);
+      let top = topBase;
       const positioned = {};
 
       visibleRows.forEach((row, rowIndex) => {
@@ -5681,6 +5622,10 @@
 
     function normalize(value) {
       return String(value || "").toLowerCase().replace(/\s+/g, "");
+    }
+
+    function clamp(value, min, max) {
+      return Math.min(Math.max(value, min), max);
     }
 
     function loadCheckedItems() {
