@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>🌾 星露谷物语 · 游玩助手</title>
+  <title>🌾 星露谷 · 牧场决策助手</title>
   <!-- v8: 统一手机端选项框视觉宽度，并压缩房间背景边框留出空间 -->
   <style>
 :root {
@@ -4483,6 +4483,7 @@
 }
 
 .goal-card {
+  position: relative;
   border: 1.5px solid #e2d0aa;
   border-radius: 10px;
   background: #fffdf6;
@@ -4537,27 +4538,86 @@
 .goal-how.self    { background: var(--green-soft); color: var(--green); }
 
 .goal-progress {
-  flex: 0 0 58px;
-  display: grid;
-  justify-items: center;
-  text-align: center;
+  position: relative;
+  flex: 0 0 auto;
 }
 .goal-frac {
   display: grid;
   place-items: center;
-  width: 56px;
-  min-height: 22px;
-  padding: 0 6px;
-  box-sizing: border-box;
-  font-size: 12px;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 2px solid var(--gold);
+  background: #fff8e8;
+  color: #9c620e;
   font-weight: 900;
   line-height: 1;
-  color: var(--gold);
   white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), 0 2px 5px rgba(156, 98, 14, 0.12);
 }
-.goal-card.complete .goal-frac { color: var(--green); }
-.goal-bar { width: 56px; height: 5px; background: #eadfc9; border-radius: 999px; overflow: hidden; margin-top: 4px; }
-.goal-bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--green)); transition: width 0.3s ease; }
+.goal-frac-num { font-size: 15px; }
+.goal-frac-sep { margin: 0 1px; opacity: 0.5; font-weight: 700; font-size: 11px; }
+.goal-frac-tot { font-size: 11px; opacity: 0.85; }
+.goal-card.complete .goal-frac { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+
+.goal-stamp {
+  position: absolute;
+  top: -6px;
+  right: -8px;
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 900;
+  line-height: 1;
+  box-shadow: 0 2px 6px rgba(45, 138, 95, 0.4);
+  transform: rotate(-12deg);
+  pointer-events: none;
+}
+
+.goal-progress-bar {
+  width: 100%;
+  height: 3px;
+  background: #eadfc9;
+  overflow: hidden;
+}
+.goal-progress-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--green));
+  transition: width 0.3s ease;
+}
+
+.goal-how-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 2px 0 8px;
+  font-size: 11px;
+  color: var(--muted);
+}
+.goal-how-row::before {
+  content: "获取方式";
+  font-weight: 700;
+}
+
+.goal-card::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: 3px;
+  height: 36%;
+  border-radius: 2px 0 0 2px;
+  background: linear-gradient(180deg, transparent, rgba(184, 69, 50, 0.22), transparent);
+  transform: translateY(-50%);
+  pointer-events: none;
+  opacity: 0.65;
+}
+.goal-card.complete::after { opacity: 0; }
 
 .goal-body { padding: 4px 12px 12px; }
 .goal-note { font-size: 12px; color: var(--gold); font-weight: 800; margin-bottom: 6px; }
@@ -4587,10 +4647,19 @@
   font-size: 12px; color: #fff; font-weight: 900;
 }
 .goal-step.done .goal-step-check { background: var(--green); border-color: var(--green); }
-.goal-step-text { font-size: 13px; font-weight: 700; }
+.goal-step-text { font-size: 14px; font-weight: 700; }
 .goal-step.done .goal-step-text { color: var(--muted); text-decoration: line-through; }
-.goal-step-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
-.goal-step-have { font-size: 11px; font-weight: 800; color: var(--green); margin-top: 2px; }
+.goal-step-sub { font-size: 10.5px; color: var(--muted); margin-top: 2px; }
+.goal-step-have {
+  display: inline-block;
+  margin-top: 3px;
+  padding: 1px 7px;
+  border-radius: 4px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 10.5px;
+  font-weight: 800;
+}
 .goal-remove {
   margin-top: 8px;
   width: 100%;
@@ -5716,6 +5785,17 @@ body.modal-open #app-shell { pointer-events: none; }
   font-weight: 950;
 }
 
+#app-shell .goal-frac {
+  border-radius: 50%;
+  background: #fff8e8;
+  color: #9c620e;
+  font-weight: 900;
+}
+#app-shell .goal-card.complete .goal-frac {
+  background: var(--green-soft);
+  color: var(--green);
+}
+
 #app-shell .goal-card.complete,
 #app-shell .quest-card.added,
 #app-shell .goal-tile-wrap.has,
@@ -5960,12 +6040,12 @@ body.modal-open #app-shell { pointer-events: none; }
   }
 
   #app-shell .goal-progress {
-    flex-basis: 54px;
+    flex-basis: auto;
   }
 
-  #app-shell .goal-frac,
-  #app-shell .goal-bar {
-    width: 52px;
+  #app-shell .goal-frac {
+    width: 46px;
+    height: 46px;
   }
 
   #app-shell .goal-body {
@@ -6125,44 +6205,31 @@ body.modal-open #app-shell { pointer-events: none; }
 }
 
 #app-shell #goalsPanel .goal-progress {
+  position: relative;
   flex: 0 0 auto;
-  min-width: 56px;
-  justify-items: end;
 }
 
 #app-shell #goalsPanel .goal-frac {
-  width: auto;
-  min-width: 46px;
-  min-height: 23px;
-  border: 2px solid #2d8a5f;
-  border-radius: 999px;
-  background: #e1ecd2;
-  color: #1f7549;
-  padding: 0 8px;
-  font-size: 12.8px;
+  width: 44px;
+  height: 44px;
+  min-width: 0;
+  min-height: 0;
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  background: #fff8e8;
+  color: #9c620e;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 900;
   line-height: 1;
+  white-space: nowrap;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65), 0 2px 5px rgba(156, 98, 14, 0.12);
 }
 
 #app-shell #goalsPanel .goal-card.complete .goal-frac {
-  border-color: #86ad6d;
-  background: #d7e8c6;
-  color: #17643c;
-}
-
-#app-shell #goalsPanel .goal-bar {
-  display: block;
-  width: 46px;
-  height: 7px;
-  margin-top: 4px;
-  border-radius: 999px;
-  background: #eadfc9;
-  overflow: hidden;
-}
-
-#app-shell #goalsPanel .goal-bar-fill {
-  height: 100%;
-  border-radius: inherit;
-  background: linear-gradient(90deg, var(--gold), var(--green));
+  border-color: var(--green);
+  background: var(--green-soft);
+  color: var(--green);
 }
 
 #app-shell #goalsPanel .goal-body {
@@ -6192,16 +6259,28 @@ body.modal-open #app-shell { pointer-events: none; }
 
 #app-shell #goalsPanel .goal-step-text {
   color: var(--ink);
-  font-size: 12.8px;
-  line-height: 1.2;
-  font-weight: 900;
+  font-size: 13.5px;
+  line-height: 1.25;
+  font-weight: 800;
 }
 
-#app-shell #goalsPanel .goal-step-sub,
+#app-shell #goalsPanel .goal-step-sub {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 10.5px;
+  line-height: 1.3;
+}
+
 #app-shell #goalsPanel .goal-step-have {
-  margin-top: 1px;
-  font-size: 10.8px;
-  line-height: 1.24;
+  display: inline-block;
+  margin-top: 3px;
+  padding: 1px 8px;
+  border-radius: 4px;
+  background: var(--green-soft);
+  color: var(--green);
+  font-size: 10.5px;
+  font-weight: 800;
+  line-height: 1.3;
 }
 
 #app-shell #openInventoryBtn,
@@ -6238,855 +6317,7 @@ body.modal-open #app-shell { pointer-events: none; }
   line-height: 1.1;
 }
 
-  
-/* ===================== v12 明显美化版：木框 + 纸卡 + 浮签标题 ===================== */
-:root {
-  --sv-bg-deep: #ead7ad;
-  --sv-bg-paper: #fff7e6;
-  --sv-paper: #fffaf0;
-  --sv-paper-warm: #f7e8c7;
-  --sv-paper-soft: #fffdf7;
-  --sv-wood: #7a4c2c;
-  --sv-wood-dark: #4d2f1c;
-  --sv-wood-mid: #9a6338;
-  --sv-ink: #2d2118;
-  --sv-muted: #75624c;
-  --sv-line: #d7bb82;
-  --sv-line-soft: #ead9b9;
-  --sv-gold: #d99a26;
-  --sv-green: #2f8654;
-  --sv-blue: #346f9a;
-  --sv-red: #b64a35;
-  --sv-radius: 18px;
-  --sv-radius-sm: 12px;
-  --sv-shadow: 0 18px 38px rgba(76, 47, 25, 0.18);
-  --sv-shadow-soft: 0 8px 18px rgba(76, 47, 25, 0.10);
-}
-
-html {
-  background: var(--sv-bg-deep);
-}
-
-body {
-  background:
-    radial-gradient(circle at 18% 0%, rgba(255, 247, 220, 0.88) 0 20%, transparent 42%),
-    radial-gradient(circle at 86% 12%, rgba(218, 151, 58, 0.13) 0 18%, transparent 38%),
-    repeating-linear-gradient(90deg, rgba(93, 56, 30, 0.035) 0 1px, transparent 1px 22px),
-    linear-gradient(180deg, #f6ead1 0%, #ead7ad 48%, #e5c995 100%) !important;
-  color: var(--sv-ink) !important;
-}
-
-#app-shell {
-  width: min(1120px, calc(100% - 18px)) !important;
-  padding: 14px 0 34px !important;
-}
-
-#app-shell .app-hero {
-  position: relative;
-  overflow: hidden;
-  display: grid !important;
-  grid-template-columns: minmax(0, 1fr) auto !important;
-  align-items: end !important;
-  min-height: 104px;
-  margin: 0 0 12px !important;
-  padding: 18px 20px !important;
-  border: 4px solid var(--sv-wood-dark) !important;
-  border-radius: 20px !important;
-  background:
-    linear-gradient(135deg, rgba(255,255,255,0.12), transparent 35%),
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 18px),
-    linear-gradient(180deg, #a56b3a 0%, #754827 52%, #5c361f 100%) !important;
-  box-shadow: var(--sv-shadow), inset 0 0 0 2px rgba(255, 238, 197, 0.25) !important;
-  isolation: isolate;
-}
-
-#app-shell .app-hero::before {
-  content: "";
-  position: absolute;
-  inset: 8px;
-  z-index: -1;
-  border: 1px solid rgba(255, 238, 197, 0.35);
-  border-radius: 14px;
-  box-shadow: inset 0 0 18px rgba(255, 245, 217, 0.14);
-}
-
-#app-shell .app-hero::after {
-  content: "今日计划 · 背包联动 · 献祭定位";
-  position: absolute;
-  right: 18px;
-  top: 12px;
-  z-index: 1;
-  padding: 4px 9px;
-  border: 1px solid rgba(255, 225, 162, 0.42);
-  border-radius: 999px;
-  background: rgba(60, 35, 18, 0.24);
-  color: #ffe7a9;
-  font-size: 11px;
-  font-weight: 900;
-  line-height: 1;
-}
-
-#app-shell .app-hero p.kicker {
-  display: inline-flex !important;
-  width: fit-content;
-  margin: 0 0 7px !important;
-  padding: 4px 9px;
-  border-radius: 999px;
-  background: rgba(255, 224, 162, 0.16);
-  color: #ffe7a9 !important;
-  font-size: 11px !important;
-  font-weight: 950 !important;
-  letter-spacing: 0.6px;
-}
-
-#app-shell .app-hero h1 {
-  margin: 0 !important;
-  color: #fff8e8 !important;
-  font-size: clamp(27px, 5vw, 42px) !important;
-  line-height: 1.05 !important;
-  text-shadow: 0 2px 0 rgba(55, 29, 12, 0.32);
-}
-
-#app-shell .app-hero-actions {
-  position: relative;
-  z-index: 2;
-  align-self: end;
-  display: flex;
-  gap: 8px;
-}
-
-#app-shell .app-hero-actions button {
-  min-height: 42px !important;
-  padding: 0 16px !important;
-  border: 2px solid rgba(255, 229, 178, 0.62) !important;
-  border-radius: 13px !important;
-  background: linear-gradient(180deg, rgba(255, 247, 224, 0.22), rgba(255, 233, 184, 0.10)) !important;
-  color: #fff8e8 !important;
-  font-size: 14px !important;
-  font-weight: 950 !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.22), 0 6px 12px rgba(38, 22, 12, 0.18) !important;
-}
-
-#app-shell .season-bar {
-  position: relative;
-  display: grid !important;
-  grid-template-columns: repeat(4, minmax(48px, 1fr)) 34px 48px 34px minmax(60px, 0.9fr) !important;
-  align-items: center;
-  gap: 6px !important;
-  margin: 0 0 12px !important;
-  padding: 12px 10px 9px !important;
-  border: 3px solid var(--sv-wood-dark) !important;
-  border-radius: 18px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 252, 244, 0.96), rgba(247, 232, 199, 0.96)),
-    var(--sv-paper) !important;
-  box-shadow: var(--sv-shadow-soft), inset 0 0 0 2px rgba(255,255,255,0.56) !important;
-  overflow: visible !important;
-}
-
-#app-shell .season-bar::before {
-  content: "今日";
-  position: absolute;
-  top: -11px;
-  left: 14px;
-  padding: 3px 10px 4px;
-  border: 2px solid #cfaa6e;
-  border-radius: 999px;
-  background: linear-gradient(180deg, #fff9df, #f1d899);
-  color: #57371f;
-  font-size: 12px;
-  font-weight: 950;
-  line-height: 1;
-  box-shadow: 0 4px 9px rgba(76, 47, 25, 0.12);
-}
-
-#app-shell .season-pill,
-#app-shell .weather-toggle,
-#app-shell .day-step,
-#app-shell .day-input {
-  min-height: 36px !important;
-  border: 2px solid #d6bd8b !important;
-  border-radius: 999px !important;
-  background: linear-gradient(180deg, #fffdf7, #f7ead0) !important;
-  color: #46301f !important;
-  font-weight: 950 !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.75) !important;
-}
-
-#app-shell .season-pill.active,
-#app-shell .weather-toggle.rainy,
-#app-shell .season-pill[data-season].active {
-  border-color: #bf7f2b !important;
-  background: linear-gradient(180deg, #f8ce72, #d98d24) !important;
-  color: #fffaf0 !important;
-  text-shadow: 0 1px 0 rgba(75, 42, 20, 0.28);
-}
-
-#app-shell .app-panel {
-  position: relative;
-  margin-bottom: 14px !important;
-  padding: 16px !important;
-  border: 4px solid var(--sv-wood-dark) !important;
-  border-radius: 20px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 252, 245, 0.98), rgba(247, 231, 199, 0.96)) !important;
-  box-shadow: var(--sv-shadow), inset 0 0 0 2px rgba(255,255,255,0.62) !important;
-  overflow: visible !important;
-}
-
-#app-shell .app-panel::after {
-  content: "";
-  position: absolute;
-  inset: 9px;
-  z-index: 0;
-  border: 1px solid rgba(130, 88, 45, 0.18);
-  border-radius: 14px;
-  pointer-events: none;
-}
-
-#app-shell .app-panel > * {
-  position: relative;
-  z-index: 1;
-}
-
-#app-shell .app-panel-title,
-#app-shell #seasonPanel .app-panel-title,
-#app-shell #inventoryHubPanel > .app-panel-title,
-#app-shell #goalsPanel > .app-panel-title,
-#app-shell #lookupPanel > .app-panel-title {
-  display: inline-flex !important;
-  align-items: center !important;
-  width: auto !important;
-  margin: -2px 0 16px 2px !important;
-  padding: 7px 13px !important;
-  border: 2px solid #d8b36d !important;
-  border-radius: 14px !important;
-  background:
-    linear-gradient(180deg, #fff6cf 0%, #e8be62 100%) !important;
-  color: #4c301d !important;
-  font-size: 16px !important;
-  font-weight: 950 !important;
-  line-height: 1.1 !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.82), 0 5px 12px rgba(76,47,25,0.16) !important;
-}
-
-#app-shell .app-panel-title .subtle,
-#app-shell #seasonPanel .app-panel-title .subtle,
-#app-shell #goalsPanel > .app-panel-title .subtle,
-#app-shell #lookupPanel > .app-panel-title .subtle {
-  display: inline !important;
-  margin-left: 6px;
-  color: #795432 !important;
-  font-size: 12px !important;
-  font-weight: 850 !important;
-}
-
-#app-shell .app-panel > :not(.app-panel-title) {
-  margin-left: 0 !important;
-  margin-right: 0 !important;
-}
-
-#app-shell #seasonPanel {
-  min-height: 0 !important;
-  padding: 16px !important;
-  isolation: isolate;
-}
-
-#app-shell #seasonPanel::before {
-  inset: 12px !important;
-  border: 2px solid #d0ad75 !important;
-  border-radius: 15px !important;
-  background-image:
-    linear-gradient(180deg, rgba(255, 250, 240, 0.23), rgba(244, 226, 190, 0.34)),
-    var(--season-bg) !important;
-  background-size: cover !important;
-  background-position: center 42% !important;
-  opacity: 0.86 !important;
-  filter: saturate(1.16) contrast(1.04) brightness(1.01) !important;
-  box-shadow: inset 0 0 0 2px rgba(255, 251, 238, 0.55), 0 7px 16px rgba(76,47,25,0.10) !important;
-}
-
-#app-shell #seasonPanel::after {
-  inset: 12px !important;
-  border-radius: 15px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 249, 235, 0.08), rgba(87, 49, 22, 0.06)) !important;
-  border: 1px solid rgba(93, 56, 30, 0.18) !important;
-  box-shadow: inset 0 0 20px rgba(255, 249, 235, 0.38) !important;
-}
-
-#app-shell #seasonPanel .quest-grid {
-  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-  gap: 10px !important;
-  min-height: 0 !important;
-  padding: 0 !important;
-  align-content: start !important;
-}
-
-#app-shell .quest-card {
-  min-height: 94px !important;
-  padding: 10px 10px 9px 14px !important;
-  border: 2px solid rgba(214, 187, 130, 0.92) !important;
-  border-radius: 15px !important;
-  background:
-    linear-gradient(180deg, rgba(255,253,248,0.96), rgba(255,247,231,0.92)) !important;
-  box-shadow: inset 6px 0 0 var(--quest-accent, var(--sv-gold)), 0 8px 16px rgba(76,47,25,0.12) !important;
-  backdrop-filter: blur(1.5px);
-}
-
-#app-shell .quest-card.added {
-  background: linear-gradient(180deg, rgba(244,255,239,0.96), rgba(228,246,220,0.94)) !important;
-}
-
-#app-shell .quest-title {
-  color: #2d2118 !important;
-  font-size: 13.5px !important;
-  line-height: 1.18 !important;
-  font-weight: 950 !important;
-}
-
-#app-shell .quest-day {
-  padding: 2px 6px;
-  border-radius: 999px;
-  background: rgba(247, 231, 199, 0.9);
-  color: #745131 !important;
-  font-size: 10.5px !important;
-}
-
-#app-shell .quest-reason {
-  min-height: 34px !important;
-  color: var(--sv-muted) !important;
-  font-size: 11.8px !important;
-  line-height: 1.28 !important;
-}
-
-#app-shell .quest-add-btn {
-  width: 29px !important;
-  height: 29px !important;
-  border: 2px solid #c18438 !important;
-  border-radius: 10px !important;
-  background: linear-gradient(180deg, #ffd486, #e7a63b) !important;
-  color: #55351e !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), 0 4px 8px rgba(76,47,25,0.14) !important;
-}
-
-#app-shell #inventoryHubPanel {
-  padding-bottom: 17px !important;
-  background:
-    linear-gradient(180deg, rgba(255, 251, 240, 0.98), rgba(244, 225, 188, 0.96)) !important;
-}
-
-#app-shell #inventoryHubPanel > .app-panel-title::after {
-  content: "背包录入 + 建议";
-  margin-left: 9px;
-  padding: 2px 7px;
-  border-radius: 999px;
-  background: rgba(103, 66, 38, 0.12);
-  color: #795432;
-  font-size: 11px;
-  font-weight: 950;
-}
-
-#app-shell .inventory-hub-grid {
-  display: grid !important;
-  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr) !important;
-  gap: 12px !important;
-}
-
-#app-shell .inventory-subpanel {
-  border: 2px solid #d9bf8d !important;
-  border-radius: 16px !important;
-  background:
-    linear-gradient(180deg, #fffdf7, #fff3dc) !important;
-  padding: 12px !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.68), var(--sv-shadow-soft) !important;
-}
-
-#app-shell .inventory-subtitle {
-  display: flex !important;
-  align-items: center !important;
-  justify-content: space-between !important;
-  gap: 8px !important;
-  margin: 0 0 11px !important;
-  padding: 0 0 9px !important;
-  border-bottom: 1px dashed #d9bf8d !important;
-  color: #4f321f !important;
-  font-size: 14.5px !important;
-  font-weight: 950 !important;
-  line-height: 1.16 !important;
-}
-
-#app-shell .inventory-subtitle .subtle {
-  margin-left: auto !important;
-  color: var(--sv-muted) !important;
-  font-size: 11px !important;
-  font-weight: 800 !important;
-  text-align: right;
-  white-space: nowrap;
-}
-
-#app-shell .inventory-summary {
-  grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-  gap: 7px !important;
-  margin-bottom: 10px !important;
-}
-
-#app-shell .inv-chip {
-  display: grid !important;
-  grid-template-columns: 20px minmax(0, 1fr) auto;
-  align-items: center;
-  min-height: 38px !important;
-  gap: 5px !important;
-  padding: 6px 6px !important;
-  border: 1.5px solid #dec89e !important;
-  border-radius: 12px !important;
-  background: linear-gradient(180deg, #fffdf8, #fff7e8) !important;
-  box-shadow: 0 3px 8px rgba(76,47,25,0.06) !important;
-}
-
-#app-shell .inv-chip img,
-#app-shell .inv-chip .fallback-icon {
-  width: 20px !important;
-  height: 20px !important;
-}
-
-#app-shell .inv-chip .inv-name {
-  color: #3a2a1d;
-  font-size: 11px !important;
-  font-weight: 900 !important;
-}
-
-#app-shell .inv-chip .inv-count {
-  color: #aa6612 !important;
-  font-size: 11px !important;
-  font-weight: 950 !important;
-}
-
-#app-shell .inventory-empty,
-#app-shell .inv-empty {
-  display: grid;
-  place-items: center;
-  min-height: 68px;
-  border: 1.5px dashed #d9bf8d;
-  border-radius: 13px;
-  background: rgba(255, 253, 248, 0.68);
-  color: var(--sv-muted);
-  font-size: 12.5px;
-  font-weight: 850;
-  text-align: center;
-  padding: 12px;
-}
-
-#app-shell #openInventoryBtn,
-#app-shell #openAddGoalBtn {
-  min-height: 40px !important;
-  padding: 8px 10px !important;
-  border: 2px dashed #ca9350 !important;
-  border-radius: 13px !important;
-  background: linear-gradient(180deg, #fffdf8, #f8e3b6) !important;
-  color: #5b391f !important;
-  font-size: 13px !important;
-  font-weight: 950 !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.82) !important;
-}
-
-#app-shell #suggestionsPanel .inv-suggestion {
-  display: grid !important;
-  grid-template-columns: auto minmax(0, 1fr) minmax(96px, 118px) !important;
-  align-items: center !important;
-  gap: 9px !important;
-  min-height: 62px !important;
-  margin: 0 0 9px !important;
-  padding: 10px !important;
-  border: 2px solid #dec89e !important;
-  border-radius: 14px !important;
-  background:
-    linear-gradient(135deg, #fffdf8 0%, #fff7e7 58%, #f4dfb4 100%) !important;
-  box-shadow: 0 6px 13px rgba(76,47,25,0.09) !important;
-}
-
-#app-shell #suggestionsPanel .inv-suggestion.actionable {
-  grid-template-columns: auto minmax(0, 1fr) minmax(96px, 118px) 38px !important;
-}
-
-#app-shell #suggestionsPanel .inv-suggestion:not(.has-value) {
-  grid-template-columns: auto minmax(0, 1fr) !important;
-}
-
-#app-shell #suggestionsPanel .inv-suggestion.actionable:not(.has-value) {
-  grid-template-columns: auto minmax(0, 1fr) 38px !important;
-}
-
-#app-shell #suggestionsPanel .inv-suggestion + .inv-suggestion {
-  border-top: 2px solid #dec89e !important;
-}
-
-#app-shell #suggestionsPanel .inv-suggestion .badge {
-  display: inline-grid;
-  place-items: center;
-  min-width: 42px;
-  height: 28px;
-  padding: 0 8px;
-  border-radius: 999px;
-  font-size: 11px;
-  font-weight: 950;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.58);
-}
-
-#app-shell #suggestionsPanel .badge.recommend {
-  background: #fff0c7 !important;
-  color: #945b08 !important;
-}
-
-#app-shell #suggestionsPanel .badge.bundle {
-  background: #e1eef5 !important;
-  color: #285b80 !important;
-}
-
-#app-shell #suggestionsPanel .badge.goal {
-  background: #e2f2dd !important;
-  color: #246f42 !important;
-}
-
-#app-shell .inv-suggestion-copy {
-  display: grid;
-  gap: 2px;
-  min-width: 0;
-}
-
-#app-shell .inv-suggestion-title {
-  min-width: 0;
-  overflow: hidden;
-  color: #2d2118 !important;
-  font-size: 13.8px !important;
-  font-weight: 950 !important;
-  line-height: 1.16 !important;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#app-shell .inv-suggestion-desc {
-  min-width: 0;
-  overflow: hidden;
-  color: var(--sv-muted) !important;
-  font-size: 12px !important;
-  font-weight: 650 !important;
-  line-height: 1.25 !important;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-#app-shell .inv-suggestion-value {
-  justify-self: end;
-  display: grid !important;
-  place-items: center end;
-  width: 100%;
-  min-height: 34px;
-  margin: 0 !important;
-  padding: 5px 8px;
-  border: 1.5px solid #ddb56b;
-  border-radius: 11px;
-  background: linear-gradient(180deg, #fff1c7, #edcb78);
-  color: #7b4d0c !important;
-  font-size: 11px !important;
-  font-weight: 950 !important;
-  line-height: 1.12;
-  text-align: right;
-  white-space: normal !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.65);
-}
-
-#app-shell #suggestionsPanel .sug-add-btn {
-  width: 38px !important;
-  height: 38px !important;
-  border-radius: 12px !important;
-  border: 2px solid #ca9350 !important;
-  background: linear-gradient(180deg, #ffd486, #df9d2e) !important;
-  color: #52331d !important;
-  font-size: 24px !important;
-  font-weight: 950 !important;
-}
-
-#app-shell #goalsPanel .goal-card {
-  border: 2px solid #d8bd8a !important;
-  border-radius: 16px !important;
-  background: linear-gradient(180deg, #fffdf8, #fff4dc) !important;
-  box-shadow: var(--sv-shadow-soft) !important;
-}
-
-#app-shell #goalsPanel .goal-head {
-  min-height: 62px;
-  border-bottom: 1px solid #e6d1a8 !important;
-  background: linear-gradient(90deg, rgba(255,253,248,0.98), rgba(247,232,199,0.88)) !important;
-}
-
-#app-shell #goalsPanel .goal-emoji {
-  border: 1px solid #dcc290 !important;
-  border-radius: 13px !important;
-  background: linear-gradient(180deg, #fff8e8, #f2ddb4) !important;
-}
-
-#app-shell #goalsPanel .goal-frac {
-  border: 2px solid #2f8654 !important;
-  border-radius: 999px !important;
-  background: #e2f2dd !important;
-  color: #246f42 !important;
-}
-
-#app-shell #lookupPanel #itemLookup {
-  min-height: 42px !important;
-  border: 2px solid #d2b681 !important;
-  border-radius: 13px !important;
-  background: #fffdf8 !important;
-  box-shadow: inset 0 1px 0 rgba(255,255,255,0.72) !important;
-}
-
-.bundle-overlay {
-  background:
-    radial-gradient(circle at 20% 0%, rgba(255, 247, 220, 0.9), transparent 42%),
-    linear-gradient(180deg, #f6ead1, #e7d0a0) !important;
-}
-
-.bundle-overlay-close {
-  padding: 12px 14px !important;
-  border-bottom: 4px solid #4d2f1c !important;
-  background:
-    repeating-linear-gradient(90deg, rgba(255,255,255,0.045) 0 2px, transparent 2px 18px),
-    linear-gradient(180deg, #8f5a31, #5c361f) !important;
-  box-shadow: 0 8px 18px rgba(76,47,25,0.14) !important;
-}
-
-.progress-panel,
-.center-map-panel,
-.room-map,
-.search-panel {
-  border: 3px solid var(--sv-wood-dark) !important;
-  border-radius: 18px !important;
-  background: linear-gradient(180deg, #fffaf0, #f6e4bf) !important;
-  box-shadow: var(--sv-shadow-soft), inset 0 0 0 2px rgba(255,255,255,0.58) !important;
-}
-
-.panel-title,
-.room-map-head .panel-title {
-  display: inline-flex;
-  width: auto;
-  margin: 0 0 12px !important;
-  padding: 6px 12px;
-  border: 2px solid #d8b36d;
-  border-radius: 13px;
-  background: linear-gradient(180deg, #fff6cf, #e8be62);
-  color: #4c301d;
-  font-size: 15px !important;
-  font-weight: 950;
-  box-shadow: 0 4px 10px rgba(76,47,25,0.12);
-}
-
-.center-map-frame,
-.room-scene-card {
-  border: 2px solid #d6b981 !important;
-  border-radius: 16px !important;
-  background: linear-gradient(180deg, #fff7df, #f1dbad) !important;
-  box-shadow: inset 0 0 0 1px rgba(255,255,255,0.62) !important;
-}
-
-@media (max-width: 720px) {
-  #app-shell .inventory-hub-grid {
-    grid-template-columns: 1fr !important;
-  }
-}
-
-@media (max-width: 520px) {
-  #app-shell {
-    width: min(100% - 10px, 430px) !important;
-    padding: 7px 0 26px !important;
-  }
-
-  #app-shell .app-hero {
-    min-height: 94px;
-    padding: 14px 13px !important;
-    border-width: 3px !important;
-    border-radius: 18px !important;
-  }
-
-  #app-shell .app-hero::after {
-    display: none;
-  }
-
-  #app-shell .app-hero p.kicker {
-    font-size: 10px !important;
-    padding: 3px 8px;
-  }
-
-  #app-shell .app-hero h1 {
-    font-size: 23px !important;
-  }
-
-  #app-shell .app-hero-actions button {
-    min-height: 36px !important;
-    padding: 0 10px !important;
-    font-size: 13px !important;
-  }
-
-  #app-shell .season-bar {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) 28px 40px 28px 52px !important;
-    gap: 4px !important;
-    padding: 12px 7px 8px !important;
-    border-width: 3px !important;
-    border-radius: 16px !important;
-  }
-
-  #app-shell .season-pill,
-  #app-shell .weather-toggle,
-  #app-shell .day-step,
-  #app-shell .day-input {
-    min-height: 31px !important;
-    padding: 0 2px !important;
-    font-size: 12px !important;
-  }
-
-  #app-shell .app-panel {
-    margin-bottom: 11px !important;
-    padding: 11px !important;
-    border-width: 3px !important;
-    border-radius: 18px !important;
-  }
-
-  #app-shell .app-panel::after {
-    inset: 7px;
-    border-radius: 13px;
-  }
-
-  #app-shell .app-panel-title,
-  #app-shell #seasonPanel .app-panel-title,
-  #app-shell #inventoryHubPanel > .app-panel-title,
-  #app-shell #goalsPanel > .app-panel-title,
-  #app-shell #lookupPanel > .app-panel-title {
-    margin: 0 0 13px 2px !important;
-    padding: 6px 10px !important;
-    border-radius: 13px !important;
-    font-size: 15px !important;
-  }
-
-  #app-shell #inventoryHubPanel > .app-panel-title::after {
-    display: none;
-  }
-
-  #app-shell #seasonPanel::before,
-  #app-shell #seasonPanel::after {
-    inset: 8px !important;
-    border-radius: 13px !important;
-  }
-
-  #app-shell #seasonPanel .quest-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
-    gap: 7px !important;
-  }
-
-  #app-shell .quest-card {
-    min-height: 88px !important;
-    padding: 8px 8px 8px 12px !important;
-    border-radius: 13px !important;
-  }
-
-  #app-shell .quest-title {
-    font-size: 12.4px !important;
-  }
-
-  #app-shell .quest-day {
-    font-size: 9.5px !important;
-    padding: 2px 5px;
-  }
-
-  #app-shell .quest-reason {
-    min-height: 32px !important;
-    font-size: 11px !important;
-  }
-
-  #app-shell .inventory-subpanel {
-    padding: 10px !important;
-    border-radius: 15px !important;
-  }
-
-  #app-shell .inventory-summary {
-    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
-    gap: 5px !important;
-  }
-
-  #app-shell .inv-chip {
-    grid-template-columns: 17px minmax(0, 1fr);
-    min-height: 35px !important;
-    padding: 5px 4px !important;
-  }
-
-  #app-shell .inv-chip img,
-  #app-shell .inv-chip .fallback-icon {
-    width: 17px !important;
-    height: 17px !important;
-  }
-
-  #app-shell .inv-chip .inv-name {
-    font-size: 10px !important;
-  }
-
-  #app-shell .inv-chip .inv-count {
-    grid-column: 2;
-    justify-self: end;
-    margin-top: -2px;
-    font-size: 10px !important;
-  }
-
-  #app-shell #suggestionsPanel .inv-suggestion,
-  #app-shell #suggestionsPanel .inv-suggestion.has-value,
-  #app-shell #suggestionsPanel .inv-suggestion.actionable,
-  #app-shell #suggestionsPanel .inv-suggestion.actionable.has-value {
-    grid-template-columns: auto minmax(0, 1fr) !important;
-    gap: 7px !important;
-    min-height: 0 !important;
-    padding: 9px !important;
-    border-radius: 13px !important;
-  }
-
-  #app-shell #suggestionsPanel .inv-suggestion .inv-suggestion-value,
-  #app-shell #suggestionsPanel .inv-suggestion.has-value .inv-suggestion-value,
-  #app-shell #suggestionsPanel .inv-suggestion.actionable.has-value .inv-suggestion-value {
-    grid-column: 2;
-    justify-self: stretch;
-    min-height: 29px;
-  }
-
-  #app-shell #suggestionsPanel .inv-suggestion.actionable .sug-add-btn {
-    grid-column: 2;
-    justify-self: end;
-    width: 34px !important;
-    height: 32px !important;
-    font-size: 21px !important;
-  }
-
-  #app-shell .inv-suggestion-title {
-    font-size: 13px !important;
-  }
-
-  #app-shell .inv-suggestion-desc {
-    font-size: 11.5px !important;
-  }
-
-  .progress-panel,
-  .center-map-panel,
-  .room-map,
-  .search-panel {
-    border-width: 3px !important;
-    border-radius: 16px !important;
-  }
-
-  .panel-title,
-  .room-map-head .panel-title {
-    font-size: 14px !important;
-    padding: 5px 10px;
-  }
-}
-
-
-</style>
+  </style>
 </head>
 <body>
   <!-- 主工具：牧场决策助手 -->
@@ -7094,10 +6325,10 @@ body {
     <header class="app-hero">
       <div>
         <p class="kicker">STARDEW VALLEY HELPER</p>
-        <h1>🌾 星露谷游玩助手</h1>
+        <h1>🌾 牧场决策助手</h1>
       </div>
       <div class="app-hero-actions">
-        <button type="button" id="openBundleBtn">📦 献祭图</button>
+        <button type="button" id="openBundleBtn">📦 献祭</button>
       </div>
     </header>
 
@@ -9305,15 +8536,16 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
                 <div class="goal-info">
                   <div class="goal-title">${escapeHtml(tpl.title)}</div>
                   ${tpl.note ? `<div class="goal-meta">${escapeHtml(tpl.note)}</div>` : ""}
-                  ${howLabel ? `<span class="goal-how ${tpl.how}">${howLabel}</span>` : ""}
                 </div>
                 <div class="goal-progress">
-                  <div class="goal-frac">${done}/${total}</div>
-                  <div class="goal-bar"><div class="goal-bar-fill" style="width:${pct}%"></div></div>
+                  <div class="goal-frac"><span class="goal-frac-num">${done}</span><span class="goal-frac-sep">/</span><span class="goal-frac-tot">${total}</span></div>
+                  ${complete ? `<span class="goal-stamp" aria-hidden="true">✓</span>` : ""}
                 </div>
               </button>
+              ${!complete ? `<div class="goal-progress-bar"><div class="goal-progress-bar-fill" style="width:${pct}%"></div></div>` : ""}
               ${isOpen ? `
                 <div class="goal-body">
+                  ${howLabel ? `<div class="goal-how-row"><span class="goal-how ${tpl.how}">${howLabel}</span></div>` : ""}
                   ${steps}
                 </div>
               ` : ""}
@@ -9595,16 +8827,15 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
           }
         }
         const value = s.value ? `<span class="inv-suggestion-value">${escapeHtml(s.value).replaceAll("\n", " ")}</span>` : "";
-        const descLine = desc ? `<span class="inv-suggestion-desc">${escapeHtml(desc)}</span>` : "";
+        const descLine = desc || value ? `<span class="inv-suggestion-desc">${escapeHtml(desc)}${value}</span>` : "";
         const action = s.addGoalId ? `<button class="sug-add-btn" data-add-goal-sug="${s.addGoalId}" title="加入目标">+</button>` : "";
         return `
-          <div class="inv-suggestion ${s.addGoalId ? "actionable" : ""} ${s.value ? "has-value" : ""}">
+          <div class="inv-suggestion ${s.addGoalId ? "actionable" : ""}">
             <span class="badge ${s.kind}">${label}</span>
             <span class="inv-suggestion-copy">
               <span class="inv-suggestion-title">${escapeHtml(title)}</span>
               ${descLine}
             </span>
-            ${value}
             ${action}
           </div>
         `;
