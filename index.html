@@ -1,3 +1,5 @@
+我的目标版 codex美化 半成品
+
 <!doctype html>
 
 <html lang="zh-CN">
@@ -4592,13 +4594,15 @@
 .goal-how-row {
   display: flex;
   align-items: center;
-  gap: 6px;
-  margin: 2px 0 8px;
+  flex-wrap: wrap;
+  gap: 6px 8px;
+  margin: 2px 0 10px;
   font-size: 11px;
   color: var(--muted);
 }
-.goal-how-row::before {
-  content: "获取方式";
+.goal-how-hint {
+  font-size: 11px;
+  color: var(--muted);
   font-weight: 700;
 }
 
@@ -8059,41 +8063,35 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
     /* ── 目标模板 ── */
     const GOAL_TEMPLATES = [
       { cat: "工具升级", goals: [
-        { id: "upgrade-pickaxe-copper", title: "升级铜镐", emoji: "⛏️", how: "upgrade",
+        { id: "upgrade-pickaxe-copper", title: "升级铜镐", emoji: "⛏️", how: "upgrade", duration: "2 天",
           steps: [
             { label: "铜锭 ×5", invKey: "铜锭", invNeed: 5, sub: "或 铜矿石×25 + 煤炭×5 熔炼" },
             { label: "2,000g", invKey: "金币", invNeed: 2000 },
-            { label: "交给铁匠 Clint", sub: "周二至周日营业，升级需2天" },
           ]},
-        { id: "upgrade-axe-copper", title: "升级铜斧", emoji: "🪓", how: "upgrade",
+        { id: "upgrade-axe-copper", title: "升级铜斧", emoji: "🪓", how: "upgrade", duration: "2 天",
           steps: [
             { label: "铜锭 ×5", invKey: "铜锭", invNeed: 5 },
             { label: "2,000g", invKey: "金币", invNeed: 2000 },
-            { label: "交给铁匠 Clint" },
           ]},
-        { id: "upgrade-hoe-copper", title: "升级铜锄", emoji: "🌱", how: "upgrade",
+        { id: "upgrade-hoe-copper", title: "升级铜锄", emoji: "🌱", how: "upgrade", duration: "2 天",
           steps: [
             { label: "铜锭 ×5", invKey: "铜锭", invNeed: 5 },
             { label: "2,000g", invKey: "金币", invNeed: 2000 },
-            { label: "交给铁匠 Clint" },
           ]},
-        { id: "upgrade-can-copper", title: "升级铜壶", emoji: "🚿", how: "upgrade",
+        { id: "upgrade-can-copper", title: "升级铜壶", emoji: "🚿", how: "upgrade", duration: "2 天", note: "选雨天前一天交，不耽误浇水",
           steps: [
             { label: "铜锭 ×5", invKey: "铜锭", invNeed: 5 },
             { label: "2,000g", invKey: "金币", invNeed: 2000 },
-            { label: "交给铁匠 Clint", sub: "选雨天前一天交，不耽误浇水" },
           ]},
-        { id: "upgrade-pickaxe-steel", title: "升级钢镐", emoji: "⛏️", how: "upgrade",
+        { id: "upgrade-pickaxe-steel", title: "升级钢镐", emoji: "⛏️", how: "upgrade", duration: "2 天",
           steps: [
             { label: "铁锭 ×5", invKey: "铁锭", invNeed: 5 },
             { label: "5,000g", invKey: "金币", invNeed: 5000 },
-            { label: "交给铁匠 Clint" },
           ]},
-        { id: "upgrade-axe-steel", title: "升级钢斧", emoji: "🪓", how: "upgrade",
+        { id: "upgrade-axe-steel", title: "升级钢斧", emoji: "🪓", how: "upgrade", duration: "2 天",
           steps: [
             { label: "铁锭 ×5", invKey: "铁锭", invNeed: 5 },
             { label: "5,000g", invKey: "金币", invNeed: 5000 },
-            { label: "交给铁匠 Clint" },
           ]},
       ]},
       { cat: "加工设备", goals: [
@@ -8154,57 +8152,50 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
           ]},
       ]},
       { cat: "农场建筑", goals: [
-        { id: "build-silo", title: "建筒仓", emoji: "🌾", how: "build", note: "找木匠 Robin，建议先于鸡舍",
+        { id: "build-silo", title: "建筒仓", emoji: "🌾", how: "build", duration: "3 天", note: "建议先于鸡舍",
           steps: [
             { label: "石头 ×100", invKey: "石头", invNeed: 100 },
             { label: "粘土 ×10", invKey: "粘土", invNeed: 10 },
             { label: "铜锭 ×5", invKey: "铜锭", invNeed: 5 },
             { label: "100g", invKey: "金币", invNeed: 100 },
-            { label: "找 Robin 建造", sub: "木匠铺，建造需3天" },
           ]},
-        { id: "build-coop", title: "建鸡舍", emoji: "🐔", how: "build",
+        { id: "build-coop", title: "建鸡舍", emoji: "🐔", how: "build", duration: "3 天",
           steps: [
             { label: "木材 ×300", invKey: "木材", invNeed: 300 },
             { label: "石头 ×100", invKey: "石头", invNeed: 100 },
             { label: "4,000g", invKey: "金币", invNeed: 4000 },
-            { label: "找 Robin 建造", sub: "建造需3天" },
           ]},
-        { id: "build-coop-big", title: "升级大鸡舍", emoji: "🐓", how: "build",
+        { id: "build-coop-big", title: "升级大鸡舍", emoji: "🐓", how: "build", duration: "3 天",
           steps: [
             { label: "木材 ×400", invKey: "木材", invNeed: 400 },
             { label: "石头 ×150", invKey: "石头", invNeed: 150 },
             { label: "10,000g", invKey: "金币", invNeed: 10000 },
-            { label: "找 Robin 升级" },
           ]},
-        { id: "build-barn", title: "建畜棚", emoji: "🐄", how: "build",
+        { id: "build-barn", title: "建畜棚", emoji: "🐄", how: "build", duration: "3 天",
           steps: [
             { label: "木材 ×350", invKey: "木材", invNeed: 350 },
             { label: "石头 ×150", invKey: "石头", invNeed: 150 },
             { label: "6,000g", invKey: "金币", invNeed: 6000 },
-            { label: "找 Robin 建造", sub: "建造需3天" },
           ]},
-        { id: "build-mill", title: "建磨坊", emoji: "🌬️", how: "build", note: "可把小麦磨成面粉，甜菜磨成糖",
+        { id: "build-mill", title: "建磨坊", emoji: "🌬️", how: "build", duration: "3 天", note: "可把小麦磨成面粉，甜菜磨成糖",
           steps: [
             { label: "木材 ×150", invKey: "木材", invNeed: 150 },
             { label: "石头 ×50", invKey: "石头", invNeed: 50 },
             { label: "布料 ×4", invKey: "布料", invNeed: 4 },
             { label: "2,500g", invKey: "金币", invNeed: 2500 },
-            { label: "找 Robin 建造" },
           ]},
-        { id: "build-stable", title: "建马厩", emoji: "🐴", how: "build", note: "建造后会有匹马，加快移动",
+        { id: "build-stable", title: "建马厩", emoji: "🐴", how: "build", duration: "2 天", note: "建造后会有匹马，加快移动",
           steps: [
             { label: "硬木 ×10", invKey: "硬木", invNeed: 10 },
             { label: "铁锭 ×5", invKey: "铁锭", invNeed: 5 },
             { label: "10,000g", invKey: "金币", invNeed: 10000 },
-            { label: "找 Robin 建造" },
           ]},
-        { id: "build-fish-pond", title: "建鱼塘", emoji: "🐠", how: "build", note: "养鱼自动产卵/鱼籽",
+        { id: "build-fish-pond", title: "建鱼塘", emoji: "🐠", how: "build", duration: "3 天", note: "养鱼自动产卵/鱼籽",
           steps: [
             { label: "石头 ×200", invKey: "石头", invNeed: 200 },
             { label: "苔藓 ×5", invKey: "苔藓", invNeed: 5 },
             { label: "海藻 ×5" },
             { label: "5,000g", invKey: "金币", invNeed: 5000 },
-            { label: "找 Robin 建造" },
           ]},
       ]},
       { cat: "其他", goals: [
@@ -8535,7 +8526,15 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
         }).length;
         const pct = total ? Math.round(done / total * 100) : 0;
         const complete = pct === 100;
-        const howLabel = { craft: "🔨 合成菜单", build: "🏡 找Robin", upgrade: "⚒️ 找Clint", self: "💪 自行" }[tpl.how] || "";
+        const HOW_INFO = {
+          craft:   { label: "🔨 合成菜单", hint: "" },
+          build:   { label: "🪵 木匠商店", hint: "周二休 · 9-17" },
+          upgrade: { label: "⚒️ 铁匠铺", hint: "9-16 营业" },
+          self:    { label: "💪 自行完成", hint: "" }
+        };
+        const howInfo = HOW_INFO[tpl.how] || null;
+        const howLabel = howInfo ? howInfo.label : "";
+        const howHint = howInfo ? [howInfo.hint, tpl.duration ? `需 ${tpl.duration}` : ""].filter(Boolean).join(" · ") : "";
         const isOpen = goal.expanded !== false;
         return `
           <div class="goal-card-container">
@@ -8555,7 +8554,7 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
               ${!complete ? `<div class="goal-progress-bar"><div class="goal-progress-bar-fill" style="width:${pct}%"></div></div>` : ""}
               ${isOpen ? `
                 <div class="goal-body">
-                  ${howLabel ? `<div class="goal-how-row"><span class="goal-how ${tpl.how}">${howLabel}</span></div>` : ""}
+                  ${howLabel ? `<div class="goal-how-row"><span class="goal-how ${tpl.how}">${howLabel}</span>${howHint ? `<span class="goal-how-hint">${howHint}</span>` : ""}</div>` : ""}
                   ${steps}
                 </div>
               ` : ""}
