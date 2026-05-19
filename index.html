@@ -4669,6 +4669,46 @@
   background: var(--green-soft);
   color: var(--green);
 }
+
+/* —— 获取方式动作步骤：视觉区别于材料项 —— */
+.goal-step.goal-step--action {
+  margin-top: 8px;
+  padding: 9px 8px;
+  border: 1.5px dashed rgba(216, 155, 43, 0.55);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255, 245, 220, 0.55), rgba(255, 238, 200, 0.4));
+}
+.goal-step.goal-step--action .goal-step-check {
+  border-color: var(--gold);
+  background: #fffaef;
+}
+.goal-step.goal-step--action.done {
+  border-color: rgba(45, 138, 95, 0.5);
+  border-style: solid;
+  background: linear-gradient(180deg, rgba(232, 247, 227, 0.7), rgba(220, 240, 215, 0.55));
+}
+.goal-step.goal-step--action.done .goal-step-check {
+  background: var(--green);
+  border-color: var(--green);
+}
+.goal-step.goal-step--action .goal-step-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 800;
+  color: #5f3a22;
+}
+.goal-step.goal-step--action.done .goal-step-text {
+  color: #1f7549;
+}
+.goal-step.goal-step--action .goal-action-ico {
+  font-size: 16px;
+  line-height: 1;
+}
+.goal-step.goal-step--action .goal-step-sub {
+  color: #8d7a5a;
+}
+
 .goal-remove {
   margin-top: 8px;
   width: 100%;
@@ -6295,6 +6335,45 @@ body.modal-open #app-shell { pointer-events: none; }
 #app-shell #goalsPanel .goal-step-have.ready {
   background: var(--green-soft);
   color: var(--green);
+}
+
+/* 手机端 action step override（保证特异性高于 #app-shell #goalsPanel .goal-step-text 等） */
+#app-shell #goalsPanel .goal-step.goal-step--action {
+  margin-top: 8px;
+  padding: 9px 10px;
+  border: 1.5px dashed rgba(216, 155, 43, 0.55);
+  border-radius: 10px;
+  background: linear-gradient(180deg, rgba(255, 245, 220, 0.6), rgba(255, 238, 200, 0.45));
+}
+#app-shell #goalsPanel .goal-step.goal-step--action .goal-step-check {
+  border-color: var(--gold);
+  background: #fffaef;
+}
+#app-shell #goalsPanel .goal-step.goal-step--action.done {
+  border-color: rgba(45, 138, 95, 0.5);
+  border-style: solid;
+  background: linear-gradient(180deg, rgba(232, 247, 227, 0.75), rgba(220, 240, 215, 0.6));
+}
+#app-shell #goalsPanel .goal-step.goal-step--action.done .goal-step-check {
+  background: var(--green);
+  border-color: var(--green);
+}
+#app-shell #goalsPanel .goal-step.goal-step--action .goal-step-text {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #5f3a22;
+  font-weight: 800;
+}
+#app-shell #goalsPanel .goal-step.goal-step--action.done .goal-step-text {
+  color: #1f7549;
+}
+#app-shell #goalsPanel .goal-step.goal-step--action .goal-action-ico {
+  font-size: 16px;
+  line-height: 1;
+}
+#app-shell #goalsPanel .goal-step.goal-step--action .goal-step-sub {
+  color: #8d7a5a;
 }
 
 #app-shell #openInventoryBtn,
@@ -8504,7 +8583,8 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
       }
       list.innerHTML = appState.goals.map(goal => {
         const tpl = findGoalTemplate(goal.id) || goal;
-        const steps = (goal.steps || tpl.steps).map((step, idx) => {
+        const matList = goal.steps || tpl.steps;
+        const matSteps = matList.map((step, idx) => {
           const have = step.invKey ? (appState.inventory[step.invKey] || 0) : 0;
           const auto = step.invNeed && have >= step.invNeed;
           const checked = step.checked || auto;
@@ -8519,22 +8599,45 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
             </button>
           `;
         }).join("");
-        const total = (goal.steps || tpl.steps).length;
-        const done = (goal.steps || tpl.steps).filter((s, i) => {
+
+        /* —— 获取方式：合并 how + duration + note，作为可勾选的最终动作步骤 —— */
+        const ACTION_TPL = {
+          craft:   { icon: "🔨", label: "在合成菜单制作", venue: "" },
+          build:   { icon: "🏡", label: "木匠商店找 Robin 建造", venue: "周二至周日营业" },
+          upgrade: { icon: "⚒️", label: "铁匠铺交给 Clint 升级", venue: "周二至周日营业" },
+          self:    { icon: "💪", label: "自行完成", venue: "" }
+        };
+        const actDef = ACTION_TPL[tpl.how];
+        let actionStep = "";
+        let hasAction = false;
+        if (actDef) {
+          hasAction = true;
+          const subs = [];
+          if (tpl.duration) subs.push(`用时 ${tpl.duration}`);
+          if (actDef.venue) subs.push(actDef.venue);
+          if (tpl.note) subs.push(tpl.note);
+          const subText = subs.map(escapeHtml).join(" · ");
+          const actDone = goal.actionDone === true;
+          actionStep = `
+            <button class="goal-step goal-step--action ${actDone ? "done" : ""}" data-toggle-action="${goal.id}" type="button">
+              <span class="goal-step-check">${actDone ? "✓" : ""}</span>
+              <div class="goal-step-body">
+                <div class="goal-step-text"><span class="goal-action-ico">${actDef.icon}</span>${escapeHtml(actDef.label)}</div>
+                ${subText ? `<div class="goal-step-sub">${subText}</div>` : ""}
+              </div>
+            </button>
+          `;
+        }
+        const steps = matSteps + actionStep;
+
+        const total = matList.length + (hasAction ? 1 : 0);
+        const matDone = matList.filter(s => {
           const have = s.invKey ? (appState.inventory[s.invKey] || 0) : 0;
           return s.checked || (s.invNeed && have >= s.invNeed);
         }).length;
+        const done = matDone + (hasAction && goal.actionDone ? 1 : 0);
         const pct = total ? Math.round(done / total * 100) : 0;
         const complete = pct === 100;
-        const HOW_INFO = {
-          craft:   { label: "🔨 合成菜单", hint: "" },
-          build:   { label: "🪵 木匠商店", hint: "周二休 · 9-17" },
-          upgrade: { label: "⚒️ 铁匠铺", hint: "9-16 营业" },
-          self:    { label: "💪 自行完成", hint: "" }
-        };
-        const howInfo = HOW_INFO[tpl.how] || null;
-        const howLabel = howInfo ? howInfo.label : "";
-        const howHint = howInfo ? [howInfo.hint, tpl.duration ? `需 ${tpl.duration}` : ""].filter(Boolean).join(" · ") : "";
         const isOpen = goal.expanded !== false;
         return `
           <div class="goal-card-container">
@@ -8544,7 +8647,6 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
                 <span class="goal-emoji">${renderGoalIcon(tpl)}</span>
                 <div class="goal-info">
                   <div class="goal-title">${escapeHtml(tpl.title)}</div>
-                  ${tpl.note ? `<div class="goal-meta">${escapeHtml(tpl.note)}</div>` : ""}
                 </div>
                 <div class="goal-progress">
                   <div class="goal-frac"><span class="goal-frac-num">${done}</span><span class="goal-frac-sep">/</span><span class="goal-frac-tot">${total}</span></div>
@@ -8552,12 +8654,7 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
                 </div>
               </button>
               ${!complete ? `<div class="goal-progress-bar"><div class="goal-progress-bar-fill" style="width:${pct}%"></div></div>` : ""}
-              ${isOpen ? `
-                <div class="goal-body">
-                  ${howLabel ? `<div class="goal-how-row"><span class="goal-how ${tpl.how}">${howLabel}</span>${howHint ? `<span class="goal-how-hint">${howHint}</span>` : ""}</div>` : ""}
-                  ${steps}
-                </div>
-              ` : ""}
+              ${isOpen ? `<div class="goal-body">${steps}</div>` : ""}
             </div>
           </div>
         `;
@@ -8595,6 +8692,12 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
       const g = appState.goals.find(x => x.id === id);
       if (!g) return;
       g.steps[idx].checked = !g.steps[idx].checked;
+      renderApp();
+    }
+    function toggleGoalAction(id) {
+      const g = appState.goals.find(x => x.id === id);
+      if (!g) return;
+      g.actionDone = !g.actionDone;
       renderApp();
     }
     function removeGoal(id) {
@@ -9428,6 +9531,12 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
       if (toggleStep) {
         const [gid, idx] = toggleStep.dataset.toggleStep.split("|");
         toggleGoalStep(gid, parseInt(idx));
+        return;
+      }
+      // 目标动作步骤勾选（获取方式）
+      const toggleAction = e.target.closest("[data-toggle-action]");
+      if (toggleAction) {
+        toggleGoalAction(toggleAction.dataset.toggleAction);
         return;
       }
       // 左滑后点删除
