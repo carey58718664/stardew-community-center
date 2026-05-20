@@ -4670,26 +4670,33 @@
   color: var(--green);
 }
 
-/* —— 获取方式动作步骤：视觉区别于材料项 —— */
+/* —— 获取方式动作步骤：左侧金色竖条，无勾选框 —— */
 .goal-step.goal-step--action {
-  margin-top: 8px;
-  padding: 9px 8px;
-  border: 1.5px dashed rgba(216, 155, 43, 0.55);
+  position: relative;
+  margin-top: 14px;
+  padding: 10px 12px 10px 16px;
+  border: none;
   border-radius: 10px;
   background: linear-gradient(180deg, rgba(255, 245, 220, 0.55), rgba(255, 238, 200, 0.4));
+  gap: 0;
 }
-.goal-step.goal-step--action .goal-step-check {
-  border-color: var(--gold);
-  background: #fffaef;
+.goal-step.goal-step--action::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--gold);
+  transition: background 0.2s ease;
 }
+.goal-step.goal-step--action .goal-step-check { display: none; }
 .goal-step.goal-step--action.done {
-  border-color: rgba(45, 138, 95, 0.5);
-  border-style: solid;
   background: linear-gradient(180deg, rgba(232, 247, 227, 0.7), rgba(220, 240, 215, 0.55));
 }
-.goal-step.goal-step--action.done .goal-step-check {
+.goal-step.goal-step--action.done::before {
   background: var(--green);
-  border-color: var(--green);
 }
 .goal-step.goal-step--action .goal-step-text {
   display: flex;
@@ -4699,7 +4706,8 @@
   color: #5f3a22;
 }
 .goal-step.goal-step--action.done .goal-step-text {
-  color: #1f7549;
+  color: var(--green);
+  text-decoration: line-through;
 }
 .goal-step.goal-step--action .goal-action-ico {
   font-size: 16px;
@@ -4707,6 +4715,16 @@
 }
 .goal-step.goal-step--action .goal-step-sub {
   color: #8d7a5a;
+}
+
+/* —— 标题后面的小字提示（note） —— */
+.goal-hint {
+  display: inline;
+  margin-left: 6px;
+  font-size: 10.5px;
+  font-weight: 600;
+  color: var(--muted);
+  opacity: 0.85;
 }
 
 .goal-remove {
@@ -6337,26 +6355,32 @@ body.modal-open #app-shell { pointer-events: none; }
   color: var(--green);
 }
 
-/* 手机端 action step override（保证特异性高于 #app-shell #goalsPanel .goal-step-text 等） */
+/* 手机端 action step override */
 #app-shell #goalsPanel .goal-step.goal-step--action {
-  margin-top: 8px;
-  padding: 9px 10px;
-  border: 1.5px dashed rgba(216, 155, 43, 0.55);
+  position: relative;
+  margin-top: 12px;
+  padding: 10px 12px 10px 16px;
+  border: none;
   border-radius: 10px;
   background: linear-gradient(180deg, rgba(255, 245, 220, 0.6), rgba(255, 238, 200, 0.45));
+  gap: 0;
 }
-#app-shell #goalsPanel .goal-step.goal-step--action .goal-step-check {
-  border-color: var(--gold);
-  background: #fffaef;
+#app-shell #goalsPanel .goal-step.goal-step--action::before {
+  content: "";
+  position: absolute;
+  top: 8px;
+  bottom: 8px;
+  left: 0;
+  width: 3px;
+  border-radius: 0 3px 3px 0;
+  background: var(--gold);
 }
+#app-shell #goalsPanel .goal-step.goal-step--action .goal-step-check { display: none; }
 #app-shell #goalsPanel .goal-step.goal-step--action.done {
-  border-color: rgba(45, 138, 95, 0.5);
-  border-style: solid;
   background: linear-gradient(180deg, rgba(232, 247, 227, 0.75), rgba(220, 240, 215, 0.6));
 }
-#app-shell #goalsPanel .goal-step.goal-step--action.done .goal-step-check {
+#app-shell #goalsPanel .goal-step.goal-step--action.done::before {
   background: var(--green);
-  border-color: var(--green);
 }
 #app-shell #goalsPanel .goal-step.goal-step--action .goal-step-text {
   display: flex;
@@ -6366,7 +6390,8 @@ body.modal-open #app-shell { pointer-events: none; }
   font-weight: 800;
 }
 #app-shell #goalsPanel .goal-step.goal-step--action.done .goal-step-text {
-  color: #1f7549;
+  color: var(--green);
+  text-decoration: line-through;
 }
 #app-shell #goalsPanel .goal-step.goal-step--action .goal-action-ico {
   font-size: 16px;
@@ -6374,6 +6399,16 @@ body.modal-open #app-shell { pointer-events: none; }
 }
 #app-shell #goalsPanel .goal-step.goal-step--action .goal-step-sub {
   color: #8d7a5a;
+}
+
+/* 手机端标题后小字 */
+#app-shell #goalsPanel .goal-hint {
+  display: inline;
+  margin-left: 5px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  opacity: 0.85;
 }
 
 #app-shell #openInventoryBtn,
@@ -8583,13 +8618,22 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
       }
       list.innerHTML = appState.goals.map(goal => {
         const tpl = findGoalTemplate(goal.id) || goal;
-        const matList = goal.steps || tpl.steps;
+        const rawList = goal.steps || tpl.steps;
+        /* 过滤掉旧数据里残留的"找 Robin / 找 Clint"等动作 step
+           - self 类全保留（它的 step 本身就是动作描述，如"准备食物回血"）
+           - 其他类只保留含 invKey 或 invNeed 的真材料 step */
+        const matList = rawList.filter(s => {
+          if (tpl.how === "self") return true;
+          return s.invKey || s.invNeed;
+        });
         const matSteps = matList.map((step, idx) => {
           const have = step.invKey ? (appState.inventory[step.invKey] || 0) : 0;
           const auto = step.invNeed && have >= step.invNeed;
           const checked = step.checked || auto;
+          /* idx 是过滤后的索引，但 toggleGoalStep 需要原始数组里的索引 */
+          const origIdx = rawList.indexOf(step);
           return `
-            <button class="goal-step ${checked ? "done" : ""}" data-toggle-step="${goal.id}|${idx}" type="button">
+            <button class="goal-step ${checked ? "done" : ""}" data-toggle-step="${goal.id}|${origIdx}" type="button">
               <span class="goal-step-check">${checked ? "✓" : ""}</span>
               <div class="goal-step-body">
                 <div class="goal-step-text">${escapeHtml(step.label)}</div>
@@ -8600,12 +8644,12 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
           `;
         }).join("");
 
-        /* —— 获取方式：合并 how + duration + note，作为可勾选的最终动作步骤 —— */
+        /* —— 获取方式：合并 how + duration，作为可勾选的最终动作步骤 ——
+           self 类不需要 action step（它的 step 已经是动作描述） */
         const ACTION_TPL = {
           craft:   { icon: "🔨", label: "在合成菜单制作", venue: "" },
-          build:   { icon: "🏡", label: "木匠商店找 Robin 建造", venue: "周二至周日营业" },
-          upgrade: { icon: "⚒️", label: "铁匠铺交给 Clint 升级", venue: "周二至周日营业" },
-          self:    { icon: "💪", label: "自行完成", venue: "" }
+          build:   { icon: "🏡", label: "木匠商店找 Robin 建造", venue: "周一休 · 9:00–17:00" },
+          upgrade: { icon: "⚒️", label: "铁匠铺交给 Clint 升级", venue: "周五休 · 9:00–16:00" }
         };
         const actDef = ACTION_TPL[tpl.how];
         let actionStep = "";
@@ -8615,12 +8659,10 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
           const subs = [];
           if (tpl.duration) subs.push(`用时 ${tpl.duration}`);
           if (actDef.venue) subs.push(actDef.venue);
-          if (tpl.note) subs.push(tpl.note);
           const subText = subs.map(escapeHtml).join(" · ");
           const actDone = goal.actionDone === true;
           actionStep = `
             <button class="goal-step goal-step--action ${actDone ? "done" : ""}" data-toggle-action="${goal.id}" type="button">
-              <span class="goal-step-check">${actDone ? "✓" : ""}</span>
               <div class="goal-step-body">
                 <div class="goal-step-text"><span class="goal-action-ico">${actDef.icon}</span>${escapeHtml(actDef.label)}</div>
                 ${subText ? `<div class="goal-step-sub">${subText}</div>` : ""}
@@ -8646,7 +8688,7 @@ const STORAGE_KEY = "stardew.communityCenter.checkedItems.v2";
               <button type="button" class="goal-head" data-toggle-goal="${goal.id}">
                 <span class="goal-emoji">${renderGoalIcon(tpl)}</span>
                 <div class="goal-info">
-                  <div class="goal-title">${escapeHtml(tpl.title)}</div>
+                  <div class="goal-title">${escapeHtml(tpl.title)}${tpl.note ? `<span class="goal-hint">${escapeHtml(tpl.note)}</span>` : ""}</div>
                 </div>
                 <div class="goal-progress">
                   <div class="goal-frac"><span class="goal-frac-num">${done}</span><span class="goal-frac-sep">/</span><span class="goal-frac-tot">${total}</span></div>
